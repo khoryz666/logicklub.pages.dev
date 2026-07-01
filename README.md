@@ -1,5 +1,9 @@
 # LOGICKlub
 
+[report](https://docs.google.com/document/d/1D2tq8UYtxX9eCiQurjJTyIvsvn36X9Ez4vTfpB-tkf4/edit?usp=sharing)
+
+[presentation](https://docs.google.com/presentation/d/1_R8CxTHcr-Eew4daF4Pk1WIiDnkruNDncPQrk0c73ZU/edit?usp=sharing)
+
 ## Main Goal
 Build a multi-page frontend community website named **LOGICKlub** for logic, coding, AI, and creative technology enthusiasts.
 
@@ -42,7 +46,7 @@ The project consists of 8 pages, collaboratively developed by 4 members.
 
 ---
 
-## 🔄 Shared Modules & State
+## Shared Modules & State
 To ensure consistency across the entire website, the following modules are shared:
 1.  **Global Theme Switcher**: A shared navigation/header button (included on all HTML pages) that toggles the site-wide theme between light and midnight modes. The selection is stored in `Cookies` or `LocalStorage` and dynamically applied to all pages.
 2.  **Global Auth State**: Firebase Authentication state observer to check if a user is logged in (used by pages that require authentication context).
