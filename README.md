@@ -38,7 +38,7 @@ The project consists of 8 pages, collaboratively developed by 4 members.
 *   **`contact.html` (Feedback Hub & Support)**
     *   **Effect**: Feedback form and contact channel allowing users to submit feedback and suggestions.
 
-### Member 4: Coding Challenges & WebAssembly
+### Khor Yu Zhuang: Coding Challenges & WebAssembly
 *   **`quiz.html` (Coding Quiz Challenge)**
     *   **Effect**: Interactive programming and logic quiz. Uses jQuery `$.ajax()` to dynamically fetch coding questions from a public web API, displaying them sequentially with instant score tracking.
 *   **`game.html` / `wasm-game.html` (Wasm Challenge Game)**
