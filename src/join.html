@@ -6,15 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join Us</title>
     <script type="module" src="js/auth.js"></script>
+    <script type="module" src="js/join.js"></script>
 </head>
 
 <body>
     <h1>Join Us</h1>
-    <form action="">
-        <input type="email" placeholder="Email">
-        <input type="password" placeholder="Password">
-        <button type="submit">Join</button>
+
+    <form id="join-form">
+        <input id="user-email" type="email" placeholder="Email" required>
+        <input id="user-pwd" type="password" placeholder="Password" required>
+        <button type="submit">Sign Up</button>
+        <button id="sign-in-btn" type="button">Sign In</button>
     </form>
+
+    <br>
+
+    <div id="auth-status" style="display: none;">
+        <p>Logged in as: <strong id="signed-in-email"></strong></p>
+        <button id="sign-out-btn" type="button">Sign Out</button>
+    </div>
 </body>
 
 </html>
