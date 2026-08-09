@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Workshops | LOGICKlub</title>
+</head>
+
+<body>
+
+<header>
+    <h1>LOGICKlub Workshops</h1>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="events.html">Events</a>
+        <a href="workshops.html">Workshops</a>
+    </nav>
+</header>
+
+<main>
+
+    <section>
+        <h2>Upcoming Workshops</h2>
+
+        <p>
+            Join our AI and innovation workshops to learn new skills,
+            explore emerging technologies, and gain hands-on experience.
+        </p>
+
+        <article>
+            <h3>Introduction to Artificial Intelligence</h3>
+
+            <p>
+                Learn the fundamentals of artificial intelligence,
+                its applications, and how modern AI systems work.
+            </p>
+
+            <p>Date: 12 September 2026</p>
+            <p>Time: 10:00 AM - 12:00 PM</p>
+            <p>Venue: LOGICKlub Computer Lab</p>
+
+            <button
+                type="button"
+                class="select-workshop"
+                data-workshop-id="ai-introduction"
+                data-workshop-title="Introduction to Artificial Intelligence">
+                Select Workshop
+            </button>
+        </article>
+
+        <article>
+            <h3>Prompt Engineering Fundamentals</h3>
+
+            <p>
+                Learn how to communicate effectively with generative AI
+                systems and create better prompts.
+            </p>
+
+            <p>Date: 19 September 2026</p>
+            <p>Time: 2:00 PM - 4:00 PM</p>
+            <p>Venue: LOGICKlub Computer Lab</p>
+
+            <button
+                type="button"
+                class="select-workshop"
+                data-workshop-id="prompt-engineering"
+                data-workshop-title="Prompt Engineering Fundamentals">
+                Select Workshop
+            </button>
+        </article>
+
+        <article>
+            <h3>Build Your First Machine Learning Model</h3>
+
+            <p>
+                Discover the basic machine learning workflow and learn
+                how simple models can make predictions from data.
+            </p>
+
+            <p>Date: 26 September 2026</p>
+            <p>Time: 10:00 AM - 1:00 PM</p>
+            <p>Venue: LOGICKlub Computer Lab</p>
+
+            <button
+                type="button"
+                class="select-workshop"
+                data-workshop-id="machine-learning"
+                data-workshop-title="Build Your First Machine Learning Model">
+                Select Workshop
+            </button>
+        </article>
+
+    </section>
+
+    <section>
+        <h2>Seat Reservation</h2>
+
+        <p>
+            Selected workshop:
+            <strong id="selected-workshop">None</strong>
+        </p>
+
+        <p>Select an available seat:</p>
+
+        <div id="seat-container">
+
+            <div>
+                <button type="button" class="seat-btn" data-seat="A1">A1</button>
+                <button type="button" class="seat-btn" data-seat="A2">A2</button>
+                <button type="button" class="seat-btn" data-seat="A3">A3</button>
+                <button type="button" class="seat-btn" data-seat="A4">A4</button>
+            </div>
+
+            <div>
+                <button type="button" class="seat-btn" data-seat="B1">B1</button>
+                <button type="button" class="seat-btn" data-seat="B2">B2</button>
+                <button type="button" class="seat-btn" data-seat="B3">B3</button>
+                <button type="button" class="seat-btn" data-seat="B4">B4</button>
+            </div>
+
+            <div>
+                <button type="button" class="seat-btn" data-seat="C1">C1</button>
+                <button type="button" class="seat-btn" data-seat="C2">C2</button>
+                <button type="button" class="seat-btn" data-seat="C3">C3</button>
+                <button type="button" class="seat-btn" data-seat="C4">C4</button>
+            </div>
+
+        </div>
+
+        <p>
+            Selected seat:
+            <strong id="selected-seat">None</strong>
+        </p>
+
+        <button id="reserve-btn" type="button">
+            Confirm Reservation
+        </button>
+
+        <p id="reservation-status"></p>
+
+    </section>
+
+    <section>
+        <h2>Your Reservation</h2>
+
+        <div id="reservation-details">
+            <p>No workshop reservation has been made yet.</p>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <p>&copy; 2026 LOGICKlub</p>
+</footer>
+
+<script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+<script src="js/workshops.js"></script>
+
+</body>
+
+</html>
