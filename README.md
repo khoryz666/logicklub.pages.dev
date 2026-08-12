@@ -33,8 +33,8 @@ The project consists of 8 pages, collaboratively developed by 4 members.
 - **`contact.html` (Feedback Hub & Support)**: A feedback form and contact channel allowing users to submit feedback.
 
 ### Khor Yu Zhuang: Interactive Learning
-- **`math.html` (Coding Quiz Challenge)**: Linear algebra concept visualization related to AI applications.
-- **`game.html` (Educational AI Game)**: A game implemented purely in JavaScript to teach AI concepts interactively.
+- **`math.html` (Linear Algebra Visualizer)**: An interactive 2D visualization of matrix transformations and basis vectors, illustrating how neural networks warp data spaces.
+- **`game.html` (AI Training Simulator)**: An idle-clicker game implemented purely in JavaScript where users gather data to train an AI model, featuring an animated loss curve, Storage APIs, and real-world data injection via AJAX.
 
 ---
 
