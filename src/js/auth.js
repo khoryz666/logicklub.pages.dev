@@ -2,6 +2,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-analytics.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -17,17 +18,69 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 export const auth = getAuth(app);
+export const db = getFirestore(app);
+
+// --- COOKIE & STORAGE CONSENT BANNER ---
+document.addEventListener("DOMContentLoaded", () => {
+  if (!localStorage.getItem("consentAcknowledged")) {
+    const banner = document.createElement("div");
+    banner.style.position = "fixed";
+    banner.style.bottom = "0";
+    banner.style.left = "0";
+    banner.style.width = "100%";
+    banner.style.backgroundColor = "#222";
+    banner.style.color = "white";
+    banner.style.padding = "15px";
+    banner.style.textAlign = "center";
+    banner.style.zIndex = "1000";
+    banner.innerHTML = `
+      <p style="display:inline; margin-right: 15px;">
+        This website uses Local Storage and Firebase Authentication to ensure you get the best experience.
+      </p>
+      <button id="consent-btn" style="padding: 5px 15px;">I Understand</button>
+    `;
+    document.body.appendChild(banner);
+
+    document.getElementById("consent-btn").addEventListener("click", () => {
+      localStorage.setItem("consentAcknowledged", "true");
+      banner.remove();
+    });
+  }
+});
 
 
 onAuthStateChanged(auth, (user) => {
   const authStatus = document.getElementById("auth-status");
   const joinForm = document.getElementById("join-form");
   const signedInEmail = document.getElementById("signed-in-email");
+  const nav = document.querySelector("nav");
+
+  // Remove existing global auth greeting if present
+  const existingGreeting = document.getElementById("global-auth-greeting");
+  if (existingGreeting) existingGreeting.remove();
 
   if (user) {
     if (authStatus) authStatus.style.display = "block";
     if (joinForm) joinForm.style.display = "none";
     if (signedInEmail) signedInEmail.innerText = user.email;
+
+    // Inject global greeting into nav
+    if (nav) {
+      const greetingSpan = document.createElement("span");
+      greetingSpan.id = "global-auth-greeting";
+      greetingSpan.style.float = "right";
+      greetingSpan.innerHTML = `Welcome, <strong>${user.displayName || user.email}</strong>! | <a href="#" id="global-signout-btn">Sign Out</a>`;
+      nav.appendChild(greetingSpan);
+
+      document.getElementById("global-signout-btn").addEventListener("click", (e) => {
+        e.preventDefault();
+        signOut(auth).then(() => {
+          console.log("User successfully signed out globally.");
+          window.location.reload();
+        }).catch((error) => console.error("Error signing out:", error));
+      });
+    }
+
   } else {
     if (authStatus) authStatus.style.display = "none";
     if (joinForm) joinForm.style.display = "block";
