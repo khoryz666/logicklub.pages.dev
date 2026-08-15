@@ -10,21 +10,81 @@
 </head>
 
 <body>
-    <h1>Join Us</h1>
+    <header>
+        <h1>Join LOGICKlub</h1>
+        <nav>
+            <a href="index.html">Home</a> |
+            <a href="events.html">Events</a> |
+            <a href="workshops.html">Workshops</a> |
+            <a href="math.html">Math Visualizer</a> |
+            <a href="game.html">AI Simulator</a> |
+            <a href="join.html">Join Us</a>
+        </nav>
+        <hr>
+    </header>
 
-    <form id="join-form">
-        <input id="user-email" type="email" placeholder="Email" required>
-        <input id="user-pwd" type="password" placeholder="Password" required>
-        <button type="submit">Sign Up</button>
-        <button id="sign-in-btn" type="button">Sign In</button>
-    </form>
+    <main>
+        <section>
+            <section>
+                <h1>Member Registration</h1>
+                <p>Register as a LOGICKlub member by filling in your personal and account information below.</p>
 
-    <br>
+                <form id="join-form">
+                    <fieldset>
+                        <legend>Personal Information</legend>
 
-    <div id="auth-status" style="display: none;">
-        <p>Logged in as: <strong id="signed-in-email"></strong></p>
-        <button id="sign-out-btn" type="button">Sign Out</button>
-    </div>
+                        <label for="full-name">Full Name:</label><br>
+                        <input id="full-name" type="text" placeholder="Full Name" required><br><br>
+
+                        <label for="student-id">Student ID:</label><br>
+                        <input id="student-id" type="text" placeholder="Student ID" required><br><br>
+
+                        <label for="phone-number">Phone Number:</label><br>
+                        <input id="phone-number" type="tel" placeholder="Phone Number" required><br><br>
+
+                        <label for="programme">Programme:</label><br>
+                        <input id="programme" type="text" placeholder="Programme"><br><br>
+
+                        <label for="interest">Area of Interest:</label><br>
+                        <select id="interest">
+                            <option value="">-- Select an area --</option>
+                            <option value="Artificial Intelligence">Artificial Intelligence</option>
+                            <option value="Machine Learning">Machine Learning</option>
+                            <option value="Prompt Engineering">Prompt Engineering</option>
+                            <option value="Coding and Web Development">Coding and Web Development</option>
+                            <option value="Innovation Challenges">Innovation Challenges</option>
+                        </select>
+                    </fieldset>
+
+                    <br>
+
+                    <fieldset>
+                        <legend>Account Information</legend>
+
+                        <label for="user-email">Email:</label><br>
+                        <input id="user-email" type="email" placeholder="Email" required><br><br>
+
+                        <label for="user-pwd">Password:</label><br>
+                        <input id="user-pwd" type="password" placeholder="Password" minlength="6" required><br><br>
+
+                        <label for="confirm-pwd">Confirm Password:</label><br>
+                        <input id="confirm-pwd" type="password" placeholder="Confirm Password" minlength="6" required>
+                    </fieldset>
+
+                    <br>
+
+                    <button type="submit">Sign Up</button>
+                    <button id="sign-in-btn" type="button">Sign In</button>
+                    <p id="form-message"></p>
+                </form>
+
+                <br>
+
+                <div id="auth-status" style="display: none;">
+                    <p>Logged in as: <strong id="signed-in-email"></strong></p>
+                    <p id="member-name-display"></p>
+                    <button id="sign-out-btn" type="button">Sign Out</button>
+                </div>
 </body>
 
 </html>
