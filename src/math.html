@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math | LOGICKLUB</title>
+</head>
+
+<body>
+    <header>
+        <h1>LOGICKLUB Math Corner</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="events.html">Events</a>
+            <a href="workshops.html">Workshops</a>
+            <a href="math.html">Math</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Matrixes: One of the concepts in math that drive AI</h2>
+        <p>
+            AI now is changing our live constantly, regardless of LLMs such as ChatGPT, Gemini, Claude or other domains
+            such as computer vision. Behind these technologies, <b>linear algebra</b> is one of the key concepts that
+            power them. The essence of linear algebra is of course <b>matrices</b>, which is nothing but an organized
+            set of numbers.
+        </p>
+
+        <h3>Domain Spotlight: Computer Vision</h3>
+        <p>
+            In Computer Vision, an AI doesn't see a picture of a cat the way we do. It sees a massive grid of numbers
+            representing pixel colors. This grid is called a <b>Matrix</b>.
+        </p>
+        <p>
+            To help the AI recognize the cat whether the image is tilted, stretched, or squished, the AI applies
+            mathematical filters called <b>Matrix Transformations</b>.
+            By multiplying the image matrix by a transformation matrix, the AI can rotate, scale, or shear the image
+            mathematically.
+        </p>
+        <p>
+            Furthermore, when an AI tries to classify data (e.g., separating Cat images from Dog images), it plots them
+            as points in "data space". The AI's learning process is literally just finding the perfect matrix to warp
+            that space so that Cats and Dogs end up neatly separated on opposite sides!
+        </p>
+
+        <p>
+            The following figure displays the basic concept of neural network, which is also highly related with
+            calculus.
+        </p>
+        <figure>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Colored_neural_network.svg"
+                alt="Neural Network Diagram">
+            <figcaption>
+                A neural network applies consecutive matrix transformations to warp data space and classify inputs.<br>
+                <em>Citation: <a href="https://commons.wikimedia.org/wiki/File:Colored_neural_network.svg"
+                        target="_blank">Glosser.ca, Wikimedia Commons (CC BY-SA 3.0)</a></em>
+            </figcaption>
+        </figure>
+
+        <p>
+            However, we won't dive too deeply here because it is way too lenghty topic. Our focus here is to visualize a
+            matrix, so that it turns a grid of numbers (aka matrix) into something more intuitive.
+        </p>
+
+        <h2>Linear Algebra Visualizer</h2>
+
+        <p>
+            See how 2D matrices transform space interactively!
+            This is a core concept in AI for manipulating data vectors.
+            <strong>You can drag the points on the graph directly, or use the sliders below!</strong>
+        </p>
+
+        <math>
+            <mrow>
+                <mo>[</mo>
+                <mtable>
+                    <mtr>
+                        <mtd>
+                            <mn><span id="mat-a">1.0</span></mn>
+                        </mtd>
+                        <mtd>
+                            <mn><span id="mat-b">0.0</span></mn>
+                        </mtd>
+                    </mtr>
+                    <mtr>
+                        <mtd>
+                            <mn><span id="mat-c">0.0</span></mn>
+                        </mtd>
+                        <mtd>
+                            <mn><span id="mat-d">1.0</span></mn>
+                        </mtd>
+                    </mtr>
+                </mtable>
+                <mo>]</mo>
+            </mrow>
+        </math>
+        <div class="matrix-input-group">
+            <p>
+                <label>a (X Scale): <span id="val-a">1.0</span></label>
+                <input type="range" id="mat-a" value="1" min="-5" max="5" step="0.1" style="width: 300px;">
+            </p>
+            <p>
+                <label>b (Y Shear): <span id="val-b">0.0</span></label>
+                <input type="range" id="mat-b" value="0" min="-5" max="5" step="0.1" style="width: 300px;">
+            </p>
+            <p>
+                <label>c (X Shear): <span id="val-c">0.0</span></label>
+                <input type="range" id="mat-c" value="0" min="-5" max="5" step="0.1" style="width: 300px;">
+            </p>
+            <p>
+                <label>d (Y Scale): <span id="val-d">1.0</span></label>
+                <input type="range" id="mat-d" value="1" min="-5" max="5" step="0.1" style="width: 300px;">
+            </p>
+        </div>
+
+        <button type="button" id="reset-btn">Reset to Identity Matrix</button>
+
+        <div id="calculator" style="width: 100%; height: 60vw; max-width: 800px; border: 1px solid #ccc;"></div>
+
+        <details>
+            <summary><strong>Why can I only drag two points on the graph?</strong></summary>
+            <p>
+                In Linear Algebra, the whole 2D space is built from just two special arrows.
+                One points right (red). The other points up (green). We call them <strong>Basis Vectors</strong> (term:
+                basis vectors).
+            </p>
+            <p>
+                Think of these two arrows like the "building blocks" of the entire grid.
+                Every other point in space is just a combination of these two arrows.
+                For example, the point (3, 2) means "go 3 steps right and 2 steps up" — that's 3 red arrows and 2 green
+                arrows added together.
+            </p>
+            <p>
+                A matrix transformation keeps grid lines straight and evenly spaced.
+                It never bends or warps them in a messy way — it only stretches, squishes, or rotates the whole grid
+                uniformly.
+                So if we know where the two basis vectors land, we know where <em>everything</em> else lands.
+                Because every other point is just a combination of the basis vectors, we can calculate its new position
+                from the new positions of the red and green arrows.
+            </p>
+            <p>
+                Drag the red point — you are changing the first column of the matrix (the <strong>a</strong> and
+                <strong>b</strong> values).
+                Drag the green point — you are changing the second column (the <strong>c</strong> and <strong>d</strong>
+                values).
+                The rest of the space just follows along automatically.
+            </p>
+            <p>
+                <strong>Terms:</strong>
+                <em>Matrix</em> — a grid of numbers that defines the transformation. Each column tells us where one
+                basis vector goes.
+                <em>Column</em> — each basis vector becomes one column in the matrix. The first column is where the red
+                arrow lands, the second column is where the green arrow lands.
+                <em>Linear Transformation</em> — a rule that moves every point in space while keeping grid lines
+                straight and evenly spaced.
+            </p>
+        </details>
+
+        <details>
+            <summary><strong>How does this relate to Neural Networks?</strong></summary>
+            <p>
+                A Neural Network takes input data (like pixel values from an image) and sends it to the first layer.
+                Each input is like a point in space — for example, a 28x28 grayscale image has 784 pixel values, so it
+                lives in a 784-dimensional space.
+            </p>
+            <p>
+                That first layer applies a matrix transformation — it "stretches" and "rotates" the data in that
+                high-dimensional space.
+                This is exactly what you see happening on the graph, but with many more dimensions!
+                The transformation moves the data around, trying to make it easier to work with.
+            </p>
+            <p>
+                The transformed data goes to the next layer, which applies another transformation.
+                This keeps happening layer by layer. Each layer has its own matrix (called "weights") that it uses to
+                transform the data.
+            </p>
+            <p>
+                The network <strong>learns</strong> by adjusting these transformations over time.
+                At first, the transformations are random — the data ends up in random places.
+                But as the network sees more examples, it slowly tweaks the numbers in the matrices (the weights) so
+                that the data ends up in the right place.
+            </p>
+            <p>
+                For example, imagine you have pictures of cats and dogs. The network applies many transformations, and
+                eventually, it moves all the "cat" data into one zone and all the "dog" data into another zone.
+                Then, when a new picture comes in, the network checks which zone it lands in and says "cat" or "dog"
+                correctly.
+            </p>
+            <p>
+                <strong>Terms:</strong>
+                <em>Neural Network</em> — a system of layers that transform data step by step.
+                <em>Weights</em> — the numbers inside the matrix that get adjusted during learning. They are the "knobs"
+                the network turns to get better.
+                <em>Layer</em> — one step of transformation in the network. Each layer applies its own matrix to the
+                data.
+                <em>Bias</em> — an extra number added after the transformation that helps shift the data around (like
+                moving the whole grid up or down).
+                <em>Learning</em> — the process of adjusting weights and biases so that the network's output gets closer
+                to the correct answer.
+            </p>
+        </details>
+    </main>
+</body>
+
+<footer>
+    <p>&copy; 2026 LOGICKlub</p>
+</footer>
+
+</html>
