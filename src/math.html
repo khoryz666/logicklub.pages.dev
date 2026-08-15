@@ -19,14 +19,156 @@
     </header>
 
     <main>
+        <!-- 1. Introduction -->
         <h2>Matrices: The Mathematical Engine Driving AI</h2>
         <p>
-            Artificial Intelligence is constantly reshaping our world. Whether it's Large Language Models (LLMs) like
+            Artificial Intelligence is constantly reshaping our world, whether it's Large Language Models (LLMs) like
             ChatGPT, Gemini, and Claude, or advanced domains like Computer Vision and Robotics, the core mathematics
             powering these technologies is <b>Linear Algebra</b>. At the heart of linear algebra lies the
             <b>matrix</b>—a structured, multi-dimensional grid of numbers that computers use to process massive amounts
             of data efficiently.
         </p>
+
+        <!-- 2. The Linear Algebra Visualizer -->
+        <h2>Linear Algebra Visualizer</h2>
+        <p>
+            Before we dive into how AI uses matrices, let's look at what a matrix actually does. A matrix is just a
+            geometric transformation.
+            See how 2D matrices transform space interactively below! This is a core concept in AI for manipulating data
+            vectors.
+            <strong>You can drag the points on the graph directly, or use the sliders!</strong>
+        </p>
+
+        <math>
+            <mrow>
+                <mo>[</mo>
+                <mtable>
+                    <mtr>
+                        <mtd><mi>a</mi></mtd>
+                        <mtd><mi>b</mi></mtd>
+                    </mtr>
+                    <mtr>
+                        <mtd><mi>c</mi></mtd>
+                        <mtd><mi>d</mi></mtd>
+                    </mtr>
+                </mtable>
+                <mo>]</mo>
+                <mo>=</mo>
+                <mo>[</mo>
+                <mtable>
+                    <mtr>
+                        <mtd><mn><span id="disp-a">1.0</span></mn></mtd>
+                        <mtd><mn><span id="disp-b">0.0</span></mn></mtd>
+                    </mtr>
+                    <mtr>
+                        <mtd><mn><span id="disp-c">0.0</span></mn></mtd>
+                        <mtd><mn><span id="disp-d">1.0</span></mn></mtd>
+                    </mtr>
+                </mtable>
+                <mo>]</mo>
+            </mrow>
+        </math>
+
+        <div class="matrix-input-group">
+            <table>
+                <tr>
+                    <td>
+                        <label for="mat-a">↔ Stretch Width:</label>
+                    </td>
+                    <td>
+                        <input type="range" id="mat-a" value="1" min="-5" max="5" step="0.1">
+                    </td>
+                    <td>
+                        <span id="val-a">1.0</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="mat-b">↗ Vertical Skew:</label>
+                    </td>
+                    <td>
+                        <input type="range" id="mat-b" value="0" min="-5" max="5" step="0.1">
+                    </td>
+                    <td>
+                        <span id="val-b">0.0</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="mat-c">↘ Horizontal Skew:</label>
+                    </td>
+                    <td>
+                        <input type="range" id="mat-c" value="0" min="-5" max="5" step="0.1">
+                    </td>
+                    <td>
+                        <span id="val-c">0.0</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="mat-d">↕ Stretch Height:</label>
+                    </td>
+                    <td>
+                        <input type="range" id="mat-d" value="1" min="-5" max="5" step="0.1">
+                    </td>
+                    <td>
+                        <span id="val-d">1.0</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <button type="button" id="reset-btn">Reset to Identity Matrix</button>
+
+        <div id="calculator"
+            style="width: 100%; height: 60vw; max-width: 800px; border: 1px solid #ccc; margin-top: 20px; margin-bottom: 20px;">
+        </div>
+
+        <details>
+            <summary><strong>Why can I only drag two points on the graph?</strong></summary>
+            <p>
+                In Linear Algebra, the whole 2D space is built from just two special arrows.
+                One points right (red). The other points up (blue). We call them <strong>Basis Vectors</strong> (term:
+                basis vectors).
+            </p>
+            <p>
+                Think of these two arrows like the "building blocks" of the entire grid.
+                Every other point in space is just a combination of these two arrows.
+                For example, the point (3, 2) means "go 3 steps right and 2 steps up" — that's 3 red arrows and 2 blue
+                arrows added together.
+            </p>
+            <p>
+                A matrix transformation keeps grid lines straight and evenly spaced.
+                It never bends or warps them in a messy way — it only stretches, squishes, or rotates the whole grid
+                uniformly.
+                So if we know where the two basis vectors land, we know where <em>everything</em> else lands.
+                Because every other point is just a combination of the basis vectors, we can calculate its new position
+                from the new positions of the red and blue arrows.
+            </p>
+            <p>
+                Drag the red point — you are changing the first column of the matrix (the <strong>a</strong> and
+                <strong>b</strong> values).
+                Drag the blue point — you are changing the second column (the <strong>c</strong> and <strong>d</strong>
+                values).
+                The rest of the space just follows along automatically.
+            </p>
+            <p>
+                <strong>Terms:</strong>
+                <em>Matrix</em> — a grid of numbers that defines the transformation. Each column tells us where one
+                basis vector goes.
+                <em>Column</em> — each basis vector becomes one column in the matrix. The first column is where the red
+                arrow lands, the second column is where the blue arrow lands.
+                <em>Linear Transformation</em> — a rule that moves every point in space while keeping grid lines
+                straight and evenly spaced.
+            </p>
+        </details>
+
+        <hr style="margin: 40px 0;">
+
+        <!-- 3. Real-World AI Applications -->
+        <h2>Real-World AI Applications</h2>
+        <p>Now that you've seen how matrices warp space, let's look at how AI utilizes these mathematical
+            transformations.</p>
 
         <h3>Domain Spotlight: Computer Vision</h3>
         <p>
@@ -37,18 +179,16 @@
             To help the AI recognize the cat whether the image is tilted, stretched, or squished, the AI applies
             mathematical filters called <b>Matrix Transformations</b>.
             By multiplying the image matrix by a transformation matrix, the AI can rotate, scale, or shear the image
-            mathematically.
+            mathematically (exactly like what you did in the visualizer above!).
         </p>
+
+        <h3>Neural Networks</h3>
         <p>
-            Furthermore, when an AI tries to classify data (e.g., separating Cat images from Dog images), it plots them
+            When an AI tries to classify data (e.g., separating Cat images from Dog images), it plots them
             as points in "data space". The AI's learning process is literally just finding the perfect matrix to warp
             that space so that Cats and Dogs end up neatly separated on opposite sides!
         </p>
 
-        <p>
-            The following figure displays the basic concept of neural network, which is also highly related with
-            calculus.
-        </p>
         <figure>
             <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Colored_neural_network.svg"
                 alt="Neural Network Diagram">
@@ -59,108 +199,8 @@
             </figcaption>
         </figure>
 
-        <p>
-            However, we won't dive too deeply into the calculus here. Our focus today is to build an intuition for
-            linear algebra. The visualizer below turns an abstract grid of numbers (a matrix) into a geometric
-            transformation that is intuitive to grasp.
-        </p>
-
-        <h2>Linear Algebra Visualizer</h2>
-
-        <p>
-            See how 2D matrices transform space interactively!
-            This is a core concept in AI for manipulating data vectors.
-            <strong>You can drag the points on the graph directly, or use the sliders below!</strong>
-        </p>
-
-        <math>
-            <mrow>
-                <mo>[</mo>
-                <mtable>
-                    <mtr>
-                        <mtd>
-                            <mn><span id="disp-a">1.0</span></mn>
-                        </mtd>
-                        <mtd>
-                            <mn><span id="disp-b">0.0</span></mn>
-                        </mtd>
-                    </mtr>
-                    <mtr>
-                        <mtd>
-                            <mn><span id="disp-c">0.0</span></mn>
-                        </mtd>
-                        <mtd>
-                            <mn><span id="disp-d">1.0</span></mn>
-                        </mtd>
-                    </mtr>
-                </mtable>
-                <mo>]</mo>
-            </mrow>
-        </math>
-        <div class="matrix-input-group">
-            <p>
-                <label>a (X Scale): <span id="val-a">1.0</span></label>
-                <input type="range" id="mat-a" value="1" min="-5" max="5" step="0.1" style="width: 300px;">
-            </p>
-            <p>
-                <label>b (Y Shear): <span id="val-b">0.0</span></label>
-                <input type="range" id="mat-b" value="0" min="-5" max="5" step="0.1" style="width: 300px;">
-            </p>
-            <p>
-                <label>c (X Shear): <span id="val-c">0.0</span></label>
-                <input type="range" id="mat-c" value="0" min="-5" max="5" step="0.1" style="width: 300px;">
-            </p>
-            <p>
-                <label>d (Y Scale): <span id="val-d">1.0</span></label>
-                <input type="range" id="mat-d" value="1" min="-5" max="5" step="0.1" style="width: 300px;">
-            </p>
-        </div>
-
-        <button type="button" id="reset-btn">Reset to Identity Matrix</button>
-
-        <div id="calculator" style="width: 100%; height: 60vw; max-width: 800px; border: 1px solid #ccc;"></div>
-
         <details>
-            <summary><strong>Why can I only drag two points on the graph?</strong></summary>
-            <p>
-                In Linear Algebra, the whole 2D space is built from just two special arrows.
-                One points right (red). The other points up (green). We call them <strong>Basis Vectors</strong> (term:
-                basis vectors).
-            </p>
-            <p>
-                Think of these two arrows like the "building blocks" of the entire grid.
-                Every other point in space is just a combination of these two arrows.
-                For example, the point (3, 2) means "go 3 steps right and 2 steps up" — that's 3 red arrows and 2 green
-                arrows added together.
-            </p>
-            <p>
-                A matrix transformation keeps grid lines straight and evenly spaced.
-                It never bends or warps them in a messy way — it only stretches, squishes, or rotates the whole grid
-                uniformly.
-                So if we know where the two basis vectors land, we know where <em>everything</em> else lands.
-                Because every other point is just a combination of the basis vectors, we can calculate its new position
-                from the new positions of the red and green arrows.
-            </p>
-            <p>
-                Drag the red point — you are changing the first column of the matrix (the <strong>a</strong> and
-                <strong>b</strong> values).
-                Drag the green point — you are changing the second column (the <strong>c</strong> and <strong>d</strong>
-                values).
-                The rest of the space just follows along automatically.
-            </p>
-            <p>
-                <strong>Terms:</strong>
-                <em>Matrix</em> — a grid of numbers that defines the transformation. Each column tells us where one
-                basis vector goes.
-                <em>Column</em> — each basis vector becomes one column in the matrix. The first column is where the red
-                arrow lands, the second column is where the green arrow lands.
-                <em>Linear Transformation</em> — a rule that moves every point in space while keeping grid lines
-                straight and evenly spaced.
-            </p>
-        </details>
-
-        <details>
-            <summary><strong>How does this relate to Neural Networks?</strong></summary>
+            <summary><strong>How exactly does this relate to Neural Networks?</strong></summary>
             <p>
                 A Neural Network takes input data (like pixel values from an image) and sends it to the first layer.
                 Each input is like a point in space — for example, a 28x28 grayscale image has 784 pixel values, so it
@@ -205,8 +245,11 @@
 
         <hr style="margin: 40px 0;">
 
+        <!-- 4. Further Learning -->
         <h2>Further Learning</h2>
-        
+        <p>If you found the visualizer interesting and want to dive into the actual math behind these concepts, here are
+            some fantastic resources:</p>
+
         <h3>1. The Essence of Linear Algebra</h3>
         <p>
             To truly master the geometric intuition behind matrices, vectors, and transformations, we highly recommend
@@ -224,8 +267,10 @@
 
         <h3 style="margin-top: 40px;">2. Neural Networks</h3>
         <p>
-            Once you understand how matrices warp space, you can see how AI utilizes these mathematical transformations to learn. 
-            The <strong>Neural Networks</strong> series, also by <em>3Blue1Brown</em>, brilliantly builds upon linear algebra 
+            Once you understand how matrices warp space, you can see how AI utilizes these mathematical transformations
+            to learn.
+            The <strong>Neural Networks</strong> series, also by <em>3Blue1Brown</em>, brilliantly builds upon linear
+            algebra
             to explain how AI recognizes patterns and classifies data.
         </p>
         <div
