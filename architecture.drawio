@@ -1,55 +1,58 @@
-<mxfile host="Electron" modified="2026-08-04">
+<mxfile host="app.diagrams.net">
   <diagram id="architecture" name="LOGICKlub">
-    <mxGraphModel dx="1935" dy="1168" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="1290" dy="778" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="global_container" parent="1" style="swimlane;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#0288d1;startSize=30;" value="Global State &amp; Services" vertex="1">
-          <mxGeometry height="300" width="220" x="749" y="149" as="geometry" />
+          <mxGeometry height="279" width="240" x="800" y="191" as="geometry" />
         </mxCell>
         <mxCell id="auth" parent="global_container" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="Firebase Auth" vertex="1">
-          <mxGeometry height="50" width="160" x="30" y="50" as="geometry" />
-        </mxCell>
-        <mxCell id="theme" parent="global_container" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="Theme Switcher" vertex="1">
-          <mxGeometry height="50" width="160" x="30" y="130" as="geometry" />
+          <mxGeometry height="50" width="160" x="40" y="40" as="geometry" />
         </mxCell>
         <mxCell id="storage" parent="global_container" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#ffffff;" value="Cookies / Local Storage" vertex="1">
-          <mxGeometry height="60" width="160" x="30" y="210" as="geometry" />
+          <mxGeometry height="60" width="160" x="40" y="109.5" as="geometry" />
         </mxCell>
-        <mxCell id="edge_theme_storage" edge="1" parent="global_container" source="theme" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;startArrow=classic;startFill=1;" target="storage">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="firestore" parent="global_container" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#f57c00;" value="Firebase Firestore" vertex="1">
+          <mxGeometry height="50" width="160" x="40" y="189" as="geometry" />
         </mxCell>
-        <mxCell id="pages_container" parent="1" style="swimlane;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#333333;startSize=30;" value="Web Pages (Vanilla JS + Bootstrap)" vertex="1">
-          <mxGeometry height="440" width="360" x="199" y="279" as="geometry" />
+        <mxCell id="pages_container" parent="1" style="swimlane;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#333333;startSize=30;" value="Web Pages" vertex="1">
+          <mxGeometry height="540" width="360" x="249" y="220" as="geometry" />
         </mxCell>
-        <mxCell id="join" parent="pages_container" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ECFF32;" value="join.html&#xa;(Registration Form)" vertex="1">
+        <mxCell id="join" parent="pages_container" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ECFF32;" value="join.html&amp;#xa;(Firebase Auth &amp;amp; Firestore APIs)" vertex="1">
           <mxGeometry height="60" width="140" x="30" y="50" as="geometry" />
         </mxCell>
-        <mxCell id="events" parent="pages_container" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="events.html&#xa;(AI News AJAX)" vertex="1">
+        <mxCell id="events" parent="pages_container" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="events.html&amp;#xa;(Dev.to REST API)" vertex="1">
           <mxGeometry height="60" width="140" x="200" y="360" as="geometry" />
         </mxCell>
-        <mxCell id="workshops" parent="pages_container" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="workshops.html&#xa;(Seat Reservation)" vertex="1">
+        <mxCell id="workshops" parent="pages_container" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="workshops.html&amp;#xa;(SessionStorage API)" vertex="1">
           <mxGeometry height="60" width="140" x="30" y="160" as="geometry" />
         </mxCell>
-        <mxCell id="projects" parent="pages_container" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="projects.html&#xa;(Innovation Showcase)" vertex="1">
+        <mxCell id="projects" parent="pages_container" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="projects.html&amp;#xa;(Vanilla JS DOM API)" vertex="1">
           <mxGeometry height="60" width="140" x="200" y="160" as="geometry" />
         </mxCell>
-        <mxCell id="contact" parent="pages_container" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="contact.html&#xa;(Feedback Hub)" vertex="1">
+        <mxCell id="contact" parent="pages_container" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="contact.html&amp;#xa;(Google Maps Embed API)" vertex="1">
           <mxGeometry height="60" width="140" x="30" y="360" as="geometry" />
         </mxCell>
-        <mxCell id="math" parent="pages_container" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="math.html&#xa;(Math Visualization)" vertex="1">
+        <mxCell id="math" parent="pages_container" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="math.html&amp;#xa;(LocalStorage API)" vertex="1">
           <mxGeometry height="60" width="140" x="30" y="260" as="geometry" />
         </mxCell>
-        <mxCell id="game" parent="pages_container" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="game.html&#xa;(Educational AI Game)" vertex="1">
+        <mxCell id="game" parent="pages_container" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="game.html&amp;#xa;(ONNX WASM &amp;amp; Canvas APIs)" vertex="1">
           <mxGeometry height="60" width="140" x="200" y="260" as="geometry" />
         </mxCell>
-        <mxCell id="index" parent="pages_container" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="index.html&#xa;(Home &amp; Dashboard)" vertex="1">
+        <mxCell id="index" parent="pages_container" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="index.html&amp;#xa;(Vanilla JS)" vertex="1">
           <mxGeometry height="60" width="140" x="200" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="login" parent="pages_container" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ECFF32;" value="login.html&amp;#xa;(Firebase Auth API)" vertex="1">
+          <mxGeometry height="60" width="140" x="30" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="bootstrap" parent="pages_container" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#e1bee7;strokeColor=#8e24aa;" value="Bootstrap CSS&#xa;(UI Layout)" vertex="1">
+          <mxGeometry height="60" width="140" x="200" y="460" as="geometry" />
         </mxCell>
         <mxCell id="MCpPFMi3ZYPCpVH6urTs-7" edge="1" parent="1" source="user" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="index">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="469.08000000000004" y="149" />
+              <mxPoint x="519.08" y="90" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -59,46 +62,54 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="user" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#f57c00;strokeWidth=2;" value="User" vertex="1">
-          <mxGeometry height="80" width="120" x="329" y="109" as="geometry" />
+          <mxGeometry height="80" width="120" x="379" y="50" as="geometry" />
         </mxCell>
         <mxCell id="api" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#fff3e0;strokeColor=#f57c00;strokeWidth=2;" value="External REST API" vertex="1">
-          <mxGeometry height="80" width="110" x="669" y="639" as="geometry" />
+          <mxGeometry height="80" width="110" x="719" y="580" as="geometry" />
         </mxCell>
-        <mxCell id="edge_join_auth" edge="1" parent="1" source="join" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="auth" value="Sign Up / Login">
+        <mxCell id="edge_join_auth" edge="1" parent="1" source="join" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="auth" value="&lt;div&gt;Sign Up&amp;nbsp;&lt;/div&gt;">
           <mxGeometry relative="1" x="0.1128" as="geometry">
             <mxPoint x="1" as="offset" />
             <Array as="points">
-              <mxPoint x="299.08" y="399" />
-              <mxPoint x="709.08" y="399" />
-              <mxPoint x="709.08" y="224.08" />
+              <mxPoint x="349" y="340" />
+              <mxPoint x="759" y="340" />
+              <mxPoint x="759" y="255" />
             </Array>
-            <mxPoint x="719" y="229" as="targetPoint" />
+            <mxPoint x="769" y="170" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="edge_auth_index" edge="1" parent="1" source="auth" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0;exitY=0.25;exitDx=0;exitDy=0;dashed=1;" value="Observer">
           <mxGeometry relative="1" as="geometry">
             <mxPoint as="offset" />
             <Array as="points">
-              <mxPoint x="669.08" y="211.46" />
-              <mxPoint x="669.08" y="344.08" />
+              <mxPoint x="680" y="242.5" />
+              <mxPoint x="680" y="285" />
             </Array>
-            <mxPoint x="559" y="344" as="targetPoint" />
+            <mxPoint x="609" y="285" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="edge_projects_storage" edge="1" parent="1" source="projects" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="storage" value="Save Upvotes">
+        <mxCell id="edge_projects_storage" edge="1" parent="1" source="projects" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;entryX=0.701;entryY=1.042;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="storage" value="Save Upvotes">
           <mxGeometry relative="1" x="0.3333" as="geometry">
             <mxPoint as="offset" />
-            <mxPoint x="379" y="459" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="519" y="450" />
+              <mxPoint x="1010" y="450" />
+              <mxPoint x="1010" y="360" />
+              <mxPoint x="989" y="360" />
+              <mxPoint x="989" y="363" />
+            </Array>
+            <mxPoint x="429" y="400" as="sourcePoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="edge_workshops_storage" edge="1" parent="1" source="workshops" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;entryX=0.145;entryY=1;entryDx=0;entryDy=-4.35;entryPerimeter=0;exitX=0;exitY=0.25;exitDx=0;exitDy=0;" target="storage" value="Save Seats">
+        <mxCell id="edge_workshops_storage" edge="1" parent="1" source="workshops" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0;exitY=0.25;exitDx=0;exitDy=0;" target="storage" value="Save Seats">
           <mxGeometry relative="1" x="0.5547" as="geometry">
             <mxPoint as="offset" />
             <Array as="points">
-              <mxPoint x="229.07999999999998" y="469" />
-              <mxPoint x="219.07999999999998" y="469" />
-              <mxPoint x="219.07999999999998" y="429" />
-              <mxPoint x="802.15" y="429" />
+              <mxPoint x="279" y="410" />
+              <mxPoint x="269" y="410" />
+              <mxPoint x="269" y="370" />
+              <mxPoint x="780" y="370" />
+              <mxPoint x="780" y="330.5" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -110,13 +121,57 @@
         <mxCell id="MCpPFMi3ZYPCpVH6urTs-8" edge="1" parent="1" source="user" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.354;entryY=-0.031;entryDx=0;entryDy=0;entryPerimeter=0;" target="join">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="278.62" y="149" />
+              <mxPoint x="328.62" y="90" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="MCpPFMi3ZYPCpVH6urTs-9" connectable="0" parent="MCpPFMi3ZYPCpVH6urTs-8" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="inserts credentials" vertex="1">
           <mxGeometry relative="1" x="-0.0097" y="2" as="geometry">
             <mxPoint y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_join_firestore" edge="1" parent="1" source="join" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" target="firestore" value="Save Profile">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="150" y="300" />
+              <mxPoint x="150" y="471" />
+              <mxPoint x="750" y="471" />
+              <mxPoint x="750" y="417.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_login_auth" edge="1" parent="1" source="login" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="auth" value="Authenticate">
+          <mxGeometry relative="1" x="-0.1837" as="geometry">
+            <mxPoint x="-1" as="offset" />
+            <Array as="points">
+              <mxPoint x="349" y="751" />
+              <mxPoint x="1070" y="751" />
+              <mxPoint x="1070" y="255" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="MpYkuG2W4__GKxMMQ9QN-1" edge="1" parent="1" source="math" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="storage">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="349" y="560" />
+              <mxPoint x="1030" y="560" />
+              <mxPoint x="1030" y="330.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="MpYkuG2W4__GKxMMQ9QN-3" connectable="0" parent="MpYkuG2W4__GKxMMQ9QN-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Save matrix values" vertex="1">
+          <mxGeometry relative="1" x="0.0784" y="3" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="MpYkuG2W4__GKxMMQ9QN-4" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0;entryDx=0;entryDy=15;entryPerimeter=0;" target="storage">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="610" y="300" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="MpYkuG2W4__GKxMMQ9QN-5" connectable="0" parent="MpYkuG2W4__GKxMMQ9QN-4" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Light/Dark Theme" vertex="1">
+          <mxGeometry relative="1" x="-0.1378" y="-4" as="geometry">
+            <mxPoint x="-4" as="offset" />
           </mxGeometry>
         </mxCell>
       </root>
