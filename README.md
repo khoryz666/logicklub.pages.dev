@@ -34,7 +34,7 @@ The project consists of 8 pages, collaboratively developed by 4 members.
 
 ### Khor Yu Zhuang: Interactive Learning
 - **`math.html` (Linear Algebra Visualizer)**: An interactive 2D visualization of matrix transformations and basis vectors, illustrating how neural networks warp data spaces.
-- **`game.html` (AI Training Simulator)**: An idle-clicker game implemented purely in JavaScript where users gather data to train an AI model, featuring an animated loss curve, Storage APIs, and real-world data injection via AJAX.
+- **`game.html` (AI Digit Recognizer)**: An interactive simulator where users draw digits (0-9) on a canvas to be classified by a pre-trained MNIST neural network running entirely on the client side via ONNX Runtime Web and WebAssembly.
 
 ---
 
