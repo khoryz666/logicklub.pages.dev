@@ -4,7 +4,7 @@ if (currentTheme === "light") {
     const link = document.createElement("link");
     link.id = "light-theme-style";
     link.rel = "stylesheet";
-    link.href = "styles-light.css";
+    link.href = "css/styles-light.css";
     document.head.appendChild(link);
 }
 
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const link = document.createElement("link");
             link.id = "light-theme-style";
             link.rel = "stylesheet";
-            link.href = "styles-light.css";
+            link.href = "css/styles-light.css";
             document.head.appendChild(link);
         }
     });
