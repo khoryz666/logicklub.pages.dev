@@ -4,15 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Math | LOGICKLUB</title>
+    <title>Math | LOGICKlub</title>
     <script type="module" src="js/auth.js"></script>
+    <!-- Bootstrap Grid CSS for mobile responsive layout only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap-grid.min.css" rel="stylesheet"
+        crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="math.css">
     <script src="js/theme.js"></script>
 </head>
 
 <body>
     <header>
-        <h1>LOGICKLUB Math Corner</h1>
+        <h1>LOGICKlub Math Corner</h1>
         <nav>
             <a href="index.html">Home</a> |
             <a href="events.html">Events</a> |
@@ -26,23 +30,17 @@
 
     <main>
         <!-- 1. Introduction -->
-        <h2>Matrices: The Mathematical Engine Driving AI</h2>
+        <h2>Matrices: The Engine of AI</h2>
         <p>
-            Artificial Intelligence is constantly reshaping our world, whether it's Large Language Models (LLMs) like
-            ChatGPT, Gemini, and Claude, or advanced domains like Computer Vision and Robotics, the core mathematics
-            powering these technologies is <b>Linear Algebra</b>. At the heart of linear algebra lies the
-            <b>matrix</b>—a structured, multi-dimensional grid of numbers that computers use to process massive amounts
-            of data efficiently.
+            Behind AI tools like ChatGPT or Computer Vision lies a core math: <b>Linear Algebra</b>. 
+            At its heart is the <b>matrix</b>—a simple grid of numbers that helps computers process massive amounts of data efficiently.
         </p>
 
         <!-- 2. The Linear Algebra Visualizer -->
         <h2>Linear Algebra Visualizer</h2>
         <p>
-            Before we dive into how AI uses matrices, let's look at what a matrix actually does. A matrix is just a
-            geometric transformation.
-            See how 2D matrices transform space interactively below! This is a core concept in AI for manipulating data
-            vectors.
-            <strong>You can drag the points on the graph directly, or use the sliders!</strong>
+            A matrix acts as a rule to warp or transform space. 
+            Try it yourself below! <strong>Drag the points on the graph or use the sliders</strong> to see how a matrix stretches or squishes the grid.
         </p>
 
         <math>
@@ -50,12 +48,20 @@
                 <mo>[</mo>
                 <mtable>
                     <mtr>
-                        <mtd><mi>a</mi></mtd>
-                        <mtd><mi>b</mi></mtd>
+                        <mtd>
+                            <mi>a</mi>
+                        </mtd>
+                        <mtd>
+                            <mi>b</mi>
+                        </mtd>
                     </mtr>
                     <mtr>
-                        <mtd><mi>c</mi></mtd>
-                        <mtd><mi>d</mi></mtd>
+                        <mtd>
+                            <mi>c</mi>
+                        </mtd>
+                        <mtd>
+                            <mi>d</mi>
+                        </mtd>
                     </mtr>
                 </mtable>
                 <mo>]</mo>
@@ -63,19 +69,28 @@
                 <mo>[</mo>
                 <mtable>
                     <mtr>
-                        <mtd><mn><span id="disp-a">1.0</span></mn></mtd>
-                        <mtd><mn><span id="disp-b">0.0</span></mn></mtd>
+                        <mtd>
+                            <mn><span id="disp-a">1.0</span></mn>
+                        </mtd>
+                        <mtd>
+                            <mn><span id="disp-b">0.0</span></mn>
+                        </mtd>
                     </mtr>
                     <mtr>
-                        <mtd><mn><span id="disp-c">0.0</span></mn></mtd>
-                        <mtd><mn><span id="disp-d">1.0</span></mn></mtd>
+                        <mtd>
+                            <mn><span id="disp-c">0.0</span></mn>
+                        </mtd>
+                        <mtd>
+                            <mn><span id="disp-d">1.0</span></mn>
+                        </mtd>
                     </mtr>
                 </mtable>
                 <mo>]</mo>
             </mrow>
         </math>
 
-        <div class="matrix-input-group">
+        <div class="matrix-controls">
+            <div class="matrix-input-group">
             <table>
                 <tr>
                     <td>
@@ -124,48 +139,30 @@
             </table>
         </div>
 
-        <button type="button" id="reset-btn">Reset to Identity Matrix</button>
+        <div class="btn-container">
+            <button type="button" id="reset-btn">Reset to Identity Matrix</button>
+        </div>
+        </div>
 
-        <div id="calculator"
-            style="width: 100%; height: 60vw; max-width: 800px; border: 1px solid #ccc; margin-top: 20px; margin-bottom: 20px;">
+        <div id="calculator">
         </div>
 
         <details>
             <summary><strong>Why can I only drag two points on the graph?</strong></summary>
             <p>
-                In Linear Algebra, the whole 2D space is built from just two special arrows.
-                One points right (red). The other points up (blue). We call them <strong>Basis Vectors</strong> (term:
-                basis vectors).
+                In 2D space, everything is built from two "building blocks" called <strong>Basis Vectors</strong>: a right arrow (red) and an up arrow (blue).
             </p>
             <p>
-                Think of these two arrows like the "building blocks" of the entire grid.
-                Every other point in space is just a combination of these two arrows.
-                For example, the point (3, 2) means "go 3 steps right and 2 steps up" — that's 3 red arrows and 2 blue
-                arrows added together.
+                A matrix transformation keeps grid lines perfectly straight and parallel. Because of this, if we know where those two arrows land, we instantly know where <em>every single point</em> on the grid goes!
             </p>
             <p>
-                A matrix transformation keeps grid lines straight and evenly spaced.
-                It never bends or warps them in a messy way — it only stretches, squishes, or rotates the whole grid
-                uniformly.
-                So if we know where the two basis vectors land, we know where <em>everything</em> else lands.
-                Because every other point is just a combination of the basis vectors, we can calculate its new position
-                from the new positions of the red and blue arrows.
+                <strong>Drag the red point:</strong> You change the first column of the matrix (the horizontal rule).<br>
+                <strong>Drag the blue point:</strong> You change the second column of the matrix (the vertical rule).
             </p>
             <p>
-                Drag the red point — you are changing the first column of the matrix (the <strong>a</strong> and
-                <strong>b</strong> values).
-                Drag the blue point — you are changing the second column (the <strong>c</strong> and <strong>d</strong>
-                values).
-                The rest of the space just follows along automatically.
-            </p>
-            <p>
-                <strong>Terms:</strong>
-                <em>Matrix</em> — a grid of numbers that defines the transformation. Each column tells us where one
-                basis vector goes.
-                <em>Column</em> — each basis vector becomes one column in the matrix. The first column is where the red
-                arrow lands, the second column is where the blue arrow lands.
-                <em>Linear Transformation</em> — a rule that moves every point in space while keeping grid lines
-                straight and evenly spaced.
+                <em>Quick Terms:</em><br>
+                <strong>Matrix:</strong> The grid of numbers that defines the warping rule.<br>
+                <strong>Column:</strong> Tells us where one basis arrow lands.
             </p>
         </details>
 
@@ -173,31 +170,21 @@
 
         <!-- 3. Real-World AI Applications -->
         <h2>Real-World AI Applications</h2>
-        <p>Now that you've seen how matrices warp space, let's look at how AI utilizes these mathematical
-            transformations.</p>
+        <p>How does AI actually use this space-warping math?</p>
 
-        <h3>Domain Spotlight: Computer Vision</h3>
+        <h3>Computer Vision</h3>
         <p>
-            In Computer Vision, an AI doesn't see a picture of a cat the way we do. It sees a massive grid of numbers
-            representing pixel colors. This grid is called a <b>Matrix</b>.
-        </p>
-        <p>
-            To help the AI recognize the cat whether the image is tilted, stretched, or squished, the AI applies
-            mathematical filters called <b>Matrix Transformations</b>.
-            By multiplying the image matrix by a transformation matrix, the AI can rotate, scale, or shear the image
-            mathematically (exactly like what you did in the visualizer above!).
+            Computers see images as giant grids of numbers (matrices). To recognize a cat even if the picture is tilted, the AI applies <b>Matrix Transformations</b> to mathematically rotate or scale the image—just like you did in the visualizer!
         </p>
 
         <h3>Neural Networks</h3>
         <p>
-            When an AI tries to classify data (e.g., separating Cat images from Dog images), it plots them
-            as points in "data space". The AI's learning process is literally just finding the perfect matrix to warp
-            that space so that Cats and Dogs end up neatly separated on opposite sides!
+            When an AI learns to separate "Cats" from "Dogs", it plots them as points in space. "Learning" is simply the AI finding the perfect matrix to warp that space until the cats and dogs are neatly separated on opposite sides!
         </p>
 
         <figure>
             <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Colored_neural_network.svg"
-                alt="Neural Network Diagram">
+                alt="Neural Network Diagram" class="dark-mode-resistant">
             <figcaption>
                 A neural network applies consecutive matrix transformations to warp data space and classify inputs.<br>
                 <em>Citation: <a href="https://commons.wikimedia.org/wiki/File:Colored_neural_network.svg"
@@ -208,44 +195,10 @@
         <details>
             <summary><strong>How exactly does this relate to Neural Networks?</strong></summary>
             <p>
-                A Neural Network takes input data (like pixel values from an image) and sends it to the first layer.
-                Each input is like a point in space — for example, a 28x28 grayscale image has 784 pixel values, so it
-                lives in a 784-dimensional space.
+                A Neural Network is made of multiple <strong>layers</strong>. Each layer applies a matrix transformation to the data—stretching and rotating it in high-dimensional space just like the graph above.
             </p>
             <p>
-                That first layer applies a matrix transformation — it "stretches" and "rotates" the data in that
-                high-dimensional space.
-                This is exactly what you see happening on the graph, but with many more dimensions!
-                The transformation moves the data around, trying to make it easier to work with.
-            </p>
-            <p>
-                The transformed data goes to the next layer, which applies another transformation.
-                This keeps happening layer by layer. Each layer has its own matrix (called "weights") that it uses to
-                transform the data.
-            </p>
-            <p>
-                The network <strong>learns</strong> by adjusting these transformations over time.
-                At first, the transformations are random — the data ends up in random places.
-                But as the network sees more examples, it slowly tweaks the numbers in the matrices (the weights) so
-                that the data ends up in the right place.
-            </p>
-            <p>
-                For example, imagine you have pictures of cats and dogs. The network applies many transformations, and
-                eventually, it moves all the "cat" data into one zone and all the "dog" data into another zone.
-                Then, when a new picture comes in, the network checks which zone it lands in and says "cat" or "dog"
-                correctly.
-            </p>
-            <p>
-                <strong>Terms:</strong>
-                <em>Neural Network</em> — a system of layers that transform data step by step.
-                <em>Weights</em> — the numbers inside the matrix that get adjusted during learning. They are the "knobs"
-                the network turns to get better.
-                <em>Layer</em> — one step of transformation in the network. Each layer applies its own matrix to the
-                data.
-                <em>Bias</em> — an extra number added after the transformation that helps shift the data around (like
-                moving the whole grid up or down).
-                <em>Learning</em> — the process of adjusting weights and biases so that the network's output gets closer
-                to the correct answer.
+                At first, these matrices contain random numbers (called <strong>weights</strong>). As the AI trains on examples, it slowly turns these "number knobs", tweaking the matrix until the data is perfectly separated into correct categories.
             </p>
         </details>
 
@@ -262,11 +215,9 @@
             the <strong>Essence of Linear Algebra</strong> series by <em>3Blue1Brown</em>. This visually stunning
             playlist is widely considered one of the best resources for grasping the "why" behind the math.
         </p>
-        <div
-            style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin-top: 20px; border: 1px solid #ccc;">
+        <div class="youtube-container">
             <iframe src="https://www.youtube.com/embed/videoseries?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab"
                 title="Essence of linear algebra"
-                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
@@ -279,11 +230,9 @@
             algebra
             to explain how AI recognizes patterns and classifies data.
         </p>
-        <div
-            style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin-top: 20px; border: 1px solid #ccc;">
+        <div class="youtube-container">
             <iframe src="https://www.youtube.com/embed/videoseries?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi"
                 title="Neural Networks"
-                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
@@ -293,11 +242,11 @@
     <!-- Desmos API -->
     <script src="https://www.desmos.com/api/v1.9/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
     <script src="js/math.js"></script>
-</body>
 
-<footer>
+    <footer>
         <hr>
         <p>&copy; 2026 LOGICKlub. Built for UCCD2323.</p>
     </footer>
+</body>
 
 </html>
