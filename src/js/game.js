@@ -31,11 +31,17 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Explanation: JavaScript is traditionally too slow for the heavy math required by Neural Networks. 
         // Microsoft wrote the ONNX inference engine in C++ and compiled it into WebAssembly (.wasm).
         // By using `ort`, we boot up this precompiled C++ WASM binary inside the browser, allowing it to run at near-native speeds.
-        ort.env.wasm.wasmPaths = 'https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/';
+        ort.env.wasm.numThreads = 1; // Disable multi-threading
+        ort.env.wasm.simd = false;   // Disable SIMD to force the basic WASM binary (uses much less memory)
 
         const loadStart = performance.now();
-        // This direct API call creates the WASM InferenceSession by downloading the binary 'mnist-8.onnx' model.
-        session = await ort.InferenceSession.create('mnist-8.onnx', { executionProviders: ['wasm'] });
+        // Try WASM first
+        try {
+            session = await ort.InferenceSession.create('mnist-8.onnx', { executionProviders: ['wasm'] });
+        } catch (wasmError) {
+            console.warn("WASM failed to initialize (likely a browser memory restriction). Falling back to WebGL...", wasmError);
+            session = await ort.InferenceSession.create('mnist-8.onnx', { executionProviders: ['webgl'] });
+        }
         const loadEnd = performance.now();
         let loadTime = loadEnd - loadStart;
         let displayLoadTime = loadTime < 1 ? "< 1.00" : loadTime.toFixed(2);
