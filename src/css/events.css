@@ -1,0 +1,595 @@
+/* --------------------------------------------------------------------------
+   1. Card grids
+   -------------------------------------------------------------------------- */
+#news-container,
+#events-container {
+  margin-top: 8px;
+}
+
+/* --------------------------------------------------------------------------
+   2. Loading / empty / error message states
+   -------------------------------------------------------------------------- */
+#news-container > p,
+#events-container > p {
+  margin: 0;
+  padding: 26px 24px;
+  border: 1px dashed var(--line);
+  border-radius: 14px;
+  text-align: center;
+  color: var(--muted);
+  background: var(--panel);
+}
+
+/* --------------------------------------------------------------------------
+   3. Article cards (base shell)
+   -------------------------------------------------------------------------- */
+#news-container article,
+#events-container article {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: linear-gradient(170deg, var(--panel-strong) 0%, var(--panel) 100%);
+  box-shadow: var(--shadow);
+  transition:
+    transform .25s cubic-bezier(.22, .7, .3, 1),
+    box-shadow .25s ease,
+    border-color .25s ease;
+}
+
+#news-container article:hover,
+#events-container article:hover {
+  transform: translateY(-6px);
+  border-color: rgba(34, 211, 238, .35);
+  box-shadow: 0 26px 60px rgba(0, 0, 0, .32);
+}
+
+#news-container article::before,
+#events-container article::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--cyan), var(--blue), var(--violet));
+  opacity: .9;
+  z-index: 2;
+}
+
+#events-container article::before {
+  background: linear-gradient(90deg, var(--violet), var(--cyan));
+}
+
+#news-container article::after,
+#events-container article::after {
+  content: "";
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(59, 130, 246, .14), transparent 70%);
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   4. Card content — plain markup currently emitted by js/events.js
+   -------------------------------------------------------------------------- */
+#news-container article > h3,
+#events-container article > h3 {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: 26px 24px 10px;
+  color: var(--text);
+  font-size: 1.16rem;
+  line-height: 1.4;
+  letter-spacing: -.01em;
+}
+
+#news-container article > p,
+#events-container article > p {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: 0 24px;
+  color: var(--muted);
+  font-size: .88rem;
+}
+
+/* Author line (1st <p>) */
+#news-container article > p:nth-of-type(1),
+#events-container article > p:nth-of-type(1) {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 4px;
+  color: var(--text);
+  font-weight: 700;
+}
+
+#news-container article > p:nth-of-type(1)::before,
+#events-container article > p:nth-of-type(1)::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  flex: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--cyan), var(--violet));
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, .14);
+}
+
+/* Published date line (2nd <p>) */
+#news-container article > p:nth-of-type(2),
+#events-container article > p:nth-of-type(2) {
+  padding-top: 4px;
+  font-size: .8rem;
+}
+
+/* Description (3rd <p> and beyond) */
+#news-container article > p:nth-of-type(n+3),
+#events-container article > p:nth-of-type(n+3) {
+  margin-top: 14px;
+  padding-top: 14px;
+  padding-bottom: 8px;
+  border-top: 1px solid var(--line);
+  color: var(--text);
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* "Read More" / "View Event" link */
+#news-container article > a,
+#events-container article > a {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  margin: auto 24px 24px;
+  padding: 9px 16px;
+  border: 1px solid rgba(34, 211, 238, .3);
+  border-radius: 999px;
+  color: var(--cyan);
+  background: rgba(34, 211, 238, .08);
+  font-size: .84rem;
+  font-weight: 700;
+  transition:
+    background .2s ease,
+    color .2s ease,
+    border-color .2s ease;
+}
+
+#news-container article > a::after,
+#events-container article > a::after {
+  content: "→";
+  transition: transform .2s ease;
+}
+
+#news-container article > a:hover,
+#events-container article > a:hover {
+  color: #fff;
+  background: linear-gradient(135deg, var(--cyan), var(--blue));
+  border-color: transparent;
+}
+
+#news-container article > a:hover::after,
+#events-container article > a:hover::after {
+  transform: translateX(4px);
+}
+
+/* --------------------------------------------------------------------------
+   5. Enhanced card — magazine cover style (inspired by AIML Club reference)
+   -------------------------------------------------------------------------- */
+.news-card {
+  border-radius: 26px;
+}
+
+/* Hide the plain top accent bar & corner glow so the cover image stays clean */
+.news-card::before,
+.news-card::after {
+  display: none;
+}
+
+/* Cover image area — 16/11 ratio */
+.news-card .card-media {
+  position: relative;
+  aspect-ratio: 16 / 11;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(34, 211, 238, .14), rgba(139, 92, 246, .16));
+}
+
+.news-card .card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .6s cubic-bezier(.22, .7, .3, 1);
+}
+
+.news-card:hover .card-media img {
+  transform: scale(1.08);
+}
+
+/* Gradient scrim so the caption stays readable over the image */
+.news-card .card-media-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top,
+    rgba(2, 6, 23, .92) 0%,
+    rgba(2, 6, 23, .38) 45%,
+    rgba(2, 6, 23, .06) 72%,
+    transparent 100%);
+  pointer-events: none;
+}
+
+/* Category badge (top-left) */
+.news-card .card-tag {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  z-index: 2;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: rgba(2, 6, 23, .6);
+  backdrop-filter: blur(10px);
+  color: #fff;
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+/* Caption pinned to the bottom of the cover: year + line + title */
+.news-card .card-media-caption {
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  bottom: 20px;
+  z-index: 2;
+}
+
+.news-card .card-year-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.news-card .card-year {
+  color: var(--cyan);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+}
+
+.news-card .card-year-line {
+  width: 24px;
+  height: 2px;
+  background: var(--cyan);
+}
+
+.news-card .card-title {
+  margin: 0;
+  color: #fff;
+  font-size: 1.22rem;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -.01em;
+  text-transform: uppercase;
+  transition: color .3s ease;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.news-card:hover .card-title {
+  color: var(--cyan);
+}
+
+/* Body */
+.news-card .card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 12px;
+  padding: 20px 24px 24px;
+}
+
+.news-card .card-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: .8rem;
+  color: var(--muted);
+}
+
+.news-card .author-avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--cyan);
+}
+
+/* Fallback avatar (initials) when the author has no profile image */
+.news-card .author-avatar--fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--cyan), var(--violet));
+  color: #fff;
+  font-size: .78rem;
+  font-weight: 800;
+}
+
+.news-card .author-name {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.news-card .meta-sep {
+  opacity: .5;
+}
+
+.news-card .card-desc {
+  margin: 0;
+  color: var(--muted);
+  font-size: .9rem;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* "Experience Now"-style action button */
+.news-card .card-link {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 8px 8px 20px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(148, 163, 184, .08);
+  color: var(--text);
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  transition:
+    background .3s ease,
+    color .3s ease,
+    border-color .3s ease;
+}
+
+.news-card .card-link .card-link-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--panel-strong);
+  color: var(--text);
+  transition:
+    background .3s ease,
+    color .3s ease,
+    transform .3s ease;
+}
+
+.news-card .card-link:hover {
+  background: linear-gradient(135deg, var(--cyan), var(--blue));
+  border-color: transparent;
+  color: #fff;
+}
+
+.news-card .card-link:hover .card-link-arrow {
+  background: rgba(0, 0, 0, .28);
+  color: #fff;
+  transform: translateX(2px);
+}
+
+/* No-image card variant (Events scroller) */
+.news-card--no-image .card-body {
+  padding-top: 24px;
+}
+
+.news-card--no-image .card-title {
+  color: var(--text);
+}
+
+.news-card--no-image:hover .card-title {
+  color: var(--cyan);
+}
+
+.news-card--no-image .card-tag-plain {
+  align-self: flex-start;
+  margin-bottom: 10px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(34, 211, 238, .12);
+  color: var(--cyan);
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+/* --------------------------------------------------------------------------
+   6. Events horizontal scroller (one row, swipe to browse)
+   -------------------------------------------------------------------------- */
+.events-scroller {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 6px 4px 18px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  cursor: grab;
+}
+
+.events-scroller.is-dragging {
+  cursor: grabbing;
+  user-select: none;
+  scroll-snap-type: none;
+}
+
+.events-scroller::-webkit-scrollbar {
+  display: none;
+}
+
+/* Prevent native image drag while users drag-to-scroll */
+.event-card-item img {
+  -webkit-user-drag: none;
+  user-select: none;
+  pointer-events: none;
+}
+
+.event-card-item {
+  flex: 0 0 auto;
+  width: min(320px, 82vw);
+  scroll-snap-align: start;
+}
+
+.events-scroller > p {
+  flex: 1 0 100%;
+}
+
+/* "More Events" card at the end of the scroller */
+.event-more-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+  height: 100%;
+  padding: 40px 24px;
+  border: 1px dashed rgba(34, 211, 238, .45);
+  border-radius: 26px;
+  background: rgba(34, 211, 238, .06);
+  color: var(--cyan);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  transition:
+    background .3s ease,
+    color .3s ease,
+    border-color .3s ease,
+    transform .3s ease;
+}
+
+.event-more-card:hover {
+  background: linear-gradient(135deg, var(--cyan), var(--blue));
+  border-color: transparent;
+  color: #fff;
+  transform: translateY(-4px);
+}
+
+.event-more-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: var(--cyan);
+  color: #fff;
+  font-size: 1.6rem;
+  transition: transform .3s ease, background .3s ease;
+}
+
+.event-more-card:hover .event-more-icon {
+  background: rgba(0, 0, 0, .28);
+  transform: translateX(4px);
+}
+
+.event-more-text {
+  font-size: .82rem;
+}
+
+/* --------------------------------------------------------------------------
+   7. "More AI News" button
+   -------------------------------------------------------------------------- */
+.news-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 26px;
+}
+
+.more-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 10px 10px 24px;
+  border: 1px solid rgba(34, 211, 238, .35);
+  border-radius: 999px;
+  background: rgba(34, 211, 238, .08);
+  color: var(--cyan);
+  font-size: .8rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  transition:
+    background .3s ease,
+    color .3s ease,
+    border-color .3s ease,
+    box-shadow .3s ease;
+}
+
+.more-btn .more-btn-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--cyan);
+  color: #fff;
+  transition: transform .25s ease, background .3s ease;
+}
+
+.more-btn:hover {
+  background: linear-gradient(135deg, var(--cyan), var(--blue));
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 10px 26px rgba(37, 99, 235, .28);
+}
+
+.more-btn:hover .more-btn-arrow {
+  background: rgba(0, 0, 0, .28);
+  transform: translateX(3px);
+}
+
+/* --------------------------------------------------------------------------
+   8. Responsive
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  #news-container article > h3,
+  #events-container article > h3 {
+    padding: 22px 20px 10px;
+  }
+
+  #news-container article > p,
+  #events-container article > p,
+  #news-container article > a,
+  #events-container article > a {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
