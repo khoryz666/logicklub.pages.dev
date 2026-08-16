@@ -33,11 +33,17 @@ document.addEventListener('DOMContentLoaded', async () => {
         // By using `ort`, we boot up this precompiled C++ WASM binary inside the browser, allowing it to run at near-native speeds.
         ort.env.wasm.wasmPaths = 'https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/';
 
+        const loadStart = performance.now();
         // This direct API call creates the WASM InferenceSession by downloading the binary 'mnist-8.onnx' model.
         session = await ort.InferenceSession.create('mnist-8.onnx', { executionProviders: ['wasm'] });
+        const loadEnd = performance.now();
+        let loadTime = loadEnd - loadStart;
+        let displayLoadTime = loadTime < 1 ? "< 1.00" : loadTime.toFixed(2);
 
-        console.log('ONNX WASM model loaded successfully!');
-        loadingText.style.display = 'none';
+        console.log(`ONNX WASM model loaded successfully in ${displayLoadTime} ms!`);
+        loadingText.innerText = `Model loaded in ${displayLoadTime} ms`;
+        loadingText.style.animation = 'none';
+        loadingText.style.color = 'var(--success, #34d399)';
         predictBtn.disabled = false;
     } catch (e) {
         console.error("Failed to load ONNX model:", e);
@@ -158,7 +164,12 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Explanation: Once session.run() is called, the C++ code inside WASM takes over completely. 
             // It pushes our numbers through the layers defined in the .onnx file using CPU SIMD instructions to calculate 
             // hidden layers and activation functions, finally producing an output array of 10 raw scores (logits).
+            const inferenceStart = performance.now();
             const output = await session.run(feeds);
+            const inferenceEnd = performance.now();
+            let inferenceTime = inferenceEnd - inferenceStart;
+            let displayInfTime = inferenceTime < 1 ? "< 1.00" : inferenceTime.toFixed(2);
+            
             const rawScores = output[outputName].data; // Float32Array of 10 elements
 
             // 5. The Return (WASM -> JavaScript)
@@ -169,7 +180,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const probabilities = softmax(Array.from(rawScores));
 
             // 6. Display results for 0-9
-            barChart.innerHTML = '';
+            barChart.innerHTML = `<div style="margin-bottom: 15px; font-size: 0.9em; color: var(--muted, #97a6bd);">WASM Inference Time: <strong>${displayInfTime} ms</strong></div>`;
             probabilities.forEach((prob, digit) => {
                 const percentage = Math.round(prob * 100);
                 const item = document.createElement('div');
