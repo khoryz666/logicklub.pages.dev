@@ -5,24 +5,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projects | LOGICKlub</title>
-    <script type="module" src="js/auth.js"></script>
-    <link rel="stylesheet" href="css/styles.css">
-    <script src="js/theme.js"></script>
+  <script type="module" src="js/auth.js"></script>
+  <link rel="stylesheet" href="css/projects.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/theme.js"></script>
 </head>
 
 <body>
-    <header>
-        <nav>
-            <a href="index.html">Home</a> |
-            <a href="events.html">Events</a> |
-            <a href="workshops.html">Workshops</a> |
-            <a href="math.html">Learn Math</a> |
-            <a href="game.html">Play AI</a> |
-            <a href="projects.html">Projects</a> |
-            <a href="contact.html">Contact Us</a>
-        </nav>
-        <hr>
-    </header>
+  <header>
+    <h1> LOGICKlub Projects </h1>
+    <nav>
+      <a href="index.html">Home</a> |
+      <a href="events.html">Events</a> |
+      <a href="workshops.html">Workshops</a> |
+      <a href="math.html">Learn Math</a> |
+      <a href="game.html">Play AI</a> |
+      <a href="projects.html">Projects</a> |
+      <a href="contact.html">Contact Us</a>
+    </nav>
+    <hr>
+  </header>
 
 
   <main>
@@ -67,124 +69,80 @@
     </section>
 
     <!-- Projects -->
-    <section>
-
-      <div>
+    <!-- Projects Section -->
+    <section class="projects-section">
+      <div class="projects-grid">
 
         <!-- Project 1 -->
-        <div data-category="ml">
-
-          <div>
-
-            <h2> Student Performance Predictor </h2>
-
-            <p>
-              A machine learning system that analyzes academic
-              and learning patterns to predict student performance.
-            </p>
-
-            <div>
-              Tech Stack:
-              <span>Python</span>
-              <span>Scikit-learn</span>
-              <span>Pandas</span>
-            </div>
-
-            <div>
-              <a href="#"> View Project Details on GitHub </a>
-            </div>
-
+        <div class="project-card" data-category="ml">
+          <h2>Student Performance Predictor</h2>
+          <p>
+            A machine learning system that analyzes academic
+            and learning patterns to predict student performance.
+          </p>
+          <div class="tech-stack">
+            <span>Python</span>
+            <span>Scikit-learn</span>
+            <span>Pandas</span>
           </div>
-
+          <div class="project-card-footer">
+            <a href="#">View Project Details on GitHub &rarr;</a>
+          </div>
         </div>
-
 
         <!-- Project 2 -->
-        <div data-category="cv">
-
-          <div>
-
-            <h2> Smart Waste Recognition System </h2>
-
-            <p>
-              A computer vision system that identifies and
-              classifies different types of waste from images
-              to support automated waste sorting and recycling.
-            </p>
-
-            <div>
-              Tech Stack:
-              <span>Python</span>
-              <span>OpenCV</span>
-              <span>YOLO</span>
-            </div>
-
-            <div>
-              <a href="#"> View Project Details on GitHub </a>
-            </div>
-
+        <div class="project-card" data-category="cv">
+          <h2>Smart Waste Recognition System</h2>
+          <p>
+            A computer vision system that identifies and
+            classifies different types of waste from images
+            to support automated waste sorting and recycling.
+          </p>
+          <div class="tech-stack">
+            <span>Python</span>
+            <span>OpenCV</span>
+            <span>YOLO</span>
           </div>
-
+          <div class="project-card-footer">
+            <a href="#">View Project Details on GitHub &rarr;</a>
+          </div>
         </div>
-
-
 
         <!-- Project 3 -->
-        <div data-category="nlp">
-
-          <div>
-
-            <h2> Smart Campus Assistant </h2>
-
-            <p>
-              An AI-powered assistant that helps students
-              find campus information, events, facilities,
-              and frequently asked questions.
-            </p>
-
-            <div>
-              Tech Stack:
-              <span>Python</span>
-              <span>NLP</span>
-              <span>LLM</span>
-            </div>
-
-            <div>
-              <a href="#"> View Project Details on GitHub </a>
-            </div>
-
+        <div class="project-card" data-category="nlp">
+          <h2>Smart Campus Assistant</h2>
+          <p>
+            An AI-powered assistant that helps students
+            find campus information, events, facilities,
+            and frequently asked questions.
+          </p>
+          <div class="tech-stack">
+            <span>Python</span>
+            <span>NLP</span>
+            <span>LLM</span>
           </div>
-
+          <div class="project-card-footer">
+            <a href="#">View Project Details on GitHub &rarr;</a>
+          </div>
         </div>
 
-
         <!-- Project 4 -->
-        <div data-category="cv">
-
-          <div>
-
-            <h2> Traffic Sign Recognition System </h2>
-
-            <p>
-              A computer vision system that detects and
-              classifies traffic signs from road images
-              to assist with intelligent transportation
-              and driver assistance applications.
-            </p>
-
-            <div>
-              Tech Stack:
-              <span>Python</span>
-              <span>OpenCV</span>
-              <span>TensorFlow</span>
-            </div>
-
-            <div>
-              <a href="#"> View Project Details on GitHub </a>
-            </div>
-
+        <div class="project-card" data-category="cv">
+          <h2>Traffic Sign Recognition System</h2>
+          <p>
+            A computer vision system that detects and
+            classifies traffic signs from road images
+            to assist with intelligent transportation
+            and driver assistance applications.
+          </p>
+          <div class="tech-stack">
+            <span>Python</span>
+            <span>OpenCV</span>
+            <span>TensorFlow</span>
           </div>
-
+          <div class="project-card-footer">
+            <a href="#">View Project Details on GitHub &rarr;</a>
+          </div>
         </div>
 
       </div>
@@ -196,7 +154,7 @@
       <div>
         <h2> Have an Idea? </h2>
         <p> Join us and turn your ideas into real-world projects. </p>
-        <a href="#"> Join Our Club </a>
+        <a href="join.html"> Join Our Club </a>
       </div>
     </section>
 
@@ -204,10 +162,10 @@
   <script src="js/projects.js"></script>
 
 
-    <footer>
-        <hr>
-        <p>&copy; 2026 LOGICKlub. Built for UCCD2323.</p>
-    </footer>
+  <footer>
+    <hr>
+    <p>&copy; 2026 LOGICKlub. Built for UCCD2323.</p>
+  </footer>
 </body>
 
 </html>

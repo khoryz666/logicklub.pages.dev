@@ -1,0 +1,103 @@
+/* Inactive filter button state */
+[data-filter]:not(.active) {
+    background: rgba(15, 23, 42, 0.6);
+    border-color: rgba(148, 163, 184, 0.2);
+    color: #94a3b8;
+    box-shadow: none;
+}
+
+/* 1. Reset outer section container to transparent */
+main>section.projects-section {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+main>section.projects-section::before,
+main>section.projects-section::after {
+    display: none !important;
+}
+
+/* 2. Grid Layout */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+/* 3. Theme-Adaptive Project Card */
+.project-card {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 26px;
+    background: var(--panel-strong) !important;
+    border: 1px solid var(--line) !important;
+    border-radius: var(--radius) !important;
+    box-shadow: var(--shadow) !important;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(8, 145, 178, 0.35) !important;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.18) !important;
+}
+
+/* Top accent line */
+.project-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--cyan), var(--violet));
+}
+
+/* 4. Adaptive Text Colors */
+.project-card h2 {
+    color: var(--text) !important;
+    margin-top: 0;
+    font-size: 1.4rem;
+}
+
+.project-card p {
+    color: var(--muted) !important;
+}
+
+/* 5. Adaptive Tech Stack Pills */
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin: 18px 0;
+}
+
+.tech-stack span {
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: rgba(8, 145, 178, 0.08) !important;
+    border: 1px solid rgba(8, 145, 178, 0.2) !important;
+    color: var(--text) !important;
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+/* 6. Footer Link */
+.project-card-footer {
+    margin-top: auto;
+    padding-top: 10px;
+}
+
+.project-card-footer a {
+    color: var(--blue) !important;
+    font-weight: 650;
+}
+
+.project-card-footer a:hover {
+    color: var(--cyan) !important;
+}
