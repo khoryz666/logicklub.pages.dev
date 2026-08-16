@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <script type="module" src="js/auth.js"></script>
+    <script type="module" src="js/login.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Sign In to LOGICKlub</h1>
+        <nav>
+            <a href="index.html">Home</a> |
+            <a href="events.html">Events</a> |
+            <a href="workshops.html">Workshops</a> |
+            <a href="math.html">Math Visualizer</a> |
+            <a href="game.html">AI Simulator</a> |
+            <a href="projects.html">Projects</a> |
+            <a href="join.html">Join Us</a> |
+            <a href="contact.html">Contact Us</a>
+        </nav>
+        <hr>
+    </header>
+
+    <main>
+        <section>
+            <h1>Member Login</h1>
+            <p>Welcome back! Please enter your credentials to sign in.</p>
+
+            <form id="login-form">
+                <fieldset>
+                    <legend>Credentials</legend>
+
+                    <label for="login-email">Email:</label><br>
+                    <input id="login-email" type="email" placeholder="Email" required><br><br>
+
+                    <label for="login-pwd">Password:</label><br>
+                    <input id="login-pwd" type="password" placeholder="Password" minlength="6" required>
+                </fieldset>
+                <br>
+
+                <button type="submit">Sign In</button>
+            </form>
+            <br>
+            <p>Don't have an account? <a href="join.html">Register here</a>.</p>
+        </section>
+    </main>
+
+    <footer>
+        <hr>
+        <p>&copy; 2026 LOGICKlub. Built for UCCD2323.</p>
+    </footer>
+</body>
+
+</html>

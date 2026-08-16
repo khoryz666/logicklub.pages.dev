@@ -1,11 +1,27 @@
 import { auth, db } from "./auth.js";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
-import { doc, setDoc } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
+import {
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    updateProfile,
+    signOut
+} from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
+import {
+    doc,
+    setDoc,
+    collection,
+    query,
+    where,
+    getDocs
+} from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
 const joinForm = document.getElementById("join-form");
-const emailInput = document.getElementById("user-email");
-const pwdInput = document.getElementById("user-pwd");
-const confirmPwdInput = document.getElementById("confirm-pwd");
+const formMessage = document.getElementById("form-message");
+const description = document.getElementById("join-description");
+
+const signUpPanel = document.getElementById("sign-up-panel");
+const signInPanel = document.getElementById("sign-in-panel");
+const showSignUpBtn = document.getElementById("show-sign-up");
+const showSignInBtn = document.getElementById("show-sign-in");
 const signInBtn = document.getElementById("sign-in-btn");
 
 const fullNameInput = document.getElementById("full-name");
@@ -13,67 +29,196 @@ const studentIdInput = document.getElementById("student-id");
 const phoneInput = document.getElementById("phone-number");
 const programmeInput = document.getElementById("programme");
 const interestInput = document.getElementById("interest");
+const usernameInput = document.getElementById("username");
+const emailInput = document.getElementById("user-email");
+const pwdInput = document.getElementById("user-pwd");
+const confirmPwdInput = document.getElementById("confirm-pwd");
+
+const loginIdentifierInput = document.getElementById("login-identifier");
+const loginPasswordInput = document.getElementById("login-password");
+
+let currentMode = "signup";
+
+function setMessage(message, type = "info") {
+    if (!formMessage) return;
+    formMessage.textContent = message;
+    formMessage.className = type === "error" ? "form-error" : type === "success" ? "form-success" : "";
+}
+
+function setMode(mode) {
+    currentMode = mode;
+    const isSignUp = mode === "signup";
+
+    signUpPanel.hidden = !isSignUp;
+    signInPanel.hidden = isSignUp;
+    showSignUpBtn.classList.toggle("active", isSignUp);
+    showSignInBtn.classList.toggle("active", !isSignUp);
+
+    // Disable fields in the hidden mode so browser validation never blocks the active form.
+    signUpPanel.querySelectorAll("input, select, button").forEach((el) => {
+        el.disabled = !isSignUp;
+    });
+    signInPanel.querySelectorAll("input, button").forEach((el) => {
+        el.disabled = isSignUp;
+    });
+
+    description.textContent = isSignUp
+        ? "New to LOGICKlub? Create your member account by filling in the information below."
+        : "Already a member? Sign in using your registered email or username and password.";
+
+    setMessage("");
+}
+
+showSignUpBtn?.addEventListener("click", () => setMode("signup"));
+showSignInBtn?.addEventListener("click", () => setMode("signin"));
+
+async function usernameExists(username) {
+    const usernameQuery = query(
+        collection(db, "users"),
+        where("usernameLower", "==", username.trim().toLowerCase())
+    );
+    const snapshot = await getDocs(usernameQuery);
+    return !snapshot.empty;
+}
 
 if (joinForm) {
-
-    joinForm.addEventListener("submit", (e) => {
+    joinForm.addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        const email = emailInput.value;
-        const pwd = pwdInput.value;
+        if (currentMode !== "signup") return;
 
-        if (pwd !== confirmPwdInput.value) {
-            alert("Passwords do not match!");
+        const fullName = fullNameInput.value.trim();
+        const studentId = studentIdInput.value.trim();
+        const phone = phoneInput.value.trim();
+        const username = usernameInput.value.trim();
+        const email = emailInput.value.trim();
+        const pwd = pwdInput.value;
+        const confirmPwd = confirmPwdInput.value;
+
+        if (!fullName || !studentId || !phone || !username || !email || !pwd || !confirmPwd) {
+            setMessage("Please complete all required registration fields.", "error");
             return;
         }
 
-        createUserWithEmailAndPassword(auth, email, pwd)
-            .then(async (userCredential) => {
-                const user = userCredential.user;
-                
-                // Update Firebase Auth profile with full name
-                await updateProfile(user, { displayName: fullNameInput.value });
+        if (username.length < 3) {
+            setMessage("Username must contain at least 3 characters.", "error");
+            return;
+        }
 
-                // Save extended details to Firestore Database
-                await setDoc(doc(db, "users", user.uid), {
-                    fullName: fullNameInput.value,
-                    studentId: studentIdInput.value,
-                    phone: phoneInput.value,
-                    programme: programmeInput.value,
-                    interest: interestInput.value,
-                    email: email
-                });
+        if (!/^[A-Za-z0-9._-]+$/.test(username)) {
+            setMessage("Username may only contain letters, numbers, dots, underscores and hyphens.", "error");
+            return;
+        }
 
-                console.log("Successfully created user & saved profile:", user.email);
-                joinForm.reset();
-                window.location.reload();
-            })
-            .catch((error) => {
-                console.error("Error creating user:", error.code, error.message);
-                alert("Error: " + error.message);
+        if (pwd.length < 6) {
+            setMessage("Password must contain at least 6 characters.", "error");
+            return;
+        }
+
+        if (pwd !== confirmPwd) {
+            setMessage("Passwords do not match.", "error");
+            return;
+        }
+
+        try {
+            if (await usernameExists(username)) {
+                setMessage("That username is already in use. Please choose another one.", "error");
+                return;
+            }
+
+            const userCredential = await createUserWithEmailAndPassword(auth, email, pwd);
+            const user = userCredential.user;
+
+            await updateProfile(user, { displayName: fullName });
+
+            await setDoc(doc(db, "users", user.uid), {
+                fullName,
+                studentId,
+                phone,
+                programme: programmeInput.value.trim(),
+                interest: interestInput.value,
+                username,
+                usernameLower: username.toLowerCase(),
+                email
             });
+
+            // Firebase automatically signs in a newly-created user. Sign them out so
+            // registration does not count as a successful sign-in.
+            await signOut(auth);
+
+            joinForm.reset();
+            setMode("signin");
+            setMessage("Registration successful. Please sign in with your new account.", "success");
+            loginIdentifierInput.value = username;
+            loginIdentifierInput.focus();
+        } catch (error) {
+            console.error("Error creating user:", error.code, error.message);
+
+            if (error.code === "auth/email-already-in-use") {
+                setMessage("This email is already registered. Please sign in instead.", "error");
+            } else if (error.code === "auth/invalid-email") {
+                setMessage("Please enter a valid email address.", "error");
+            } else if (error.code === "auth/weak-password") {
+                setMessage("The password is too weak. Please use at least 6 characters.", "error");
+            } else {
+                setMessage("Registration failed. Please try again.", "error");
+            }
+        }
     });
+}
+
+async function resolveEmailFromIdentifier(identifier) {
+    const value = identifier.trim();
+
+    // If the user entered an email address, Firebase can authenticate it directly.
+    if (value.includes("@")) return value;
+
+    // Otherwise, look up the registered username and retrieve its email.
+    const usernameQuery = query(
+        collection(db, "users"),
+        where("usernameLower", "==", value.toLowerCase())
+    );
+    const snapshot = await getDocs(usernameQuery);
+
+    if (snapshot.empty) return null;
+    return snapshot.docs[0].data().email || null;
 }
 
 if (signInBtn) {
-    signInBtn.addEventListener("click", () => {
-        const email = emailInput.value;
-        const pwd = pwdInput.value;
+    signInBtn.addEventListener("click", async () => {
+        const identifier = loginIdentifierInput.value.trim();
+        const pwd = loginPasswordInput.value;
 
-        if (!email || !pwd) {
-            alert("Please enter both email and password to sign in.");
+        if (!identifier || !pwd) {
+            setMessage("Please enter both your email/username and password.", "error");
             return;
         }
 
-        signInWithEmailAndPassword(auth, email, pwd)
-            .then((userCredential) => {
-                const user = userCredential.user;
-                console.log("Successfully signed in user:", user.email);
-                joinForm.reset();
-            })
-            .catch((error) => {
-                console.error("Error signing in:", error.code, error.message);
-                alert("Error: " + error.message);
-            });
+        try {
+            const email = await resolveEmailFromIdentifier(identifier);
+
+            // An unknown username has no registered member account, so it must never sign in.
+            if (!email) {
+                setMessage("No registered member account was found. Please sign up first.", "error");
+                return;
+            }
+
+            const userCredential = await signInWithEmailAndPassword(auth, email, pwd);
+            console.log("Successfully signed in user:", userCredential.user.email);
+            joinForm.reset();
+            setMessage("Sign in successful.", "success");
+        } catch (error) {
+            console.error("Error signing in:", error.code, error.message);
+
+            if (error.code === "auth/invalid-credential" || error.code === "auth/user-not-found" || error.code === "auth/wrong-password") {
+                setMessage("Incorrect email/username or password. New members must sign up before signing in.", "error");
+            } else if (error.code === "auth/invalid-email") {
+                setMessage("Please enter a valid registered email or username.", "error");
+            } else {
+                setMessage("Sign in failed. Please check your account details and try again.", "error");
+            }
+        }
     });
 }
+
+setMode("signup");
