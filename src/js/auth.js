@@ -55,32 +55,42 @@ onAuthStateChanged(auth, (user) => {
   const signedInEmail = document.getElementById("signed-in-email");
   const nav = document.querySelector("nav");
 
-  // Remove existing global auth greeting if present
-  const existingGreeting = document.getElementById("global-auth-greeting");
-  if (existingGreeting) existingGreeting.remove();
+  if (nav) {
+    // Remove the hardcoded "Join Us" link from all pages
+    const oldJoinLink = Array.from(nav.querySelectorAll('a')).find(a => a.getAttribute('href') === 'join.html' || a.textContent.trim() === 'Join Us');
+    if (oldJoinLink) oldJoinLink.remove();
+
+
+    // Setup or get the auth container
+    let authContainer = document.getElementById("global-auth-container");
+    if (!authContainer) {
+      authContainer = document.createElement("div");
+      authContainer.id = "global-auth-container";
+      authContainer.style.marginLeft = "auto";
+      authContainer.style.display = "flex";
+      authContainer.style.alignItems = "center";
+      authContainer.style.gap = "10px";
+      authContainer.style.fontSize = "14px";
+      authContainer.style.color = "#afbdd1";
+      authContainer.style.whiteSpace = "nowrap";
+      nav.appendChild(authContainer);
+    }
+
+    if (user) {
+      authContainer.innerHTML = `Hi, <strong style="color: #fff;">${user.displayName || user.email}</strong> <a href="#" id="global-signout-btn">Sign Out</a>`;
+      document.getElementById("global-signout-btn").addEventListener("click", (e) => {
+        e.preventDefault();
+        signOut(auth).then(() => window.location.reload());
+      });
+    } else {
+      authContainer.innerHTML = `<a href="join.html">Sign Up / Sign In</a>`;
+    }
+  }
 
   if (user) {
     if (authStatus) authStatus.style.display = "block";
     if (joinForm) joinForm.style.display = "none";
     if (signedInEmail) signedInEmail.innerText = user.email;
-
-    // Inject global greeting into nav
-    if (nav) {
-      const greetingSpan = document.createElement("span");
-      greetingSpan.id = "global-auth-greeting";
-      greetingSpan.style.float = "right";
-      greetingSpan.innerHTML = `Welcome, <strong>${user.displayName || user.email}</strong>! | <a href="#" id="global-signout-btn">Sign Out</a>`;
-      nav.appendChild(greetingSpan);
-
-      document.getElementById("global-signout-btn").addEventListener("click", (e) => {
-        e.preventDefault();
-        signOut(auth).then(() => {
-          console.log("User successfully signed out globally.");
-          window.location.reload();
-        }).catch((error) => console.error("Error signing out:", error));
-      });
-    }
-
   } else {
     if (authStatus) authStatus.style.display = "none";
     if (joinForm) joinForm.style.display = "block";

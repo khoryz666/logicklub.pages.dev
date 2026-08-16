@@ -1,0 +1,1248 @@
+﻿diff --git a/src/contact.html b/src/contact.html
+index 0729e3d..9a6cecf 100644
+--- a/src/contact.html
++++ b/src/contact.html
+@@ -1,164 +1,165 @@
+-<!DOCTYPE html>
+-<html lang="en">
+-
+-<head>
+-  <meta charset="UTF-8">
+-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-  <title>Contact Us | LOGICKlub</title>
+-    <script type="module" src="js/auth.js"></script>
+-</head>
+-
+-<body>
+-    <header>
+-        <nav>
+-            <a href="index.html">Home</a> |
+-            <a href="events.html">Events</a> |
+-            <a href="workshops.html">Workshops</a> |
+-            <a href="math.html">Math Visualizer</a> |
+-            <a href="game.html">AI Simulator</a> |
+-            <a href="projects.html">Projects</a> |
+-            <a href="join.html">Join Us</a> |
+-            <a href="contact.html">Contact Us</a>
+-        </nav>
+-        <hr>
+-    </header>
+-
+-  <main>
+-    <!-- Head Section -->
+-    <section>
+-      <div>
+-        <h1>CONTACT US</h1>
+-        <p>
+-          Have an idea, question or collaboration opportunity?
+-          We would love to hear from you and innovate together.
+-        </p>
+-      </div>
+-    </section>
+-
+-    <!-- Contact Methods -->
+-    <section>
+-      <div>
+-        <div>
+-          <h2>Contact Channels</h2>
+-        </div>
+-
+-        <div>
+-          <div>
+-            <!-- <img src="images/email_icon.png" alt="Email Icon" width="30" height="30"> -->
+-            <h3>Γ£ë∩╕Å Email</h3>
+-            <a href="mailto:logicklub@example.com">
+-              logicklub@example.com
+-            </a>
+-          </div>
+-
+-
+-          <div>
+-            <!-- <img src="images/phone_icon.png" alt="Phone Icon" width="30" height="30"> -->
+-            <h3>Γ£å Phone</h3>
+-            <a href="tel:+60123456789">
+-              +6012 3456789
+-            </a>
+-          </div>
+-
+-
+-          <div>
+-            <!-- <img src="images/whatsapp_icon.png" alt="WhatsApp Icon" width="30" height="30"> -->
+-            <h3>≡ƒÆ¼ WhatsApp</h3>
+-            <a href="#" target="_blank">
+-              Chat with us
+-            </a>
+-          </div>
+-
+-        </div>
+-      </div>
+-    </section>
+-
+-
+-    <!-- Contact Form -->
+-    <section>
+-      <div>
+-
+-        <div>
+-          <h2>Let's Talk</h2>
+-          <p>
+-            Whether you have a question or want to collaborate, send us a message. <br>
+-            We will respond within <strong>1ΓÇô3 working days</strong>.
+-          </p>
+-        </div>
+-
+-      </div>
+-
+-
+-      <form id="contactForm">
+-
+-        <div>
+-          <div>
+-            <label>
+-              Name
+-              <input type="text" id="name" name="name" placeholder="Enter your name" required>
+-            </label>
+-          </div>
+-
+-          <div>
+-            <label>
+-              Email
+-              <input type="email" id="email" name="email" placeholder="Enter your email" required>
+-            </label>
+-          </div>
+-        </div>
+-
+-
+-        <div>
+-          <label>
+-            Message
+-            <textarea id="message" name="message" rows="7" placeholder="Write your message here..." required></textarea>
+-          </label>
+-        </div>
+-
+-
+-        <div>
+-          <button type="submit" id="submitButton">Send Message</button>
+-        </div>
+-
+-      </form>
+-      </div>
+-    </section>
+-
+-
+-    <!-- Location -->
+-    <section>
+-      <div>
+-
+-        <div>
+-          <h2>Visit Our Club</h2>
+-          <p>
+-            LOGICKlub<br>
+-            Faculty of Information and Communication Technology<br>
+-            University Tunku Abdul Rahman<br>
+-          </p>
+-        </div>
+-
+-
+-        <div>
+-          <div>
+-            <iframe
+-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3978.404864458088!2d101.13255677447198!3d4.334841644721645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cb1d573f9aabf3%3A0x28cc06c069e40dce!2sUniversiti%20Tunku%20Abdul%20Rahman%20(UTAR)!5e0!3m2!1sen!2smy!4v1786714653040!5m2!1sen!2smy"
+-              width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+-              referrerpolicy="strict-origin-when-cross-origin">
+-            </iframe>
+-          </div>
+-        </div>
+-
+-      </div>
+-    </section>
+-
+-  </main>
+-  <script src="js/contact.js"></script>
+-
+-    <footer>
+-        <hr>
+-        <p>&copy; 2026 LOGICKlub. Built for UCCD2323.</p>
+-    </footer>
+-</body>
+-
++<!DOCTYPE html>
++<html lang="en">
++
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <title>Contact Us | LOGICKlub</title>
++    <script type="module" src="js/auth.js"></script>
++    <link rel="stylesheet" href="styles.css">
++</head>
++
++<body>
++    <header>
++        <nav>
++            <a href="index.html">Home</a> |
++            <a href="events.html">Events</a> |
++            <a href="workshops.html">Workshops</a> |
++            <a href="math.html">Math Visualizer</a> |
++            <a href="game.html">AI Simulator</a> |
++            <a href="projects.html">Projects</a> |
++            <a href="join.html">Join Us</a> |
++            <a href="contact.html">Contact Us</a>
++        </nav>
++        <hr>
++    </header>
++
++  <main>
++    <!-- Head Section -->
++    <section>
++      <div>
++        <h1>CONTACT US</h1>
++        <p>
++          Have an idea, question or collaboration opportunity?
++          We would love to hear from you and innovate together.
++        </p>
++      </div>
++    </section>
++
++    <!-- Contact Methods -->
++    <section>
++      <div>
++        <div>
++          <h2>Contact Channels</h2>
++        </div>
++
++        <div>
++          <div>
++            <!-- <img src="images/email_icon.png" alt="Email Icon" width="30" height="30"> -->
++            <h3>Γ£ë∩╕Å Email</h3>
++            <a href="mailto:logicklub@example.com">
++              logicklub@example.com
++            </a>
++          </div>
++
++
++          <div>
++            <!-- <img src="images/phone_icon.png" alt="Phone Icon" width="30" height="30"> -->
++            <h3>Γ£å Phone</h3>
++            <a href="tel:+60123456789">
++              +6012 3456789
++            </a>
++          </div>
++
++
++          <div>
++            <!-- <img src="images/whatsapp_icon.png" alt="WhatsApp Icon" width="30" height="30"> -->
++            <h3>≡ƒÆ¼ WhatsApp</h3>
++            <a href="#" target="_blank">
++              Chat with us
++            </a>
++          </div>
++
++        </div>
++      </div>
++    </section>
++
++
++    <!-- Contact Form -->
++    <section>
++      <div>
++
++        <div>
++          <h2>Let's Talk</h2>
++          <p>
++            Whether you have a question or want to collaborate, send us a message. <br>
++            We will respond within <strong>1ΓÇô3 working days</strong>.
++          </p>
++        </div>
++
++      </div>
++
++
++      <form id="contactForm">
++
++        <div>
++          <div>
++            <label>
++              Name
++              <input type="text" id="name" name="name" placeholder="Enter your name" required>
++            </label>
++          </div>
++
++          <div>
++            <label>
++              Email
++              <input type="email" id="email" name="email" placeholder="Enter your email" required>
++            </label>
++          </div>
++        </div>
++
++
++        <div>
++          <label>
++            Message
++            <textarea id="message" name="message" rows="7" placeholder="Write your message here..." required></textarea>
++          </label>
++        </div>
++
++
++        <div>
++          <button type="submit" id="submitButton">Send Message</button>
++        </div>
++
++      </form>
++      </div>
++    </section>
++
++
++    <!-- Location -->
++    <section>
++      <div>
++
++        <div>
++          <h2>Visit Our Club</h2>
++          <p>
++            LOGICKlub<br>
++            Faculty of Information and Communication Technology<br>
++            University Tunku Abdul Rahman<br>
++          </p>
++        </div>
++
++
++        <div>
++          <div>
++            <iframe
++              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3978.404864458088!2d101.13255677447198!3d4.334841644721645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cb1d573f9aabf3%3A0x28cc06c069e40dce!2sUniversiti%20Tunku%20Abdul%20Rahman%20(UTAR)!5e0!3m2!1sen!2smy!4v1786714653040!5m2!1sen!2smy"
++              width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
++              referrerpolicy="strict-origin-when-cross-origin">
++            </iframe>
++          </div>
++        </div>
++
++      </div>
++    </section>
++
++  </main>
++  <script src="js/contact.js"></script>
++
++    <footer>
++        <hr>
++        <p>&copy; 2026 LOGICKlub. Built for UCCD2323.</p>
++    </footer>
++</body>
++
+ </html>
+\ No newline at end of file
+diff --git a/src/events.html b/src/events.html
+index 27cabbf..6cb6171 100644
+--- a/src/events.html
++++ b/src/events.html
+@@ -7,6 +7,7 @@
+ 
+     <title>Events | LOGICKlub</title>
+     <script type="module" src="js/auth.js"></script>
++    <link rel="stylesheet" href="styles.css">
+ </head>
+ 
+ <body>
+diff --git a/src/game.html b/src/game.html
+index 982a838..359d875 100644
+--- a/src/game.html
++++ b/src/game.html
+@@ -11,6 +11,7 @@
+     <!-- Mac/Linux: curl -L -o mnist-8.onnx https://github.com/onnx/models/raw/main/validated/vision/classification/mnist/model/mnist-8.onnx -->
+     <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+     <script type="module" src="js/auth.js"></script>
++    <link rel="stylesheet" href="styles.css">
+ </head>
+ 
+ <body>
+diff --git a/src/index.html b/src/index.html
+index 10aefcf..e456634 100644
+--- a/src/index.html
++++ b/src/index.html
+@@ -6,6 +6,7 @@
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Home | LOGICKlub</title>
+     <script type="module" src="js/auth.js"></script>
++    <link rel="stylesheet" href="styles.css">
+ </head>
+ 
+ <body>
+diff --git a/src/join.html b/src/join.html
+index 5aea203..a9aa708 100644
+--- a/src/join.html
++++ b/src/join.html
+@@ -7,6 +7,7 @@
+     <title>Join Us</title>
+     <script type="module" src="js/auth.js"></script>
+     <script type="module" src="js/join.js"></script>
++    <link rel="stylesheet" href="styles.css">
+ </head>
+ 
+ <body>
+@@ -29,55 +30,78 @@
+         <section>
+             <section>
+                 <h1>Member Registration</h1>
+-                <p>Register as a LOGICKlub member by filling in your personal and account information below.</p>
++                <p id="join-description">New to LOGICKlub? Create your member account by filling in the information below.</p>
+ 
+-                <form id="join-form">
+-                    <fieldset>
+-                        <legend>Personal Information</legend>
++                <div class="auth-mode-switch" role="group" aria-label="Choose sign up or sign in">
++                    <button id="show-sign-up" class="auth-mode-btn active" type="button">New Member / Sign Up</button>
++                    <button id="show-sign-in" class="auth-mode-btn" type="button">Existing Member / Sign In</button>
++                </div>
++
++                <form id="join-form" novalidate>
++                    <div id="sign-up-panel">
++                        <fieldset>
++                            <legend>Personal Information</legend>
++
++                            <label for="full-name">Full Name:</label><br>
++                            <input id="full-name" type="text" placeholder="Full Name" required><br><br>
++
++                            <label for="student-id">Student ID:</label><br>
++                            <input id="student-id" type="text" placeholder="Student ID" required><br><br>
++
++                            <label for="phone-number">Phone Number:</label><br>
++                            <input id="phone-number" type="tel" placeholder="Phone Number" required><br><br>
++
++                            <label for="programme">Programme:</label><br>
++                            <input id="programme" type="text" placeholder="Programme"><br><br>
++
++                            <label for="interest">Area of Interest:</label><br>
++                            <select id="interest">
++                                <option value="">-- Select an area --</option>
++                                <option value="Artificial Intelligence">Artificial Intelligence</option>
++                                <option value="Machine Learning">Machine Learning</option>
++                                <option value="Prompt Engineering">Prompt Engineering</option>
++                                <option value="Coding and Web Development">Coding and Web Development</option>
++                                <option value="Innovation Challenges">Innovation Challenges</option>
++                            </select>
++                        </fieldset>
+ 
+-                        <label for="full-name">Full Name:</label><br>
+-                        <input id="full-name" type="text" placeholder="Full Name" required><br><br>
++                        <br>
+ 
+-                        <label for="student-id">Student ID:</label><br>
+-                        <input id="student-id" type="text" placeholder="Student ID" required><br><br>
++                        <fieldset>
++                            <legend>Account Information</legend>
+ 
+-                        <label for="phone-number">Phone Number:</label><br>
+-                        <input id="phone-number" type="tel" placeholder="Phone Number" required><br><br>
++                            <label for="username">Username:</label><br>
++                            <input id="username" type="text" placeholder="Choose a username" autocomplete="username" required><br><br>
+ 
+-                        <label for="programme">Programme:</label><br>
+-                        <input id="programme" type="text" placeholder="Programme"><br><br>
++                            <label for="user-email">Email:</label><br>
++                            <input id="user-email" type="email" placeholder="Email" autocomplete="email" required><br><br>
+ 
+-                        <label for="interest">Area of Interest:</label><br>
+-                        <select id="interest">
+-                            <option value="">-- Select an area --</option>
+-                            <option value="Artificial Intelligence">Artificial Intelligence</option>
+-                            <option value="Machine Learning">Machine Learning</option>
+-                            <option value="Prompt Engineering">Prompt Engineering</option>
+-                            <option value="Coding and Web Development">Coding and Web Development</option>
+-                            <option value="Innovation Challenges">Innovation Challenges</option>
+-                        </select>
+-                    </fieldset>
++                            <label for="user-pwd">Password:</label><br>
++                            <input id="user-pwd" type="password" placeholder="Password" minlength="6" autocomplete="new-password" required><br><br>
+ 
+-                    <br>
++                            <label for="confirm-pwd">Confirm Password:</label><br>
++                            <input id="confirm-pwd" type="password" placeholder="Confirm Password" minlength="6" autocomplete="new-password" required>
++                        </fieldset>
+ 
+-                    <fieldset>
+-                        <legend>Account Information</legend>
++                        <br>
++                        <button id="sign-up-btn" type="submit">Sign Up</button>
++                    </div>
+ 
+-                        <label for="user-email">Email:</label><br>
+-                        <input id="user-email" type="email" placeholder="Email" required><br><br>
++                    <div id="sign-in-panel" hidden>
++                        <fieldset>
++                            <legend>Member Sign In</legend>
+ 
+-                        <label for="user-pwd">Password:</label><br>
+-                        <input id="user-pwd" type="password" placeholder="Password" minlength="6" required><br><br>
++                            <label for="login-identifier">Email or Username:</label><br>
++                            <input id="login-identifier" type="text" placeholder="Email or Username" autocomplete="username"><br><br>
+ 
+-                        <label for="confirm-pwd">Confirm Password:</label><br>
+-                        <input id="confirm-pwd" type="password" placeholder="Confirm Password" minlength="6" required>
+-                    </fieldset>
++                            <label for="login-password">Password:</label><br>
++                            <input id="login-password" type="password" placeholder="Password" autocomplete="current-password"><br><br>
+ 
+-                    <br>
++                            <button id="sign-in-btn" type="button">Sign In</button>
++                        </fieldset>
++                    </div>
+ 
+-                    <button type="submit">Sign Up</button>
+-                    <button id="sign-in-btn" type="button">Sign In</button>
+-                    <p id="form-message"></p>
++                    <p id="form-message" role="status" aria-live="polite"></p>
+                 </form>
+ 
+                 <br>
+@@ -87,6 +111,9 @@
+                     <p id="member-name-display"></p>
+                     <button id="sign-out-btn" type="button">Sign Out</button>
+                 </div>
++            </section>
++        </section>
++    </main>
+ 
+     <footer>
+         <hr>
+@@ -94,4 +121,4 @@
+     </footer>
+ </body>
+ 
+-</html>
+\ No newline at end of file
++</html>
+diff --git a/src/js/join.js b/src/js/join.js
+index 0f377f6..1ef86d3 100644
+--- a/src/js/join.js
++++ b/src/js/join.js
+@@ -1,11 +1,27 @@
+ import { auth, db } from "./auth.js";
+-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
+-import { doc, setDoc } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
++import {
++    createUserWithEmailAndPassword,
++    signInWithEmailAndPassword,
++    updateProfile,
++    signOut
++} from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
++import {
++    doc,
++    setDoc,
++    collection,
++    query,
++    where,
++    getDocs
++} from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
+ 
+ const joinForm = document.getElementById("join-form");
+-const emailInput = document.getElementById("user-email");
+-const pwdInput = document.getElementById("user-pwd");
+-const confirmPwdInput = document.getElementById("confirm-pwd");
++const formMessage = document.getElementById("form-message");
++const description = document.getElementById("join-description");
++
++const signUpPanel = document.getElementById("sign-up-panel");
++const signInPanel = document.getElementById("sign-in-panel");
++const showSignUpBtn = document.getElementById("show-sign-up");
++const showSignInBtn = document.getElementById("show-sign-in");
+ const signInBtn = document.getElementById("sign-in-btn");
+ 
+ const fullNameInput = document.getElementById("full-name");
+@@ -13,67 +29,196 @@ const studentIdInput = document.getElementById("student-id");
+ const phoneInput = document.getElementById("phone-number");
+ const programmeInput = document.getElementById("programme");
+ const interestInput = document.getElementById("interest");
++const usernameInput = document.getElementById("username");
++const emailInput = document.getElementById("user-email");
++const pwdInput = document.getElementById("user-pwd");
++const confirmPwdInput = document.getElementById("confirm-pwd");
+ 
+-if (joinForm) {
++const loginIdentifierInput = document.getElementById("login-identifier");
++const loginPasswordInput = document.getElementById("login-password");
++
++let currentMode = "signup";
++
++function setMessage(message, type = "info") {
++    if (!formMessage) return;
++    formMessage.textContent = message;
++    formMessage.className = type === "error" ? "form-error" : type === "success" ? "form-success" : "";
++}
++
++function setMode(mode) {
++    currentMode = mode;
++    const isSignUp = mode === "signup";
++
++    signUpPanel.hidden = !isSignUp;
++    signInPanel.hidden = isSignUp;
++    showSignUpBtn.classList.toggle("active", isSignUp);
++    showSignInBtn.classList.toggle("active", !isSignUp);
++
++    // Disable fields in the hidden mode so browser validation never blocks the active form.
++    signUpPanel.querySelectorAll("input, select, button").forEach((el) => {
++        el.disabled = !isSignUp;
++    });
++    signInPanel.querySelectorAll("input, button").forEach((el) => {
++        el.disabled = isSignUp;
++    });
++
++    description.textContent = isSignUp
++        ? "New to LOGICKlub? Create your member account by filling in the information below."
++        : "Already a member? Sign in using your registered email or username and password.";
++
++    setMessage("");
++}
++
++showSignUpBtn?.addEventListener("click", () => setMode("signup"));
++showSignInBtn?.addEventListener("click", () => setMode("signin"));
++
++async function usernameExists(username) {
++    const usernameQuery = query(
++        collection(db, "users"),
++        where("usernameLower", "==", username.trim().toLowerCase())
++    );
++    const snapshot = await getDocs(usernameQuery);
++    return !snapshot.empty;
++}
+ 
+-    joinForm.addEventListener("submit", (e) => {
++if (joinForm) {
++    joinForm.addEventListener("submit", async (e) => {
+         e.preventDefault();
+ 
+-        const email = emailInput.value;
++        if (currentMode !== "signup") return;
++
++        const fullName = fullNameInput.value.trim();
++        const studentId = studentIdInput.value.trim();
++        const phone = phoneInput.value.trim();
++        const username = usernameInput.value.trim();
++        const email = emailInput.value.trim();
+         const pwd = pwdInput.value;
++        const confirmPwd = confirmPwdInput.value;
++
++        if (!fullName || !studentId || !phone || !username || !email || !pwd || !confirmPwd) {
++            setMessage("Please complete all required registration fields.", "error");
++            return;
++        }
++
++        if (username.length < 3) {
++            setMessage("Username must contain at least 3 characters.", "error");
++            return;
++        }
++
++        if (!/^[A-Za-z0-9._-]+$/.test(username)) {
++            setMessage("Username may only contain letters, numbers, dots, underscores and hyphens.", "error");
++            return;
++        }
++
++        if (pwd.length < 6) {
++            setMessage("Password must contain at least 6 characters.", "error");
++            return;
++        }
+ 
+-        if (pwd !== confirmPwdInput.value) {
+-            alert("Passwords do not match!");
++        if (pwd !== confirmPwd) {
++            setMessage("Passwords do not match.", "error");
+             return;
+         }
+ 
+-        createUserWithEmailAndPassword(auth, email, pwd)
+-            .then(async (userCredential) => {
+-                const user = userCredential.user;
+-                
+-                // Update Firebase Auth profile with full name
+-                await updateProfile(user, { displayName: fullNameInput.value });
+-
+-                // Save extended details to Firestore Database
+-                await setDoc(doc(db, "users", user.uid), {
+-                    fullName: fullNameInput.value,
+-                    studentId: studentIdInput.value,
+-                    phone: phoneInput.value,
+-                    programme: programmeInput.value,
+-                    interest: interestInput.value,
+-                    email: email
+-                });
+-
+-                console.log("Successfully created user & saved profile:", user.email);
+-                joinForm.reset();
+-                window.location.reload();
+-            })
+-            .catch((error) => {
+-                console.error("Error creating user:", error.code, error.message);
+-                alert("Error: " + error.message);
++        try {
++            if (await usernameExists(username)) {
++                setMessage("That username is already in use. Please choose another one.", "error");
++                return;
++            }
++
++            const userCredential = await createUserWithEmailAndPassword(auth, email, pwd);
++            const user = userCredential.user;
++
++            await updateProfile(user, { displayName: fullName });
++
++            await setDoc(doc(db, "users", user.uid), {
++                fullName,
++                studentId,
++                phone,
++                programme: programmeInput.value.trim(),
++                interest: interestInput.value,
++                username,
++                usernameLower: username.toLowerCase(),
++                email
+             });
++
++            // Firebase automatically signs in a newly-created user. Sign them out so
++            // registration does not count as a successful sign-in.
++            await signOut(auth);
++
++            joinForm.reset();
++            setMode("signin");
++            setMessage("Registration successful. Please sign in with your new account.", "success");
++            loginIdentifierInput.value = username;
++            loginIdentifierInput.focus();
++        } catch (error) {
++            console.error("Error creating user:", error.code, error.message);
++
++            if (error.code === "auth/email-already-in-use") {
++                setMessage("This email is already registered. Please sign in instead.", "error");
++            } else if (error.code === "auth/invalid-email") {
++                setMessage("Please enter a valid email address.", "error");
++            } else if (error.code === "auth/weak-password") {
++                setMessage("The password is too weak. Please use at least 6 characters.", "error");
++            } else {
++                setMessage("Registration failed. Please try again.", "error");
++            }
++        }
+     });
+ }
+ 
++async function resolveEmailFromIdentifier(identifier) {
++    const value = identifier.trim();
++
++    // If the user entered an email address, Firebase can authenticate it directly.
++    if (value.includes("@")) return value;
++
++    // Otherwise, look up the registered username and retrieve its email.
++    const usernameQuery = query(
++        collection(db, "users"),
++        where("usernameLower", "==", value.toLowerCase())
++    );
++    const snapshot = await getDocs(usernameQuery);
++
++    if (snapshot.empty) return null;
++    return snapshot.docs[0].data().email || null;
++}
++
+ if (signInBtn) {
+-    signInBtn.addEventListener("click", () => {
+-        const email = emailInput.value;
+-        const pwd = pwdInput.value;
++    signInBtn.addEventListener("click", async () => {
++        const identifier = loginIdentifierInput.value.trim();
++        const pwd = loginPasswordInput.value;
+ 
+-        if (!email || !pwd) {
+-            alert("Please enter both email and password to sign in.");
++        if (!identifier || !pwd) {
++            setMessage("Please enter both your email/username and password.", "error");
+             return;
+         }
+ 
+-        signInWithEmailAndPassword(auth, email, pwd)
+-            .then((userCredential) => {
+-                const user = userCredential.user;
+-                console.log("Successfully signed in user:", user.email);
+-                joinForm.reset();
+-            })
+-            .catch((error) => {
+-                console.error("Error signing in:", error.code, error.message);
+-                alert("Error: " + error.message);
+-            });
++        try {
++            const email = await resolveEmailFromIdentifier(identifier);
++
++            // An unknown username has no registered member account, so it must never sign in.
++            if (!email) {
++                setMessage("No registered member account was found. Please sign up first.", "error");
++                return;
++            }
++
++            const userCredential = await signInWithEmailAndPassword(auth, email, pwd);
++            console.log("Successfully signed in user:", userCredential.user.email);
++            joinForm.reset();
++            setMessage("Sign in successful.", "success");
++        } catch (error) {
++            console.error("Error signing in:", error.code, error.message);
++
++            if (error.code === "auth/invalid-credential" || error.code === "auth/user-not-found" || error.code === "auth/wrong-password") {
++                setMessage("Incorrect email/username or password. New members must sign up before signing in.", "error");
++            } else if (error.code === "auth/invalid-email") {
++                setMessage("Please enter a valid registered email or username.", "error");
++            } else {
++                setMessage("Sign in failed. Please check your account details and try again.", "error");
++            }
++        }
+     });
+-}
+\ No newline at end of file
++}
++
++setMode("signup");
+diff --git a/src/math.html b/src/math.html
+index fcd41d3..6c108ac 100644
+--- a/src/math.html
++++ b/src/math.html
+@@ -6,6 +6,7 @@
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Math | LOGICKLUB</title>
+     <script type="module" src="js/auth.js"></script>
++    <link rel="stylesheet" href="styles.css">
+ </head>
+ 
+ <body>
+diff --git a/src/projects.html b/src/projects.html
+index c01380b..2d9762f 100644
+--- a/src/projects.html
++++ b/src/projects.html
+@@ -1,212 +1,213 @@
+-<!DOCTYPE html>
+-<html lang="en">
+-
+-<head>
+-  <meta charset="UTF-8">
+-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-  <title>Projects | LOGICKlub</title>
+-    <script type="module" src="js/auth.js"></script>
+-</head>
+-
+-<body>
+-    <header>
+-        <nav>
+-            <a href="index.html">Home</a> |
+-            <a href="events.html">Events</a> |
+-            <a href="workshops.html">Workshops</a> |
+-            <a href="math.html">Math Visualizer</a> |
+-            <a href="game.html">AI Simulator</a> |
+-            <a href="projects.html">Projects</a> |
+-            <a href="join.html">Join Us</a> |
+-            <a href="contact.html">Contact Us</a>
+-        </nav>
+-        <hr>
+-    </header>
+-
+-
+-  <main>
+-    <!-- Head Section -->
+-    <section>
+-
+-      <div>
+-        <h1>
+-          Our Projects
+-        </h1>
+-
+-        <p>
+-          Explore the innovative projects developed by our members.
+-        </p>
+-      </div>
+-
+-    </section>
+-
+-    <!-- Project Filter -->
+-    <section>
+-
+-      <div>
+-        <div>
+-          <button data-filter="all">
+-            All
+-          </button>
+-
+-          <button data-filter="ml">
+-            Machine Learning
+-          </button>
+-
+-          <button data-filter="cv">
+-            Computer Vision
+-          </button>
+-
+-          <button data-filter="nlp">
+-            Natural Language Processing
+-          </button>
+-
+-        </div>
+-      </div>
+-    </section>
+-
+-    <!-- Projects -->
+-    <section>
+-
+-      <div>
+-
+-        <!-- Project 1 -->
+-        <div data-category="ml">
+-
+-          <div>
+-
+-            <h2> Student Performance Predictor </h2>
+-
+-            <p>
+-              A machine learning system that analyzes academic
+-              and learning patterns to predict student performance.
+-            </p>
+-
+-            <div>
+-              Tech Stack:
+-              <span>Python</span>
+-              <span>Scikit-learn</span>
+-              <span>Pandas</span>
+-            </div>
+-
+-            <div>
+-              <a href="#"> View Project Details on GitHub </a>
+-            </div>
+-
+-          </div>
+-
+-        </div>
+-
+-
+-        <!-- Project 2 -->
+-        <div data-category="cv">
+-
+-          <div>
+-
+-            <h2> Smart Waste Recognition System </h2>
+-
+-            <p>
+-              A computer vision system that identifies and
+-              classifies different types of waste from images
+-              to support automated waste sorting and recycling.
+-            </p>
+-
+-            <div>
+-              Tech Stack:
+-              <span>Python</span>
+-              <span>OpenCV</span>
+-              <span>YOLO</span>
+-            </div>
+-
+-            <div>
+-              <a href="#"> View Project Details on GitHub </a>
+-            </div>
+-
+-          </div>
+-
+-        </div>
+-
+-
+-
+-        <!-- Project 3 -->
+-        <div data-category="nlp">
+-
+-          <div>
+-
+-            <h2> Smart Campus Assistant </h2>
+-
+-            <p>
+-              An AI-powered assistant that helps students
+-              find campus information, events, facilities,
+-              and frequently asked questions.
+-            </p>
+-
+-            <div>
+-              Tech Stack:
+-              <span>Python</span>
+-              <span>NLP</span>
+-              <span>LLM</span>
+-            </div>
+-
+-            <div>
+-              <a href="#"> View Project Details on GitHub </a>
+-            </div>
+-
+-          </div>
+-
+-        </div>
+-
+-
+-        <!-- Project 4 -->
+-        <div data-category="cv">
+-
+-          <div>
+-
+-            <h2> Traffic Sign Recognition System </h2>
+-
+-            <p>
+-              A computer vision system that detects and
+-              classifies traffic signs from road images
+-              to assist with intelligent transportation
+-              and driver assistance applications.
+-            </p>
+-
+-            <div>
+-              Tech Stack:
+-              <span>Python</span>
+-              <span>OpenCV</span>
+-              <span>TensorFlow</span>
+-            </div>
+-
+-            <div>
+-              <a href="#"> View Project Details on GitHub </a>
+-            </div>
+-
+-          </div>
+-
+-        </div>
+-
+-      </div>
+-    </section>
+-
+-
+-    <!-- Call To Action -->
+-    <section>
+-      <div>
+-        <h2> Have an Idea? </h2>
+-        <p> Join us and turn your ideas into real-world projects. </p>
+-        <a href="#"> Join Our Club </a>
+-      </div>
+-    </section>
+-
+-  </main>
+-  <script src="js/projects.js"></script>
+-
+-
+-    <footer>
+-        <hr>
+-        <p>&copy; 2026 LOGICKlub. Built for UCCD2323.</p>
+-    </footer>
+-</body>
+-
++<!DOCTYPE html>
++<html lang="en">
++
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <title>Projects | LOGICKlub</title>
++    <script type="module" src="js/auth.js"></script>
++    <link rel="stylesheet" href="styles.css">
++</head>
++
++<body>
++    <header>
++        <nav>
++            <a href="index.html">Home</a> |
++            <a href="events.html">Events</a> |
++            <a href="workshops.html">Workshops</a> |
++            <a href="math.html">Math Visualizer</a> |
++            <a href="game.html">AI Simulator</a> |
++            <a href="projects.html">Projects</a> |
++            <a href="join.html">Join Us</a> |
++            <a href="contact.html">Contact Us</a>
++        </nav>
++        <hr>
++    </header>
++
++
++  <main>
++    <!-- Head Section -->
++    <section>
++
++      <div>
++        <h1>
++          Our Projects
++        </h1>
++
++        <p>
++          Explore the innovative projects developed by our members.
++        </p>
++      </div>
++
++    </section>
++
++    <!-- Project Filter -->
++    <section>
++
++      <div>
++        <div>
++          <button data-filter="all">
++            All
++          </button>
++
++          <button data-filter="ml">
++            Machine Learning
++          </button>
++
++          <button data-filter="cv">
++            Computer Vision
++          </button>
++
++          <button data-filter="nlp">
++            Natural Language Processing
++          </button>
++
++        </div>
++      </div>
++    </section>
++
++    <!-- Projects -->
++    <section>
++
++      <div>
++
++        <!-- Project 1 -->
++        <div data-category="ml">
++
++          <div>
++
++            <h2> Student Performance Predictor </h2>
++
++            <p>
++              A machine learning system that analyzes academic
++              and learning patterns to predict student performance.
++            </p>
++
++            <div>
++              Tech Stack:
++              <span>Python</span>
++              <span>Scikit-learn</span>
++              <span>Pandas</span>
++            </div>
++
++            <div>
++              <a href="#"> View Project Details on GitHub </a>
++            </div>
++
++          </div>
++
++        </div>
++
++
++        <!-- Project 2 -->
++        <div data-category="cv">
++
++          <div>
++
++            <h2> Smart Waste Recognition System </h2>
++
++            <p>
++              A computer vision system that identifies and
++              classifies different types of waste from images
++              to support automated waste sorting and recycling.
++            </p>
++
++            <div>
++              Tech Stack:
++              <span>Python</span>
++              <span>OpenCV</span>
++              <span>YOLO</span>
++            </div>
++
++            <div>
++              <a href="#"> View Project Details on GitHub </a>
++            </div>
++
++          </div>
++
++        </div>
++
++
++
++        <!-- Project 3 -->
++        <div data-category="nlp">
++
++          <div>
++
++            <h2> Smart Campus Assistant </h2>
++
++            <p>
++              An AI-powered assistant that helps students
++              find campus information, events, facilities,
++              and frequently asked questions.
++            </p>
++
++            <div>
++              Tech Stack:
++              <span>Python</span>
++              <span>NLP</span>
++              <span>LLM</span>
++            </div>
++
++            <div>
++              <a href="#"> View Project Details on GitHub </a>
++            </div>
++
++          </div>
++
++        </div>
++
++
++        <!-- Project 4 -->
++        <div data-category="cv">
++
++          <div>
++
++            <h2> Traffic Sign Recognition System </h2>
++
++            <p>
++              A computer vision system that detects and
++              classifies traffic signs from road images
++              to assist with intelligent transportation
++              and driver assistance applications.
++            </p>
++
++            <div>
++              Tech Stack:
++              <span>Python</span>
++              <span>OpenCV</span>
++              <span>TensorFlow</span>
++            </div>
++
++            <div>
++              <a href="#"> View Project Details on GitHub </a>
++            </div>
++
++          </div>
++
++        </div>
++
++      </div>
++    </section>
++
++
++    <!-- Call To Action -->
++    <section>
++      <div>
++        <h2> Have an Idea? </h2>
++        <p> Join us and turn your ideas into real-world projects. </p>
++        <a href="#"> Join Our Club </a>
++      </div>
++    </section>
++
++  </main>
++  <script src="js/projects.js"></script>
++
++
++    <footer>
++        <hr>
++        <p>&copy; 2026 LOGICKlub. Built for UCCD2323.</p>
++    </footer>
++</body>
++
+ </html>
+\ No newline at end of file
+diff --git a/src/workshops.html b/src/workshops.html
+index 4dafd54..33966a1 100644
+--- a/src/workshops.html
++++ b/src/workshops.html
+@@ -7,6 +7,7 @@
+ 
+     <title>Workshops | LOGICKlub</title>
+     <script type="module" src="js/auth.js"></script>
++    <link rel="stylesheet" href="styles.css">
+ </head>
+ 
+ <body>
