@@ -1,0 +1,108 @@
+/* Specific stylesheet for game.html */
+
+/* Container for the drawing and output sections */
+.simulator-workspace {
+    margin-top: 40px;
+    margin-bottom: 60px;
+}
+
+/* Styling for the drawing section */
+.draw-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the canvas and buttons */
+    padding: 20px;
+}
+
+/* Canvas Wrapper with premium styling matching main theme */
+.canvas-wrapper {
+    background-color: #fff; /* Always white so digits are clear to draw */
+    border: 1px solid var(--line);
+    border-radius: var(--radius, 12px);
+    box-shadow: var(--shadow, 0 8px 30px rgba(0,0,0,0.2));
+    margin-bottom: 25px;
+    overflow: hidden;
+    /* Ensure no weird spacing below canvas */
+    display: flex; 
+}
+
+#canvas {
+    display: block;
+    cursor: crosshair;
+    touch-action: none;
+    border: none;
+}
+
+/* Buttons */
+.controls {
+    display: flex;
+    gap: 15px;
+    width: 280px; /* Match canvas width */
+}
+
+.action-btn {
+    flex: 1;
+    padding: 12px 15px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--radius, 8px);
+    cursor: pointer;
+    transition: transform 0.2s, filter 0.2s;
+}
+
+.action-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+    filter: none !important;
+}
+
+.action-btn:not(:disabled):hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+.clear-btn {
+    background-color: var(--danger, #fb7185);
+    color: white;
+}
+
+.predict-btn {
+    background-color: var(--blue, #3b82f6);
+    color: white;
+}
+
+/* Styling for the output section */
+.output-section {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.bar-chart-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: var(--panel, #101a2b);
+    padding: 25px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius, 12px);
+    box-shadow: var(--shadow, 0 8px 30px rgba(0,0,0,0.2));
+    flex-grow: 1;
+    min-height: 300px; /* give it some presence even when empty */
+}
+
+/* Loading text animation */
+#loading-text {
+    font-weight: 600;
+    color: var(--cyan, #22d3ee);
+    margin-bottom: 15px;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.4; }
+    100% { opacity: 1; }
+}
