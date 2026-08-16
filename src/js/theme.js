@@ -43,25 +43,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // The auth container is generated asynchronously by auth.js
-    // We use an interval to wait for it, then inject our theme button next to the auth buttons
-    const checkAuthContainer = setInterval(() => {
-        const authContainer = document.getElementById("global-auth-container");
-        if (authContainer) {
-            authContainer.insertBefore(themeBtn, authContainer.firstChild);
-            clearInterval(checkAuthContainer);
-        }
-    }, 50);
-
-    // Fallback in case auth.js fails or is missing (inject into nav directly after 3 seconds)
-    setTimeout(() => {
-        if (!document.getElementById("theme-toggle-btn")) {
-            const nav = document.querySelector("nav");
-            if (nav) {
-                themeBtn.style.marginLeft = "auto";
-                nav.appendChild(themeBtn);
-            }
-            clearInterval(checkAuthContainer);
-        }
-    }, 3000);
+    const nav = document.querySelector("nav");
+    if (nav) {
+        themeBtn.style.marginLeft = "auto";
+        nav.appendChild(themeBtn);
+    }
 });

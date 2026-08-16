@@ -56,17 +56,11 @@ onAuthStateChanged(auth, (user) => {
   const nav = document.querySelector("nav");
 
   if (nav) {
-    // Remove the hardcoded "Join Us" link from all pages
-    const oldJoinLink = Array.from(nav.querySelectorAll('a')).find(a => a.getAttribute('href') === 'join.html' || a.textContent.trim() === 'Join Us');
-    if (oldJoinLink) oldJoinLink.remove();
-
-
     // Setup or get the auth container
     let authContainer = document.getElementById("global-auth-container");
     if (!authContainer) {
       authContainer = document.createElement("div");
       authContainer.id = "global-auth-container";
-      authContainer.style.marginLeft = "auto";
       authContainer.style.display = "flex";
       authContainer.style.alignItems = "center";
       authContainer.style.gap = "10px";
