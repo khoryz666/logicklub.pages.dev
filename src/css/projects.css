@@ -101,3 +101,27 @@ main>section.projects-section::after {
 .project-card-footer a:hover {
     color: var(--cyan) !important;
 }
+
+/* Filter Bar Container */
+.project-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 12px;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.project-filters::-webkit-scrollbar {
+    display: none;
+}
+
+/* Ensure buttons don't shrink when scrolling horizontally */
+.project-filters button {
+    flex-shrink: 0;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    border-radius: var(--radius);
+    white-space: nowrap;
+}
