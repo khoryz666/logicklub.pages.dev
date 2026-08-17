@@ -1,6 +1,6 @@
 # LOGICKlub
 
-[Report](https://docs.google.com/document/d/1D2tq8UYtxX9eCiQurjJTyIvsvn36X9Ez4vTfpB-tkf4/edit?usp=sharing) | [Presentation](https://docs.google.com/presentation/d/1_R8CxTHcr-Eew4daF4Pk1WIiDnkruNDncPQrk0c73ZU/edit?usp=sharing) | [Architecture Diagram](https://app.diagrams.net/?lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=architecture.drawio#Uhttps%3A%2F%2Fraw.githubusercontent.com%2Fkhoryz666%2Flogicklub.pages.dev%2Fmain%2Farchitecture.drawio)
+[Report](https://docs.google.com/document/d/1D2tq8UYtxX9eCiQurjJTyIvsvn36X9Ez4vTfpB-tkf4/edit?usp=sharing) | [Presentation](https://canva.link/tpqe8yo31e0un9y) | [Architecture Diagram](https://app.diagrams.net/?lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=architecture.drawio#Uhttps%3A%2F%2Fraw.githubusercontent.com%2Fkhoryz666%2Flogicklub.pages.dev%2Fmain%2Farchitecture.drawio)
 
 A multi-page community frontend for logic, coding, AI, and creative tech enthusiasts.
 

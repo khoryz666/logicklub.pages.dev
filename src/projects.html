@@ -1,213 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projects | LOGICKlub</title>
-    <script type="module" src="js/auth.js"></script>
-    <link rel="stylesheet" href="css/styles.css">
-    <script src="js/theme.js"></script>
-</head>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Projects | LOGICKlub</title>
+		<link rel="stylesheet" href="css/styles.css">
+		<link rel="stylesheet" href="css/bar.css">
+		<link rel="stylesheet" href="css/projects.css">
+	</head>
 
-<body>
-    <header>
-        <nav>
-            <a href="index.html">Home</a> |
-            <a href="events.html">Events</a> |
-            <a href="workshops.html">Workshops</a> |
-            <a href="math.html">Learn Math</a> |
-            <a href="game.html">Play AI</a> |
-            <a href="projects.html">Projects</a> |
-            <a href="contact.html">Contact Us</a>
-        </nav>
-        <hr>
-    </header>
+	<body>
+		<nav class="navbar" id="navbar"></nav>
 
+		<main>
+			<!-- Head Section -->
+			<section>
 
-  <main>
-    <!-- Head Section -->
-    <section>
+				<div>
+					<h1>
+						Our Projects
+					</h1>
 
-      <div>
-        <h1>
-          Our Projects
-        </h1>
+					<p>
+					Explore the innovative projects developed by our members.
+					</p>
+				</div>
 
-        <p>
-          Explore the innovative projects developed by our members.
-        </p>
-      </div>
+			</section>
 
-    </section>
+			<!-- Project Filter -->
+			<section>
 
-    <!-- Project Filter -->
-    <section>
+				<div>
+					<div>
+						<button data-filter="all">
+							All
+						</button>
 
-      <div>
-        <div>
-          <button data-filter="all">
-            All
-          </button>
+						<button data-filter="ml">
+							Machine Learning
+						</button>
 
-          <button data-filter="ml">
-            Machine Learning
-          </button>
+						<button data-filter="cv">
+							Computer Vision
+						</button>
 
-          <button data-filter="cv">
-            Computer Vision
-          </button>
+						<button data-filter="nlp">
+							Natural Language Processing
+						</button>
 
-          <button data-filter="nlp">
-            Natural Language Processing
-          </button>
+					</div>
+				</div>
+			</section>
 
-        </div>
-      </div>
-    </section>
+			<!-- Projects -->
+			<section>
 
-    <!-- Projects -->
-    <section>
+				<div>
 
-      <div>
+					<!-- Project 1 -->
+					<div data-category="ml">
 
-        <!-- Project 1 -->
-        <div data-category="ml">
+						<div>
 
-          <div>
+							<h2> Student Performance Predictor </h2>
 
-            <h2> Student Performance Predictor </h2>
+							<p>
+							A machine learning system that analyzes academic
+							and learning patterns to predict student performance.
+							</p>
 
-            <p>
-              A machine learning system that analyzes academic
-              and learning patterns to predict student performance.
-            </p>
+							<div>
+								Tech Stack:
+								<span>Python</span>
+								<span>Scikit-learn</span>
+								<span>Pandas</span>
+							</div>
 
-            <div>
-              Tech Stack:
-              <span>Python</span>
-              <span>Scikit-learn</span>
-              <span>Pandas</span>
-            </div>
+							<div>
+								<a href="#"> View Project Details on GitHub </a>
+							</div>
 
-            <div>
-              <a href="#"> View Project Details on GitHub </a>
-            </div>
+						</div>
 
-          </div>
+					</div>
 
-        </div>
+					<!-- Project 2 -->
+					<div data-category="cv">
 
+						<div>
 
-        <!-- Project 2 -->
-        <div data-category="cv">
+							<h2> Smart Waste Recognition System </h2>
 
-          <div>
+							<p>
+							A computer vision system that identifies and
+							classifies different types of waste from images
+							to support automated waste sorting and recycling.
+							</p>
 
-            <h2> Smart Waste Recognition System </h2>
+							<div>
+								Tech Stack:
+								<span>Python</span>
+								<span>OpenCV</span>
+								<span>YOLO</span>
+							</div>
 
-            <p>
-              A computer vision system that identifies and
-              classifies different types of waste from images
-              to support automated waste sorting and recycling.
-            </p>
+							<div>
+								<a href="#"> View Project Details on GitHub </a>
+							</div>
 
-            <div>
-              Tech Stack:
-              <span>Python</span>
-              <span>OpenCV</span>
-              <span>YOLO</span>
-            </div>
+						</div>
 
-            <div>
-              <a href="#"> View Project Details on GitHub </a>
-            </div>
+					</div>
 
-          </div>
+					<!-- Project 3 -->
+					<div data-category="nlp">
 
-        </div>
+						<div>
 
+							<h2> Smart Campus Assistant </h2>
 
+							<p>
+							An AI-powered assistant that helps students
+							find campus information, events, facilities,
+							and frequently asked questions.
+							</p>
 
-        <!-- Project 3 -->
-        <div data-category="nlp">
+							<div>
+								Tech Stack:
+								<span>Python</span>
+								<span>NLP</span>
+								<span>LLM</span>
+							</div>
 
-          <div>
+							<div>
+								<a href="#"> View Project Details on GitHub </a>
+							</div>
 
-            <h2> Smart Campus Assistant </h2>
+						</div>
 
-            <p>
-              An AI-powered assistant that helps students
-              find campus information, events, facilities,
-              and frequently asked questions.
-            </p>
+					</div>
 
-            <div>
-              Tech Stack:
-              <span>Python</span>
-              <span>NLP</span>
-              <span>LLM</span>
-            </div>
+					<!-- Project 4 -->
+					<div data-category="cv">
 
-            <div>
-              <a href="#"> View Project Details on GitHub </a>
-            </div>
+						<div>
 
-          </div>
+							<h2> Traffic Sign Recognition System </h2>
 
-        </div>
+							<p>
+							A computer vision system that detects and
+							classifies traffic signs from road images
+							to assist with intelligent transportation
+							and driver assistance applications.
+							</p>
 
+							<div>
+								Tech Stack:
+								<span>Python</span>
+								<span>OpenCV</span>
+								<span>TensorFlow</span>
+							</div>
 
-        <!-- Project 4 -->
-        <div data-category="cv">
+							<div>
+								<a href="#"> View Project Details on GitHub </a>
+							</div>
 
-          <div>
+						</div>
 
-            <h2> Traffic Sign Recognition System </h2>
+					</div>
 
-            <p>
-              A computer vision system that detects and
-              classifies traffic signs from road images
-              to assist with intelligent transportation
-              and driver assistance applications.
-            </p>
+				</div>
+			</section>
 
-            <div>
-              Tech Stack:
-              <span>Python</span>
-              <span>OpenCV</span>
-              <span>TensorFlow</span>
-            </div>
+			<!-- Call To Action -->
+			<section>
+				<div>
+					<h2> Have an Idea? </h2>
+					<p> Join us and turn your ideas into real-world projects. </p>
+					<a href="#"> Join Our Club </a>
+				</div>
+			</section>
 
-            <div>
-              <a href="#"> View Project Details on GitHub </a>
-            </div>
+		</main>
 
-          </div>
+		<footer> <hr> <p>&copy; 2026 LOGICKlub. Built for UCCD2323.</p> </footer>
 
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- Call To Action -->
-    <section>
-      <div>
-        <h2> Have an Idea? </h2>
-        <p> Join us and turn your ideas into real-world projects. </p>
-        <a href="#"> Join Our Club </a>
-      </div>
-    </section>
-
-  </main>
-  <script src="js/projects.js"></script>
-
-
-    <footer>
-        <hr>
-        <p>&copy; 2026 LOGICKlub. Built for UCCD2323.</p>
-    </footer>
-</body>
+		<script type="module" src="js/auth.js"></script>
+		<script src="js/theme.js"></script>
+		<script src="js/bar.js"></script>
+		<script src="js/projects.js"></script>
+	</body>
 
 </html>

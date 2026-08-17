@@ -1,130 +1,78 @@
 $(document).ready(function () {
-    restoreSelection();
-    restoreReservation();
+	"use strict";
 
-    $(".select-workshop").on("click", function () {
-        const workshopId = $(this).data("workshop-id");
-        const workshopTitle = $(this).data("workshop-title");
+	var selectedWorkshop = null;
+	var selectedSeat = null;
 
-        selectWorkshop(workshopId, workshopTitle);
-    });
+	function escapeHtml(str) {
+		return $("<div>").text(str).html();
+	}
 
-    $(".seat-btn").on("click", function () {
-        const seat = $(this).data("seat");
+	// 1. Choose a workshop
+	$(".select-workshop").on("click", function () {
+		var $btn = $(this);
 
-        selectSeat(seat);
-    });
+		selectedWorkshop = {
+			id: $btn.data("workshopId"),
+			title: $btn.data("workshopTitle"),
+			date: $btn.data("workshopDate"),
+			time: $btn.data("workshopTime"),
+			venue: $btn.data("workshopVenue")
+		};
 
-    $("#reserve-btn").on("click", function () {
-        confirmReservation();
-    });
+		$(".select-workshop").removeClass("is-selected");
+		$btn.addClass("is-selected");
+
+		$("#selected-workshop").text(selectedWorkshop.title);
+
+		// Reset seat choice whenever the workshop changes
+		selectedSeat = null;
+		$(".seat-btn").removeClass("is-selected");
+		$("#selected-seat").text("None");
+		$("#reserve-btn").prop("disabled", true);
+
+		document.getElementById("seat-reservation").scrollIntoView({ behavior: "smooth", block: "start" });
+	});
+
+	// 2. Choose a seat
+	$(".seat-btn").on("click", function () {
+		if (!selectedWorkshop) {
+			alert("Please select a workshop first.");
+			return;
+		}
+
+		var $seat = $(this);
+
+		$(".seat-btn").removeClass("is-selected");
+		$seat.addClass("is-selected");
+
+		selectedSeat = $seat.data("seat");
+		$("#selected-seat").text(selectedSeat);
+
+		$("#reserve-btn").prop("disabled", false);
+	});
+
+	// 3. Confirm the reservation
+	$("#reserve-btn").on("click", function () {
+		if (!selectedWorkshop || !selectedSeat) return;
+
+		$("#reservation-details").html(
+			'<div class="reservation-card">' +
+			'<p class="reservation-ok">✓ Reservation Confirmed</p>' +
+			'<ul class="reservation-list">' +
+			"<li><span>Workshop</span><strong>" + escapeHtml(selectedWorkshop.title) + "</strong></li>" +
+			"<li><span>Date</span><strong>" + escapeHtml(selectedWorkshop.date) + "</strong></li>" +
+			"<li><span>Time</span><strong>" + escapeHtml(selectedWorkshop.time) + "</strong></li>" +
+			"<li><span>Venue</span><strong>" + escapeHtml(selectedWorkshop.venue) + "</strong></li>" +
+			"<li><span>Seat</span><strong>" + escapeHtml(selectedSeat) + "</strong></li>" +
+			"</ul>" +
+			"</div>"
+		);
+
+		$("#reserve-btn").prop("disabled", true);
+		$(".seat-btn").addClass("is-booked");
+		$(".seat-btn.is-selected").removeClass("is-selected");
+		$("#selected-seat").text("None");
+		selectedSeat = null;
+	});
 });
-
-/*
-sessionStorage on the workshop page to temporarily store the selected workshop and seat.
-This allows the user's selection to remain after refreshing the page while keeping the
-reservation data limited to the current browser session.”
-*/
-
-function selectWorkshop(workshopId, workshopTitle) {
-
-    sessionStorage.setItem( "selectedWorkshopId", workshopId);
-    sessionStorage.setItem( "selectedWorkshopTitle", workshopTitle);
-
-    $("#selected-workshop").text(workshopTitle);
-
-    sessionStorage.removeItem("selectedSeat");
-
-    $("#selected-seat").text("None");
-
-    $("#reservation-status").text( "Workshop selected. Please choose a seat.");
-}
-
-function selectSeat(seat) {
-
-    const workshopId = sessionStorage.getItem( "selectedWorkshopId");
-
-    if (!workshopId) {
-        $("#reservation-status").text( "Please select a workshop before choosing a seat.");
-        return;
-    }
-
-    sessionStorage.setItem( "selectedSeat", seat);
-
-    $("#selected-seat").text(seat);
-
-    $("#reservation-status").text( "Seat " + seat + " selected.");
-}
-
-function confirmReservation() {
-
-    const workshopId = sessionStorage.getItem( "selectedWorkshopId");
-    const workshopTitle = sessionStorage.getItem( "selectedWorkshopTitle");
-
-    const selectedSeat = sessionStorage.getItem( "selectedSeat");
-
-    if (!workshopId) {
-        $("#reservation-status").text( "Please select a workshop first.");
-        return;
-    }
-
-    if (!selectedSeat) {
-        $("#reservation-status").text( "Please select a seat before confirming.");
-        return;
-    }
-
-    const reservation = {
-        workshopId: workshopId,
-        workshopTitle: workshopTitle,
-        seat: selectedSeat
-    };
-
-    sessionStorage.setItem( "workshopReservation", JSON.stringify(reservation));
-
-    $("#reservation-status").text( "Reservation confirmed successfully.");
-
-    displayReservation(reservation);
-}
-
-function restoreSelection() {
-
-    const workshopTitle = sessionStorage.getItem( "selectedWorkshopTitle");
-
-    const selectedSeat = sessionStorage.getItem( "selectedSeat");
-
-    if (workshopTitle) {
-        $("#selected-workshop").text( workshopTitle);
-    }
-
-    if (selectedSeat) {
-        $("#selected-seat").text( selectedSeat);
-    }
-}
-
-function restoreReservation() {
-
-    const savedReservation = sessionStorage.getItem( "workshopReservation");
-
-    if (!savedReservation) {
-        return;
-    }
-
-    const reservation = JSON.parse( savedReservation);
-
-    displayReservation(reservation);
-}
-
-function displayReservation(reservation) {
-
-    const container = $("#reservation-details");
-
-    container.empty();
-
-    $("<p>")
-        .text( "Workshop: " + reservation.workshopTitle)
-        .appendTo(container);
-
-    $("<p>")
-        .text( "Seat: " + reservation.seat)
-        .appendTo(container);
-}

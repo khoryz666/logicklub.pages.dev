@@ -2,19 +2,14 @@ const filterButtons = document.querySelectorAll("[data-filter]");
 const projects = document.querySelectorAll("[data-category]");
 
 filterButtons.forEach(button => {
-  button.addEventListener("click", function () {
+	button.addEventListener("click", function () {
+		const filter = this.dataset.filter;
 
-    const filter = this.dataset.filter;
+		filterButtons.forEach(b => b.classList.remove("active"));
+		this.classList.add("active");
 
-    projects.forEach(project => {
-
-      if (filter === "all" || project.dataset.category === filter) {
-        project.style.display = "";
-      } else {
-        project.style.display = "none";
-      }
-
-    });
-
-  });
+		projects.forEach(project => {
+			project.style.display = (filter === "all" || project.dataset.category === filter) ? "" : "none";
+		});
+	});
 });

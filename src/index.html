@@ -1,59 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | LOGICKlub</title>
-    <script type="module" src="js/auth.js"></script>
-    <link rel="stylesheet" href="css/styles.css">
-    <script src="js/theme.js"></script>
-</head>
+		<title>Home | LOGICKlub</title>
 
-<body>
-    <header>
-        <h1>Welcome to LOGICKlub!</h1>
-        <nav>
-            <a href="index.html">Home</a> |
-            <a href="events.html">Events</a> |
-            <a href="workshops.html">Workshops</a> |
-            <a href="math.html">Learn Math</a> |
-            <a href="game.html">Play AI</a> |
-            <a href="projects.html">Projects</a> |
-            <a href="contact.html">Contact Us</a>
-        </nav>
-        <hr>
-    </header>
+		<link rel="stylesheet" href="css/styles.css" />
+		<link rel="stylesheet" href="css/bar.css" />
+		<link rel="stylesheet" href="css/home.css" />
+	</head>
+	<body>
+		<nav class="navbar" id="navbar"></nav>
 
-    <main>
-        <section>
-            <h2>About Us</h2>
-            <p>Welcome to LOGICKlub, the ultimate community for logic, coding, AI, and creative tech enthusiasts! Whether you're a beginner wanting to learn the basics of artificial intelligence or an experienced developer looking for a team, you've found the right place.</p>
-            <p>
-                <strong>The LOGICK Origin:</strong> This platform was proudly built by four visionary founders: <strong>Chan Jian Yun</strong>, <strong>Gee Han Shen</strong>, <strong>Lim Zhixuan</strong>, and <strong>Khor Yu Zhuang</strong>. In fact, the name <em>"LOGICK"</em> is creatively derived directly from the surnames of its founders!
-            </p>
-        </section>
+		<section class="hero">
 
-        <section>
-            <h2>Explore Our Features</h2>
-            <ul>
-                <li><strong><a href="events.html">Events</a>:</strong> Stay updated with live AI news and community gatherings.</li>
-                <li><strong><a href="workshops.html">Workshops</a>:</strong> Reserve your seat for our upcoming technical workshops.</li>
-                <li><strong><a href="math.html">Interactive Math</a>:</strong> Learn the core linear algebra behind Neural Networks with our live matrix visualizer.</li>
-                <li><strong><a href="game.html">Play AI</a>:</strong> Test a real, client-side WebAssembly neural network by drawing handwritten digits directly in your browser.</li>
-            </ul>
-        </section>
+			<div class="hero-content">
 
-        <section>
-            <h2>Join the Club</h2>
-            <p>Ready to start your journey? <a href="join.html">Click here to register</a> and become a member of LOGICKlub today.</p>
-        </section>
-    </main>
+				<h1 class="hero-title">
+					<span class="hero-line">
+						AI <span class="hero-and">&amp;</span> <span class="hero-accent-yellow">INNOVATION</span>
+					</span>
 
-    <footer>
-        <hr>
-        <p>&copy; 2026 LOGICKlub. Built for UCCD2323.</p>
-    </footer>
-</body>
+					<span class="hero-line hero-line-secondary">
+						LOGICKlub
+					</span>
+				</h1>
 
+				<p class="hero-tagline">
+				INNOVATE <span>•</span>
+				IMPLEMENT <span>•</span>
+				INSPIRE
+				</p>
+
+				<div class="hero-actions">
+
+					<a href="join.html" class="hero-btn hero-btn-primary">
+						Join the Club
+						<span>→</span>
+					</a>
+
+					<a href="projects.html" class="hero-btn hero-btn-secondary">
+						<span class="play-icon">▶</span>
+						See Our Work
+					</a>
+
+				</div>
+
+				<div class="scroll-indicator">
+					<span></span>
+				</div>
+
+			</div>
+
+		</section>
+
+		<section class="about">
+			<div class="about-inner">
+
+				<div class="about-left">
+					<p class="about-eyebrow">About Us</p>
+					<h2 class="about-title">
+						Where logic<br>
+						meets <span class="about-accent">imagination</span>
+					</h2>
+					<p class="about-motto">Learn · Build · Play</p>
+				</div>
+
+				<div class="about-right">
+					<p class="about-lead">
+					Welcome to LOGICKlub, the ultimate community for logic, coding, AI, and
+					creative tech enthusiasts!
+					</p>
+
+					<p class="about-text">
+					<strong class="about-origin">The LOGICK Origin:</strong>
+					This platform was proudly built by four visionary founders:
+					Lim ZhiXuan, Gee Han Shen, Chan Jian Yun, and Khor Yu Zhuang. In fact, the
+					name "LOGICK" is creatively derived directly from the surnames of its
+					founders!
+					</p>
+				</div>
+
+			</div>
+		</section>
+
+		<div class="stack-demo">
+			<div class="stack-scene">
+				<div class="stack-wrap">
+					<div class="stack-card">CARD 1</div>
+					<div class="stack-card">CARD 2</div>
+					<div class="stack-card">CARD 3</div>
+					<div class="stack-card">CARD 4</div>
+				</div>
+			</div>
+		</div>
+
+		<section class="cta-section">
+			<div class="hero-card">
+				<h3 class="hero-card-title">Ready to build the future?</h3>
+				<p class="hero-card-desc">
+				Join a community of curious minds turning logic, code, and AI into real
+				projects — one workshop at a time.
+				</p>
+				<a href="join.html" class="hero-card-btn">Join the Club</a>
+				<div class="hero-card-links">
+					<a href="events.html">Explore Events</a>
+					<span class="dot">•</span>
+					<a href="contact.html">Contact Us</a>
+				</div>
+			</div>
+		</section>
+
+		<footer> <hr> <p>&copy; 2026 LOGICKlub. Built for UCCD2323.</p> </footer>
+
+		<script src="js/bar.js"></script>
+	</body>
 </html>
