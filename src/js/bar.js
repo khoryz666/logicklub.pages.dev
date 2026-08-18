@@ -34,8 +34,13 @@ import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/
   // --- Detect current page from the URL (e.g. "events.html") ---
   function currentFile() {
     var path = window.location.pathname;
+    if (path.length > 1 && path.endsWith("/")) {
+      path = path.slice(0, -1);
+    }
     var file = path.substring(path.lastIndexOf("/") + 1);
-    return file || "index.html";
+    if (!file) return "index.html";
+    if (!file.endsWith(".html")) file += ".html";
+    return file;
   }
 
   var activeFile = currentFile();
