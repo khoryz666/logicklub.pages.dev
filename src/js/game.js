@@ -36,17 +36,19 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         const loadStart = performance.now();
         // Try WASM first
+        let provider = "wasm";
         try {
             session = await ort.InferenceSession.create('mnist-8.onnx', { executionProviders: ['wasm'] });
         } catch (wasmError) {
             console.warn("WASM failed to initialize (likely a browser memory restriction). Falling back to WebGL...", wasmError);
+            provider = "webgl";
             session = await ort.InferenceSession.create('mnist-8.onnx', { executionProviders: ['webgl'] });
         }
         const loadEnd = performance.now();
         let loadTime = loadEnd - loadStart;
         let displayLoadTime = loadTime < 1 ? "< 1.00" : loadTime.toFixed(2);
 
-        console.log(`ONNX WASM model loaded successfully in ${displayLoadTime} ms!`);
+        console.log(`ONNX ${provider.toUpperCase()} model loaded successfully in ${displayLoadTime} ms!`);
         loadingText.innerText = `Model loaded in ${displayLoadTime} ms`;
         loadingText.style.color = 'var(--success, #34d399)';
         predictBtn.disabled = false;
