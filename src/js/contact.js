@@ -53,12 +53,19 @@ contactForm.addEventListener("submit", function (e) {
 });
 
 // Keep the embedded X timeline in sync with the global theme switcher.
+let lastTimelineTheme = null;
+
 function updateTimelineTheme() {
   const timeline = document.querySelector(".twitter-timeline");
   if (!timeline) return;
 
   const theme = document.documentElement.getAttribute("data-theme") || "dark";
-  timeline.setAttribute("data-theme", theme === "light" ? "light" : "dark");
+  const next = theme === "light" ? "light" : "dark";
+
+  if (next === lastTimelineTheme && window.twttr) return; // already rendered with this theme
+  lastTimelineTheme = next;
+
+  timeline.setAttribute("data-theme", next);
 
   if (window.twttr && window.twttr.widgets && window.twttr.widgets.load) {
     window.twttr.widgets.load();
@@ -68,3 +75,31 @@ function updateTimelineTheme() {
 document.addEventListener("DOMContentLoaded", updateTimelineTheme);
 window.addEventListener("load", updateTimelineTheme);
 document.addEventListener("logicklub-theme-change", updateTimelineTheme);
+
+// If the timeline fails to render (ad blocker, X rate limiting, offline),
+// reveal the fallback follow card instead of a blank box.
+function watchTimelineRender() {
+  const card = document.querySelector(".x-timeline-card");
+  if (!card) return;
+
+  let succeeded = false;
+
+  const observer = new MutationObserver(function () {
+    if (card.querySelector("iframe")) {
+      succeeded = true;
+      observer.disconnect();
+      card.classList.remove("x-timeline-failed");
+    }
+  });
+
+  if (typeof MutationObserver !== "undefined") {
+    observer.observe(card, { childList: true, subtree: true });
+  }
+
+  window.setTimeout(function () {
+    observer.disconnect();
+    if (!succeeded) card.classList.add("x-timeline-failed");
+  }, 6000);
+}
+
+watchTimelineRender();
