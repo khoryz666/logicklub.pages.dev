@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const loadingText = document.getElementById('loading-text');
 
     let session;
+    let provider = "wasm";
     let isDrawing = false;
     let lastX = 0;
     let lastY = 0;
@@ -36,7 +37,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         const loadStart = performance.now();
         // Try WASM first
-        let provider = "wasm";
+        provider = "wasm";
         try {
             session = await ort.InferenceSession.create('mnist-8.onnx', { executionProviders: ['wasm'] });
         } catch (wasmError) {
