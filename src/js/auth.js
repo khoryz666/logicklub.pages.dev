@@ -20,6 +20,10 @@ export const db = getFirestore(app);
 document.addEventListener("DOMContentLoaded", () => {
 	if (localStorage.getItem("consentAcknowledged")) return;
 
+	try {
+		if (document.cookie.indexOf("lk_consent=") !== -1) return;
+	} catch (e) { /* ignore */ }
+
 	const banner = document.createElement("div");
 	banner.style.position = "fixed";
 	banner.style.bottom = "0";
@@ -40,6 +44,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	document.getElementById("consent-btn").addEventListener("click", () => {
 		localStorage.setItem("consentAcknowledged", "true");
+		try {
+			document.cookie = "lk_consent=1; max-age=31536000; path=/; SameSite=Lax";
+		} catch (e) { /* ignore */ }
 		banner.remove();
 	});
 });

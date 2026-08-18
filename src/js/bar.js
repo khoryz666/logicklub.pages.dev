@@ -117,19 +117,77 @@ import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/
 
   onAuthStateChanged(auth, renderNavAuth);
 
+  // --- Cookie helpers ---
+  function setCookie(name, value, days) {
+    try {
+      var expires = "";
+      if (days) {
+        var d = new Date();
+        d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000);
+        expires = "; expires=" + d.toUTCString();
+      }
+      document.cookie = name + "=" + encodeURIComponent(value) + expires + "; path=/; SameSite=Lax";
+    } catch (e) { /* ignore */ }
+  }
+
+  function getCookie(name) {
+    try {
+      var match = document.cookie.match(new RegExp("(?:^|; )" + name + "=([^;]*)"));
+      return match ? decodeURIComponent(match[1]) : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
   // --- Theme toggle (defaults to dark) ---
   var root = document.documentElement;
   var saved = null;
   try { saved = localStorage.getItem("theme"); } catch (e) { /* ignore */ }
+  if (!saved) saved = getCookie("lk_theme");
   if (saved === "light" || saved === "dark") root.setAttribute("data-theme", saved);
+
+  function applyTheme(next) {
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("theme", next); } catch (e) { /* ignore */ }
+    setCookie("lk_theme", next, 365);
+    document.dispatchEvent(new CustomEvent("logicklub-theme-change", { detail: { theme: next } }));
+  }
 
   var toggle = document.getElementById("themeToggle");
   if (toggle) {
     toggle.addEventListener("click", function () {
       var next = (root.getAttribute("data-theme") || "dark") === "light" ? "dark" : "light";
-      root.setAttribute("data-theme", next);
-      try { localStorage.setItem("theme", next); } catch (e) { /* ignore */ }
+      applyTheme(next);
     });
+  }
+
+  // --- First-visit welcome toast (cookie-driven) ---
+  var visitedBefore = getCookie("lk_visited") === "1";
+  try { visitedBefore = visitedBefore || localStorage.getItem("lk_visited") === "1"; } catch (e) { /* ignore */ }
+
+  if (activeFile === "index.html" && !visitedBefore) {
+    setCookie("lk_visited", "1", 30);
+    try { localStorage.setItem("lk_visited", "1"); } catch (e) { /* ignore */ }
+
+    try {
+      var toast = document.createElement("div");
+      toast.className = "welcome-toast";
+      toast.setAttribute("role", "status");
+      toast.innerHTML =
+        '<span>Welcome to LOGICKlub — learn, build, and play with us!</span>' +
+        '<button type="button" class="welcome-toast-close" aria-label="Dismiss">×</button>';
+      document.body.appendChild(toast);
+
+      var removeToast = function () {
+        toast.classList.add("welcome-toast--hide");
+        setTimeout(function () {
+          if (toast.parentNode) toast.parentNode.removeChild(toast);
+        }, 400);
+      };
+
+      toast.querySelector(".welcome-toast-close").addEventListener("click", removeToast);
+      setTimeout(removeToast, 6000);
+    } catch (e) { /* ignore */ }
   }
 
   // --- Scroll animation: hero fades out, about section fades in ---
