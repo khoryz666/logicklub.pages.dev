@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         lastY = pos.y;
     }
 
-    function stopDraw(e) {
+    function stopDraw() {
         isDrawing = false;
     }
 
