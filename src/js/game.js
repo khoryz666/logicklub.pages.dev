@@ -48,7 +48,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         console.log(`ONNX WASM model loaded successfully in ${displayLoadTime} ms!`);
         loadingText.innerText = `Model loaded in ${displayLoadTime} ms`;
-        loadingText.style.animation = 'none';
         loadingText.style.color = 'var(--success, #34d399)';
         predictBtn.disabled = false;
     } catch (e) {

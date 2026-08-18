@@ -12,6 +12,19 @@ main h2 {
     font-size: 1.8rem;
     font-weight: 800;
     letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+main > section > h2 {
+    border-left: 4px solid #facc15;
+    padding-left: 14px;
+}
+
+main hr {
+    border: none;
+    height: 1px;
+    margin: 44px 0;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
 }
 
 main section > p {
@@ -25,34 +38,22 @@ main a {
 
 .simulator-workspace {
     margin-top: 32px;
-    margin-left: 0;
-    margin-right: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
 }
 
-.simulator-workspace > .draw-section,
-.simulator-workspace > .output-section {
-    width: 100%;
-    max-width: 100%;
-}
-
-.draw-section,
-.output-section {
+.workspace-panel {
+    height: 100%;
     padding: 26px;
     background: #0d0d0d;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 18px;
 }
 
-.draw-section h2,
-.output-section h2 {
+.workspace-panel h2 {
     color: #f5f5f5;
+    font-size: 1.4rem;
 }
 
-.draw-section p,
-.output-section p {
+.workspace-panel p {
     color: #9ca3af;
 }
 
@@ -68,6 +69,8 @@ main a {
     border-radius: 8px;
     cursor: crosshair;
     touch-action: none;
+    max-width: 100%;
+    height: auto;
 }
 
 #loading-text {
@@ -122,8 +125,20 @@ main a {
 .bar-chart-container {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
     margin-top: 16px;
+    min-height: 220px;
+}
+
+.bar-chart-container:empty::after {
+    content: "Draw a digit and press Predict to see the result";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    color: #6b7280;
+    font-size: 0.9rem;
+    text-align: center;
 }
 
 .bar-chart-container > div {
@@ -138,6 +153,7 @@ main a {
     flex: 1;
     height: 14px;
     accent-color: #facc15;
+    border-radius: 999px;
 }
 
 .bar-chart-container strong {
@@ -147,9 +163,5 @@ main a {
 @media (max-width: 768px) {
     main {
         padding: 140px 16px 60px;
-    }
-
-    .simulator-workspace {
-        grid-template-columns: 1fr;
     }
 }
