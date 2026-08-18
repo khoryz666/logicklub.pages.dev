@@ -2,7 +2,14 @@ $(document).ready(function () {
 	loadNews();
     loadEvents();
     enableDragScroll($("#events-container"));
+
+    // Remember the horizontal scroll position so a refresh stays put.
+    $("#events-container").on("scroll", function () {
+        try { sessionStorage.setItem(EVENTS_SCROLL_KEY, String($(this).scrollLeft())); } catch (e) { /* ignore */ }
+    });
 });
+
+var EVENTS_SCROLL_KEY = "logicklubEventsScroll";
 
 /*
 DEV Community API provides publicly accessible technology-related content
@@ -215,6 +222,17 @@ function displayEvents(events) {
     });
 
     container.append(buildMoreCard());
+
+    restoreScrollerPosition();
+}
+
+function restoreScrollerPosition() {
+    try {
+        const saved = parseFloat(sessionStorage.getItem(EVENTS_SCROLL_KEY) || "0");
+        if (isFinite(saved) && saved > 0) {
+            $("#events-container").scrollLeft(saved);
+        }
+    } catch (e) { /* ignore */ }
 }
 
 // Enable mouse drag-to-scroll on the horizontal events scroller.
