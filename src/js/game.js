@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const probabilities = softmax(Array.from(rawScores));
 
             // 6. Display results for 0-9
-            barChart.innerHTML = `<div style="margin-bottom: 15px; font-size: 0.9em; color: var(--muted, #97a6bd);">WASM Inference Time: <strong>${displayInfTime} ms</strong></div>`;
+            barChart.innerHTML = `<div style="margin-bottom: 15px; font-size: 0.9em; color: var(--muted, #97a6bd);">${provider.toUpperCase()} Inference Time: <strong>${displayInfTime} ms</strong></div>`;
             probabilities.forEach((prob, digit) => {
                 const percentage = Math.round(prob * 100);
                 const item = document.createElement('div');
@@ -201,7 +201,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         } catch (error) {
             console.error("ONNX Inference Error:", error);
-            alert("Error running WASM inference!");
+            alert(`Error running ${provider.toUpperCase()} inference!`);
         }
     });
 });
