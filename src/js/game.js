@@ -23,12 +23,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         // --- ONNX RUNTIME WEB API SETUP ---
         // 1. The Model (mnist-8.onnx)
         // Citation: ONNX Overview (https://onnx.ai/about.html)
-        // Explanation: ONNX (Open Neural Network Exchange) is an open format. 'mnist-8.onnx' is a binary file 
+        // Explanation: ONNX (Open Neural Network Exchange) is an open format. 'mnist-8.onnx' is a binary file
         // containing the entire "brain" (architecture and learned weights) of the neural network.
 
         // 2. The Engine (WebAssembly)
         // Citation: ONNX Runtime WebAssembly (https://onnxruntime.ai/docs/execution-providers/WebAssembly-ExecutionProvider.html)
-        // Explanation: JavaScript is traditionally too slow for the heavy math required by Neural Networks. 
+        // Explanation: JavaScript is traditionally too slow for the heavy math required by Neural Networks.
         // Microsoft wrote the ONNX inference engine in C++ and compiled it into WebAssembly (.wasm).
         // By using `ort`, we boot up this precompiled C++ WASM binary inside the browser, allowing it to run at near-native speeds.
         ort.env.wasm.numThreads = 1; // Disable multi-threading
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // --- DATA PREPROCESSING FOR NEURAL NETWORK ---
         // 3. The Handshake (JavaScript -> WASM)
         // Citation: MDN Web Docs - Typed Arrays (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Typed_Arrays)
-        // Explanation: WASM runs in its own isolated memory space, JavaScript can't just hand it an HTML <canvas> element. 
+        // Explanation: WASM runs in its own isolated memory space, JavaScript can't just hand it an HTML <canvas> element.
         // We have to manually extract the pixels and translate the image into a raw language WASM understands.
 
         // 1. Extract and scale canvas down to 28x28
@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const imgData = tempCtx.getImageData(0, 0, 28, 28);
 
         // 2. Convert raw RGBA pixel data to a Float32Array
-        // Explanation: loop through the pixels and create a flat Float32Array of exactly 784 numbers (28 * 28). 
+        // Explanation: loop through the pixels and create a flat Float32Array of exactly 784 numbers (28 * 28).
         // Normalize these numbers so that a black pixel is 0.0 and a white pixel is 1.0.
         const inputData = new Float32Array(28 * 28);
         for (let i = 0; i < inputData.length; i++) {
@@ -167,21 +167,21 @@ document.addEventListener('DOMContentLoaded', async () => {
             const feeds = {};
             feeds[inputName] = tensor;
 
-            // Explanation: Once session.run() is called, the C++ code inside WASM takes over completely. 
-            // It pushes our numbers through the layers defined in the .onnx file using CPU SIMD instructions to calculate 
+            // Explanation: Once session.run() is called, the C++ code inside WASM takes over completely.
+            // It pushes our numbers through the layers defined in the .onnx file using CPU SIMD instructions to calculate
             // hidden layers and activation functions, finally producing an output array of 10 raw scores (logits).
             const inferenceStart = performance.now();
             const output = await session.run(feeds);
             const inferenceEnd = performance.now();
             let inferenceTime = inferenceEnd - inferenceStart;
             let displayInfTime = inferenceTime < 1 ? "< 1.00" : inferenceTime.toFixed(2);
-            
+
             const rawScores = output[outputName].data; // Float32Array of 10 elements
 
             // 5. The Return (WASM -> JavaScript)
             // Citation: Softmax Function (https://en.wikipedia.org/wiki/Softmax_function)
             // Explanation: The WASM engine hands the final array of 10 raw scores back across the boundary to JavaScript.
-            // Because neural networks output raw, unconstrained numbers (logits), we run them through a Softmax function 
+            // Because neural networks output raw, unconstrained numbers (logits), we run them through a Softmax function
             // to force them into positive percentages that perfectly add up to 100%.
             const probabilities = softmax(Array.from(rawScores));
 

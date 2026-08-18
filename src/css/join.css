@@ -1,0 +1,140 @@
+/* ===== Join / Member Registration page ===== */
+
+main {
+    width: min(760px, 100%);
+    margin: 0 auto;
+    padding: 140px 24px 80px;
+}
+
+main h1 {
+    margin: 0 0 12px;
+    color: var(--text);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+main p {
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+/* mode switch */
+.auth-mode-switch {
+    display: flex;
+    gap: 12px;
+    margin: 24px 0;
+    flex-wrap: wrap;
+}
+
+.auth-mode-btn {
+    padding: 11px 22px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text);
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.auth-mode-btn.active {
+    background: #facc15;
+    color: #050505;
+    border-color: #facc15;
+}
+
+/* form */
+#join-form fieldset {
+    padding: 20px 22px;
+    margin-bottom: 18px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+}
+
+#join-form legend {
+    padding: 0 8px;
+    color: var(--text);
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+#join-form label {
+    color: var(--muted);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+#join-form input,
+#join-form select {
+    width: 100%;
+    margin-top: 4px;
+    padding: 11px 13px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.95rem;
+}
+
+#join-form input:focus,
+#join-form select:focus {
+    outline: none;
+    border-color: #facc15;
+}
+
+#sign-up-btn,
+#sign-in-btn,
+#sign-out-btn {
+    padding: 13px 32px;
+    border-radius: 999px;
+    border: none;
+    background: #facc15;
+    color: #050505;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+#sign-up-btn:hover,
+#sign-in-btn:hover,
+#sign-out-btn:hover {
+    background: #eab308;
+    transform: translateY(-2px);
+}
+
+/* messages */
+#form-message {
+    font-weight: 600;
+    color: var(--muted);
+}
+
+#form-message.form-error {
+    color: #ef4444;
+}
+
+#form-message.form-success {
+    color: #22c55e;
+}
+
+/* signed-in status */
+#auth-status {
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+}
+
+#auth-status strong {
+    color: #facc15;
+}
+
+@media (max-width: 700px) {
+    main {
+        padding: 120px 16px 60px;
+    }
+}

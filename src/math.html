@@ -1,261 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Math | LOGICKlub</title>
-    <script type="module" src="js/auth.js"></script>
-    <!-- Bootstrap Grid CSS for mobile responsive layout only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap-grid.min.css" rel="stylesheet"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/math.css">
-    <script src="js/theme.js"></script>
-</head>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<body>
-    <header>
-        <h1>Learn Math</h1>
-        <nav>
-            <a href="index.html">Home</a> |
-            <a href="events.html">Events</a> |
-            <a href="workshops.html">Workshops</a> |
-            <a href="math.html">Learn Math</a> |
-            <a href="game.html">Play AI</a> |
-            <a href="projects.html">Projects</a> |
-            <a href="contact.html">Contact Us</a>
-        </nav>
-    </header>
+		<title>Math | LOGICKlub</title>
 
-    <main>
-        <section>
-            <!-- 1. Introduction -->
-            <h2>About This Visualizer</h2>
-            <p>
-                Behind AI tools like ChatGPT or Computer Vision lies a core math: <b>Linear Algebra</b>. 
-                At its heart is the <b>matrix</b>—a simple grid of numbers that helps computers process massive amounts of data efficiently.
-            </p>
-        </section>
-        <hr>
+		<!-- Bootstrap Grid CSS for mobile responsive layout only -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap-grid.min.css" rel="stylesheet" crossorigin="anonymous">
+		<link rel="stylesheet" href="css/styles.css">
+		<link rel="stylesheet" href="css/bar.css">
+		<link rel="stylesheet" href="css/math.css">
+	</head>
 
-        <section>
-            <!-- 2. The Linear Algebra Visualizer -->
-            <h2>Interactive Matrix Transformation</h2>
-        <p>
-            A matrix acts as a rule to warp or transform space. 
-            Try it yourself below! <strong>Drag the points on the graph or use the sliders</strong> to see how a matrix stretches or squishes the grid.
-        </p>
+	<body>
+		<nav class="navbar" id="navbar"></nav>
 
-        <math>
-            <mrow>
-                <mo>[</mo>
-                <mtable>
-                    <mtr>
-                        <mtd>
-                            <mi>a</mi>
-                        </mtd>
-                        <mtd>
-                            <mi>b</mi>
-                        </mtd>
-                    </mtr>
-                    <mtr>
-                        <mtd>
-                            <mi>c</mi>
-                        </mtd>
-                        <mtd>
-                            <mi>d</mi>
-                        </mtd>
-                    </mtr>
-                </mtable>
-                <mo>]</mo>
-                <mo>=</mo>
-                <mo>[</mo>
-                <mtable>
-                    <mtr>
-                        <mtd>
-                            <mn><span id="disp-a">1.0</span></mn>
-                        </mtd>
-                        <mtd>
-                            <mn><span id="disp-b">0.0</span></mn>
-                        </mtd>
-                    </mtr>
-                    <mtr>
-                        <mtd>
-                            <mn><span id="disp-c">0.0</span></mn>
-                        </mtd>
-                        <mtd>
-                            <mn><span id="disp-d">1.0</span></mn>
-                        </mtd>
-                    </mtr>
-                </mtable>
-                <mo>]</mo>
-            </mrow>
-        </math>
+		<main>
+			<section>
+				<!-- 1. Introduction -->
+				<h2>About This Visualizer</h2>
+				<p>
+				Behind AI tools like ChatGPT or Computer Vision lies a core math: <b>Linear Algebra</b>.
+				At its heart is the <b>matrix</b>—a simple grid of numbers that helps computers process massive amounts of data efficiently.
+				</p>
+			</section>
 
-        <div class="matrix-controls">
-            <div class="matrix-input-group">
-            <table>
-                <tr>
-                    <td>
-                        <label for="mat-a">↔ Stretch Width:</label>
-                    </td>
-                    <td>
-                        <input type="range" id="mat-a" value="1" min="-5" max="5" step="0.1">
-                    </td>
-                    <td>
-                        <span id="val-a">1.0</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="mat-b">↗ Vertical Skew:</label>
-                    </td>
-                    <td>
-                        <input type="range" id="mat-b" value="0" min="-5" max="5" step="0.1">
-                    </td>
-                    <td>
-                        <span id="val-b">0.0</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="mat-c">↘ Horizontal Skew:</label>
-                    </td>
-                    <td>
-                        <input type="range" id="mat-c" value="0" min="-5" max="5" step="0.1">
-                    </td>
-                    <td>
-                        <span id="val-c">0.0</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="mat-d">↕ Stretch Height:</label>
-                    </td>
-                    <td>
-                        <input type="range" id="mat-d" value="1" min="-5" max="5" step="0.1">
-                    </td>
-                    <td>
-                        <span id="val-d">1.0</span>
-                    </td>
-                </tr>
-            </table>
-        </div>
+			<section>
+				<!-- 2. The Linear Algebra Visualizer -->
+				<h2>Interactive Matrix Transformation</h2>
+				<p>
+				A matrix acts as a rule to warp or transform space.
+				Try it yourself below! <strong>Drag the points on the graph or use the sliders</strong> to see how a matrix stretches or squishes the grid.
+				</p>
 
-        <div class="btn-container">
-            <button type="button" id="reset-btn">Reset to Identity Matrix</button>
-        </div>
-        </div>
+				<math>
+				<mrow>
+				<mo>[</mo>
+				<mtable>
+				<mtr>
+				<mtd>
+				<mi>a</mi>
+				</mtd>
+				<mtd>
+				<mi>b</mi>
+				</mtd>
+				</mtr>
+				<mtr>
+				<mtd>
+				<mi>c</mi>
+				</mtd>
+				<mtd>
+				<mi>d</mi>
+				</mtd>
+				</mtr>
+				</mtable>
+				<mo>]</mo>
+				<mo>=</mo>
+				<mo>[</mo>
+				<mtable>
+				<mtr>
+				<mtd>
+				<mn><span id="disp-a">1.0</span></mn>
+				</mtd>
+				<mtd>
+				<mn><span id="disp-b">0.0</span></mn>
+				</mtd>
+				</mtr>
+				<mtr>
+				<mtd>
+				<mn><span id="disp-c">0.0</span></mn>
+				</mtd>
+				<mtd>
+				<mn><span id="disp-d">1.0</span></mn>
+				</mtd>
+				</mtr>
+				</mtable>
+				<mo>]</mo>
+				</mrow>
+				</math>
 
-        <div id="calculator">
-        </div>
+				<div class="matrix-controls">
+					<div class="matrix-input-group">
+						<table>
+							<tr>
+								<td>
+									<label for="mat-a">↔ Stretch Width:</label>
+								</td>
+								<td>
+									<input type="range" id="mat-a" value="1" min="-5" max="5" step="0.1">
+								</td>
+								<td>
+									<span id="val-a">1.0</span>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label for="mat-b">↗ Vertical Skew:</label>
+								</td>
+								<td>
+									<input type="range" id="mat-b" value="0" min="-5" max="5" step="0.1">
+								</td>
+								<td>
+									<span id="val-b">0.0</span>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label for="mat-c">↘ Horizontal Skew:</label>
+								</td>
+								<td>
+									<input type="range" id="mat-c" value="0" min="-5" max="5" step="0.1">
+								</td>
+								<td>
+									<span id="val-c">0.0</span>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label for="mat-d">↕ Stretch Height:</label>
+								</td>
+								<td>
+									<input type="range" id="mat-d" value="1" min="-5" max="5" step="0.1">
+								</td>
+								<td>
+									<span id="val-d">1.0</span>
+								</td>
+							</tr>
+						</table>
+					</div>
 
-        <details>
-            <summary><strong>Why can I only drag two points on the graph?</strong></summary>
-            <p>
-                In 2D space, everything is built from two "building blocks" called <strong>Basis Vectors</strong>: a right arrow (red) and an up arrow (blue).
-            </p>
-            <p>
-                A matrix transformation keeps grid lines perfectly straight and parallel. Because of this, if we know where those two arrows land, we instantly know where <em>every single point</em> on the grid goes!
-            </p>
-            <p>
-                <strong>Drag the red point:</strong> You change the first column of the matrix (the horizontal rule).<br>
-                <strong>Drag the blue point:</strong> You change the second column of the matrix (the vertical rule).
-            </p>
-            <p>
-                <em>Quick Terms:</em><br>
-                <strong>Matrix:</strong> The grid of numbers that defines the warping rule.<br>
-                <strong>Column:</strong> Tells us where one basis arrow lands.
-            </p>
-        </details>
-        </section>
+					<div class="btn-container">
+						<button type="button" id="reset-btn">Reset to Identity Matrix</button>
+					</div>
+				</div>
 
-        <hr style="margin: 40px 0;">
+				<div id="calculator">
+				</div>
 
-        <section>
-        <!-- 3. Real-World AI Applications -->
-        <h2>Real-World AI Applications</h2>
-        <p>How does AI actually use this space-warping math?</p>
+				<details>
+					<summary><strong>Why can I only drag two points on the graph?</strong></summary>
+					<p>
+					In 2D space, everything is built from two "building blocks" called <strong>Basis Vectors</strong>: a right arrow (red) and an up arrow (blue).
+					</p>
+					<p>
+					A matrix transformation keeps grid lines perfectly straight and parallel. Because of this, if we know where those two arrows land, we instantly know where <em>every single point</em> on the grid goes!
+					</p>
+					<p>
+					<strong>Drag the red point:</strong> You change the first column of the matrix (the horizontal rule).<br>
+					<strong>Drag the blue point:</strong> You change the second column of the matrix (the vertical rule).
+					</p>
+					<p>
+					<em>Quick Terms:</em><br>
+					<strong>Matrix:</strong> The grid of numbers that defines the warping rule.<br>
+					<strong>Column:</strong> Tells us where one basis arrow lands.
+					</p>
+				</details>
+			</section>
 
-        <h3>Computer Vision</h3>
-        <p>
-            Computers see images as giant grids of numbers (matrices). To recognize a cat even if the picture is tilted, the AI applies <b>Matrix Transformations</b> to mathematically rotate or scale the image—just like you did in the visualizer!
-        </p>
+			<section>
+				<!-- 3. Real-World AI Applications -->
+				<h2>Real-World AI Applications</h2>
+				<p>How does AI actually use this space-warping math?</p>
 
-        <h3>Neural Networks</h3>
-        <p>
-            When an AI learns to separate "Cats" from "Dogs", it plots them as points in space. "Learning" is simply the AI finding the perfect matrix to warp that space until the cats and dogs are neatly separated on opposite sides!
-        </p>
+				<h3>Computer Vision</h3>
+				<p>
+				Computers see images as giant grids of numbers (matrices). To recognize a cat even if the picture is tilted, the AI applies <b>Matrix Transformations</b> to mathematically rotate or scale the image—just like you did in the visualizer!
+				</p>
 
-        <figure>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Colored_neural_network.svg"
-                alt="Neural Network Diagram" class="dark-mode-resistant">
-            <figcaption>
-                A neural network applies consecutive matrix transformations to warp data space and classify inputs.<br>
-                <em>Citation: <a href="https://commons.wikimedia.org/wiki/File:Colored_neural_network.svg"
-                        target="_blank">Glosser.ca, Wikimedia Commons (CC BY-SA 3.0)</a></em>
-            </figcaption>
-        </figure>
+				<h3>Neural Networks</h3>
+				<p>
+				When an AI learns to separate "Cats" from "Dogs", it plots them as points in space. "Learning" is simply the AI finding the perfect matrix to warp that space until the cats and dogs are neatly separated on opposite sides!
+				</p>
 
-        <details>
-            <summary><strong>How exactly does this relate to Neural Networks?</strong></summary>
-            <p>
-                A Neural Network is made of multiple <strong>layers</strong>. Each layer applies a matrix transformation to the data—stretching and rotating it in high-dimensional space just like the graph above.
-            </p>
-            <p>
-                At first, these matrices contain random numbers (called <strong>weights</strong>). As the AI trains on examples, it slowly turns these "number knobs", tweaking the matrix until the data is perfectly separated into correct categories.
-            </p>
-        </details>
-        </section>
+				<figure>
+					<img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Colored_neural_network.svg"
+							 alt="Neural Network Diagram" class="dark-mode-resistant">
+					<figcaption>
+						A neural network applies consecutive matrix transformations to warp data space and classify inputs.<br>
+						<em>Citation: <a href="https://commons.wikimedia.org/wiki/File:Colored_neural_network.svg"
+														 target="_blank">Glosser.ca, Wikimedia Commons (CC BY-SA 3.0)</a></em>
+					</figcaption>
+				</figure>
 
-        <hr style="margin: 40px 0;">
+				<details>
+					<summary><strong>How exactly does this relate to Neural Networks?</strong></summary>
+					<p>
+					A Neural Network is made of multiple <strong>layers</strong>. Each layer applies a matrix transformation to the data—stretching and rotating it in high-dimensional space just like the graph above.
+					</p>
+					<p>
+					At first, these matrices contain random numbers (called <strong>weights</strong>). As the AI trains on examples, it slowly turns these "number knobs", tweaking the matrix until the data is perfectly separated into correct categories.
+					</p>
+				</details>
+			</section>
 
-        <section>
-        <!-- 4. Further Learning -->
-        <h2>Further Learning</h2>
-        <p>If you found the visualizer interesting and want to dive into the actual math behind these concepts, here are
-            some fantastic resources:</p>
+			<section>
+				<!-- 4. Further Learning -->
+				<h2>Further Learning</h2>
+				<p>If you found the visualizer interesting and want to dive into the actual math behind these concepts, here are
+				some fantastic resources:</p>
 
-        <h3>1. The Essence of Linear Algebra</h3>
-        <p>
-            To truly master the geometric intuition behind matrices, vectors, and transformations, we highly recommend
-            the <strong>Essence of Linear Algebra</strong> series by <em>3Blue1Brown</em>. This visually stunning
-            playlist is widely considered one of the best resources for grasping the "why" behind the math.
-        </p>
-        <div class="youtube-container">
-            <iframe src="https://www.youtube.com/embed/videoseries?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab"
-                title="Essence of linear algebra"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
+				<h3>1. The Essence of Linear Algebra</h3>
+				<p>
+				To truly master the geometric intuition behind matrices, vectors, and transformations, we highly recommend
+				the <strong>Essence of Linear Algebra</strong> series by <em>3Blue1Brown</em>. This visually stunning
+				playlist is widely considered one of the best resources for grasping the "why" behind the math.
+				</p>
+				<div class="youtube-container">
+					<iframe src="https://www.youtube.com/embed/videoseries?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab"
+									title="Essence of linear algebra"
+									allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+									referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				</div>
 
-        <h3 style="margin-top: 40px;">2. Neural Networks</h3>
-        <p>
-            Once you understand how matrices warp space, you can see how AI utilizes these mathematical transformations
-            to learn.
-            The <strong>Neural Networks</strong> series, also by <em>3Blue1Brown</em>, brilliantly builds upon linear
-            algebra
-            to explain how AI recognizes patterns and classifies data.
-        </p>
-        <div class="youtube-container">
-            <iframe src="https://www.youtube.com/embed/videoseries?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi"
-                title="Neural Networks"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-        </section>
-    </main>
+				<h3 style="margin-top: 40px;">2. Neural Networks</h3>
+				<p>
+				Once you understand how matrices warp space, you can see how AI utilizes these mathematical transformations
+				to learn.
+				The <strong>Neural Networks</strong> series, also by <em>3Blue1Brown</em>, brilliantly builds upon linear
+				algebra
+				to explain how AI recognizes patterns and classifies data.
+				</p>
+				<div class="youtube-container">
+					<iframe src="https://www.youtube.com/embed/videoseries?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi"
+									title="Neural Networks"
+									allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+									referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				</div>
+			</section>
+		</main>
 
-    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
-    <!-- Desmos API -->
-    <script src="https://www.desmos.com/api/v1.9/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
-    <script src="js/math.js"></script>
+		<footer> <hr> <p>&copy; 2026 LOGICKlub. Built for UCCD2323.</p> </footer>
 
-    <footer>
-        <hr>
-        <p>&copy; 2026 LOGICKlub. Built for UCCD2323.</p>
-    </footer>
-</body>
+		<script type="module" src="js/auth.js"></script>
+		<script src="js/theme.js"></script>
+
+		<!-- jQuery -->
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+		<!-- Desmos API -->
+		<script src="https://www.desmos.com/api/v1.9/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+
+		<script src="js/math.js"></script>
+		<script src="js/bar.js"></script>
+	</body>
 
 </html>

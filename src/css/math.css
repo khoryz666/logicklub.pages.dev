@@ -1,83 +1,166 @@
-/* Specific stylesheet for math.html */
+/* ===== Learn Math page ===== */
 
-/* Put the matrix at middle, then displayed bigger */
+main {
+    width: min(1100px, 100%);
+    margin: 0 auto;
+    padding: 140px 24px 80px;
+}
+
+main section + section {
+    margin-top: 80px;
+}
+
+main h2 {
+    margin: 0 0 16px;
+    color: var(--text);
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+main h3 {
+    margin: 28px 0 10px;
+    color: var(--text);
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+main section > p,
+main section > details p {
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+main b,
+main strong {
+    color: var(--text);
+}
+
+main a {
+    color: #facc15;
+}
+
+/* matrix display */
 math {
     display: block;
-    text-align: center;
-    font-size: 2.2em; /* Bigger display */
-    margin: 30px auto;
+    margin: 24px 0;
+    color: var(--text);
+    font-size: 1.3rem;
 }
 
-/* Container for inputs and reset button */
+/* matrix controls */
 .matrix-controls {
-    max-width: 500px;
-    margin: 0 auto 30px auto;
-}
-
-/* The table with four range input, make them more compact and smaller in size */
-.matrix-input-group {
-    display: flex;
-    justify-content: center;
+    margin-top: 20px;
 }
 
 .matrix-input-group table {
     width: 100%;
-    font-size: 0.85em; /* Smaller in size */
+    max-width: 560px;
+    border-collapse: collapse;
 }
 
 .matrix-input-group td {
-    padding: 3px 5px; /* More compact padding */
-    vertical-align: middle;
+    padding: 8px 10px;
+    color: var(--muted);
 }
 
-/* Put the reset-btn at the bottom right container */
+.matrix-input-group input[type="range"] {
+    width: 100%;
+    accent-color: #facc15;
+}
+
+.matrix-input-group span {
+    color: #facc15;
+    font-weight: 700;
+    font-family: monospace;
+}
+
 .btn-container {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 10px;
+    margin-top: 18px;
 }
 
-/* Put the desmos calculator at middle, and make sure it always fit around 70% of current display screen */
+#reset-btn {
+    padding: 12px 26px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text);
+    font-weight: 700;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+#reset-btn:hover {
+    border-color: #facc15;
+    color: #facc15;
+}
+
 #calculator {
-    width: 70vw;
-    height: 70vh;
-    margin: 0 auto 40px auto;
-    border: 1px solid #ccc;
-    border-radius: 8px; /* Slight polish */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle premium look */
+    margin-top: 24px;
+    height: 520px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    background: #ffffff;
 }
 
-/* Youtube Iframe formatting - 50% width and centered */
+/* figures & images */
+figure {
+    margin: 24px 0;
+}
+
+figure img {
+    max-width: 100%;
+    border-radius: 12px;
+    background: #ffffff;
+    padding: 12px;
+}
+
+figcaption {
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+
+/* details */
+details {
+    margin-top: 20px;
+    padding: 16px 18px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: var(--muted);
+}
+
+summary {
+    cursor: pointer;
+    color: var(--text);
+}
+
+/* youtube embeds */
 .youtube-container {
     position: relative;
-    width: 50vw;
-    margin: 20px auto;
-    aspect-ratio: 16 / 9;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    margin-top: 16px;
+    padding-top: 56.25%;
+    border-radius: 14px;
     overflow: hidden;
+    border: 1px solid var(--border);
 }
 
 .youtube-container iframe {
     position: absolute;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100%;
     height: 100%;
-    border: 0;
 }
 
-/* SVG image styling resistant to dark mode and centered */
-figure {
-    text-align: center;
-    margin: 40px auto;
-}
+@media (max-width: 768px) {
+    main {
+        padding: 120px 16px 60px;
+    }
 
-.dark-mode-resistant {
-    background-color: white; /* Ensure visibility in dark mode */
-    padding: 15px;
-    border-radius: 8px;
-    display: block;
-    margin: 0 auto;
-    max-width: 100%;
+    #calculator {
+        height: 420px;
+    }
 }

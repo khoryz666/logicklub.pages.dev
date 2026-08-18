@@ -1,108 +1,53 @@
-/* Inactive filter button state */
-[data-filter]:not(.active) {
-    background: rgba(15, 23, 42, 0.6);
-    border-color: rgba(148, 163, 184, 0.2);
-    color: #94a3b8;
-    box-shadow: none;
+/* ===== Projects page ===== */
+
+main {
+    width: min(1200px, 100%);
+    margin: 0 auto;
+    padding: 140px 24px 80px;
 }
 
-/* Reset outer section container to transparent */
-main>section.projects-section {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    padding: 0 !important;
+main section + section {
+    margin-top: 48px;
 }
 
-main>section.projects-section::before,
-main>section.projects-section::after {
-    display: none !important;
+main h1 {
+    margin: 0 0 12px;
+    color: var(--text);
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
 }
 
-/* Grid Layout */
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 24px;
+main section > div > p {
+    color: var(--muted);
+    line-height: 1.7;
 }
 
-/* Theme-Adaptive Project Card */
-.project-card {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    padding: 26px;
-    background: var(--panel-strong) !important;
-    border: 1px solid var(--line) !important;
-    border-radius: var(--radius) !important;
-    box-shadow: var(--shadow) !important;
-    overflow: hidden;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-}
-
-.project-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(8, 145, 178, 0.35) !important;
-    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.18) !important;
-}
-
-/* Top accent line */
-.project-card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 80px;
-    height: 2px;
-    background: linear-gradient(90deg, var(--cyan), var(--violet));
-}
-
-/* Adaptive Text Colors */
-.project-card h2 {
-    color: var(--text) !important;
-    margin-top: 0;
-    font-size: 1.4rem;
-}
-
-.project-card p {
-    color: var(--muted) !important;
-}
-
-/* Adaptive Tech Stack Pills */
-.tech-stack {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    align-items: center;
-    margin: 18px 0;
-}
-
-.tech-stack span {
-    padding: 4px 12px;
+/* ===== Filter buttons ===== */
+[data-filter] {
+    padding: 10px 20px;
     border-radius: 999px;
-    background: rgba(8, 145, 178, 0.08) !important;
-    border: 1px solid rgba(8, 145, 178, 0.2) !important;
-    color: var(--text) !important;
-    font-size: 0.78rem;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text);
     font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
-/* Footer Link */
-.project-card-footer {
-    margin-top: auto;
-    padding-top: 10px;
+[data-filter]:hover {
+    border-color: #facc15;
+    color: #facc15;
 }
 
-.project-card-footer a {
-    color: var(--blue) !important;
-    font-weight: 650;
+[data-filter].active {
+    background: #facc15;
+    color: #050505;
+    border-color: #facc15;
 }
 
-.project-card-footer a:hover {
-    color: var(--cyan) !important;
-}
-
-/* Filter Bar Container */
+/* Filter bar container */
 .project-filters {
     display: flex;
     flex-wrap: wrap;
@@ -118,10 +63,118 @@ main>section.projects-section::after {
 }
 
 /* Ensure buttons don't shrink when scrolling horizontally */
-.project-filters button {
+.project-filters [data-filter] {
     flex-shrink: 0;
-    padding: 8px 16px;
-    font-size: 0.9rem;
-    border-radius: var(--radius);
     white-space: nowrap;
+}
+
+/* ===== Projects grid ===== */
+main section:nth-of-type(3) > div {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+/* ===== Project card ===== */
+[data-category] > div {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 26px;
+    background: #0d0d0d;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 18px;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+[data-category] > div:hover {
+    transform: translateY(-6px);
+    border-color: rgba(250, 204, 21, 0.5);
+    box-shadow: 0 24px 50px -20px rgba(0, 0, 0, 0.6);
+}
+
+[data-category] h2 {
+    margin: 0 0 12px;
+    color: #f5f5f5;
+    font-size: 1.25rem;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+[data-category] > div > p {
+    margin: 0 0 16px;
+    color: #9ca3af;
+    line-height: 1.65;
+}
+
+/* tech stack row (first div child inside the card) */
+[data-category] > div > div:first-of-type {
+    margin-top: auto;
+    padding-top: 16px;
+    color: #9ca3af;
+}
+
+[data-category] span {
+    display: inline-block;
+    margin: 0 6px 8px 0;
+    padding: 4px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #cccccc;
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+[data-category] a {
+    display: inline-block;
+    margin-top: 14px;
+    color: #facc15;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+
+[data-category] a:hover {
+    text-decoration: underline;
+}
+
+/* ===== Call to action ===== */
+main section:last-of-type > div {
+    text-align: center;
+    padding: 48px 32px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+}
+
+main section:last-of-type h2 {
+    margin: 0 0 10px;
+    color: var(--text);
+    font-size: 1.8rem;
+    font-weight: 800;
+}
+
+main section:last-of-type p {
+    margin: 0 0 22px;
+    color: var(--muted);
+}
+
+main section:last-of-type a {
+    display: inline-block;
+    padding: 13px 32px;
+    border-radius: 999px;
+    background: #facc15;
+    color: #050505;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+main section:last-of-type a:hover {
+    background: #eab308;
+}
+
+@media (max-width: 768px) {
+    main {
+        padding: 120px 16px 60px;
+    }
 }
