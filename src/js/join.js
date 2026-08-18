@@ -22,7 +22,6 @@ const signUpPanel = document.getElementById("sign-up-panel");
 const signInPanel = document.getElementById("sign-in-panel");
 const showSignUpBtn = document.getElementById("show-sign-up");
 const showSignInBtn = document.getElementById("show-sign-in");
-const signInBtn = document.getElementById("sign-in-btn");
 
 const fullNameInput = document.getElementById("full-name");
 const studentIdInput = document.getElementById("student-id");
@@ -72,6 +71,16 @@ function setMode(mode) {
 showSignUpBtn?.addEventListener("click", () => setMode("signup"));
 showSignInBtn?.addEventListener("click", () => setMode("signin"));
 
+// In sign-in mode the form's default submit button (Sign Up) is disabled,
+// which blocks the browser's implicit Enter-to-submit. Route Enter presses
+// in the sign-in panel through requestSubmit() so both keyboard and mouse work.
+signInPanel?.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+        e.preventDefault();
+        joinForm.requestSubmit();
+    }
+});
+
 async function usernameExists(username) {
     const usernameQuery = query(
         collection(db, "users"),
@@ -85,7 +94,12 @@ if (joinForm) {
     joinForm.addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        if (currentMode !== "signup") return;
+        // Pressing Enter (or clicking the submit button) in sign-in mode
+        // routes to the sign-in handler instead of the sign-up handler.
+        if (currentMode === "signin") {
+            handleSignIn();
+            return;
+        }
 
         const fullName = fullNameInput.value.trim();
         const studentId = studentIdInput.value.trim();
@@ -184,41 +198,42 @@ async function resolveEmailFromIdentifier(identifier) {
     return snapshot.docs[0].data().email || null;
 }
 
-if (signInBtn) {
-    signInBtn.addEventListener("click", async () => {
-        const identifier = loginIdentifierInput.value.trim();
-        const pwd = loginPasswordInput.value;
+async function handleSignIn() {
+    const identifier = loginIdentifierInput.value.trim();
+    const pwd = loginPasswordInput.value;
 
-        if (!identifier || !pwd) {
-            setMessage("Please enter both your email/username and password.", "error");
+    if (!identifier || !pwd) {
+        setMessage("Please enter both your email/username and password.", "error");
+        return;
+    }
+
+    try {
+        const email = await resolveEmailFromIdentifier(identifier);
+
+        // An unknown username has no registered member account, so it must never sign in.
+        if (!email) {
+            setMessage("No registered member account was found. Please sign up first.", "error");
             return;
         }
 
-        try {
-            const email = await resolveEmailFromIdentifier(identifier);
+        const userCredential = await signInWithEmailAndPassword(auth, email, pwd);
+        console.log("Successfully signed in user:", userCredential.user.email);
+        joinForm.reset();
+        setMessage("Sign in successful. Redirecting...", "success");
+        setTimeout(() => {
+            window.location.href = "index.html";
+        }, 900);
+    } catch (error) {
+        console.error("Error signing in:", error.code, error.message);
 
-            // An unknown username has no registered member account, so it must never sign in.
-            if (!email) {
-                setMessage("No registered member account was found. Please sign up first.", "error");
-                return;
-            }
-
-            const userCredential = await signInWithEmailAndPassword(auth, email, pwd);
-            console.log("Successfully signed in user:", userCredential.user.email);
-            joinForm.reset();
-            setMessage("Sign in successful.", "success");
-        } catch (error) {
-            console.error("Error signing in:", error.code, error.message);
-
-            if (error.code === "auth/invalid-credential" || error.code === "auth/user-not-found" || error.code === "auth/wrong-password") {
-                setMessage("Incorrect email/username or password. New members must sign up before signing in.", "error");
-            } else if (error.code === "auth/invalid-email") {
-                setMessage("Please enter a valid registered email or username.", "error");
-            } else {
-                setMessage("Sign in failed. Please check your account details and try again.", "error");
-            }
+        if (error.code === "auth/invalid-credential" || error.code === "auth/user-not-found" || error.code === "auth/wrong-password") {
+            setMessage("Incorrect email/username or password. New members must sign up before signing in.", "error");
+        } else if (error.code === "auth/invalid-email") {
+            setMessage("Please enter a valid registered email or username.", "error");
+        } else {
+            setMessage("Sign in failed. Please check your account details and try again.", "error");
         }
-    });
+    }
 }
 
 setMode("signup");
