@@ -119,46 +119,29 @@ main section:nth-of-type(2)>div>div:nth-child(2)>div h3 {
   transform: translateY(-2px);
 }
 
-/* ===== X (Twitter) timeline widget ===== */
-.x-timeline-card {
+/* ===== Social media plugin (Facebook Page Plugin) ===== */
+.social-plugin-card {
   margin-top: 20px;
   padding: 24px;
   background: #0d0d0d;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
-  max-width: 620px;
-  min-height: 320px;
+  max-width: 560px;
 }
 
-.x-fallback {
-  display: none;
-}
-
-.x-timeline-failed {
-  min-height: 0;
-}
-
-.x-timeline-failed .twitter-timeline {
-  display: none;
-}
-
-.x-timeline-failed .x-fallback {
+.social-plugin-card iframe {
+  width: 100%;
+  max-width: 500px;
+  height: 500px;
+  border-radius: 10px;
   display: block;
+  margin-top: 16px;
+  background: #ffffff; /* Facebook feed is always light */
 }
 
-.x-fallback p {
-  margin: 0 0 14px;
-}
-
-.x-fallback-actions {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.x-plain-link {
-  font-size: 0.9rem;
+.social-plugin-note {
+  margin-top: 12px;
+  font-size: 0.85rem;
 }
 
 /* ===== Map ===== */
