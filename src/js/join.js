@@ -36,71 +36,7 @@ const confirmPwdInput = document.getElementById("confirm-pwd");
 const loginIdentifierInput = document.getElementById("login-identifier");
 const loginPasswordInput = document.getElementById("login-password");
 
-const wizardSteps = document.querySelectorAll(".wizard-step");
-const wizardDots = document.querySelectorAll(".wizard-dot");
-const wizardNextBtn = document.getElementById("wizard-next");
-const wizardBackBtn = document.getElementById("wizard-back");
-
-const DRAFT_KEY = "logicklubJoinDraft";
-
 let currentMode = "signup";
-
-function setWizardStep(step) {
-	wizardSteps.forEach((el) => {
-		el.hidden = el.dataset.step !== String(step);
-	});
-
-	wizardDots.forEach((el) => {
-		const n = Number(el.dataset.step);
-		el.classList.toggle("active", n === step);
-		el.classList.toggle("done", n < step);
-	});
-}
-
-// Save non-password fields to sessionStorage so a refresh mid-registration
-// keeps the draft. Passwords are deliberately excluded for security.
-function saveDraft() {
-	try {
-		sessionStorage.setItem(DRAFT_KEY, JSON.stringify({
-			fullName: fullNameInput.value,
-			studentId: studentIdInput.value,
-			phone: phoneInput.value,
-			programme: programmeInput.value,
-			interest: interestInput.value,
-			username: usernameInput.value,
-			email: emailInput.value
-		}));
-	} catch (e) { /* ignore */ }
-}
-
-function restoreDraft() {
-	let draft = null;
-	try {
-		draft = JSON.parse(sessionStorage.getItem(DRAFT_KEY) || "null");
-	} catch (e) {
-		draft = null;
-	}
-	if (!draft) return;
-
-	fullNameInput.value = draft.fullName || "";
-	studentIdInput.value = draft.studentId || "";
-	phoneInput.value = draft.phone || "";
-	programmeInput.value = draft.programme || "";
-	interestInput.value = draft.interest || "";
-	usernameInput.value = draft.username || "";
-	emailInput.value = draft.email || "";
-}
-
-function clearDraft() {
-	try { sessionStorage.removeItem(DRAFT_KEY); } catch (e) { /* ignore */ }
-}
-
-[fullNameInput, studentIdInput, phoneInput, programmeInput, interestInput, usernameInput, emailInput].forEach((el) => {
-	if (el) {
-		el.addEventListener("input", saveDraft);
-		el.addEventListener("change", saveDraft);
-	}
-});
 
 function setMessage(message, type = "info") {
     if (!formMessage) return;
@@ -109,61 +45,31 @@ function setMessage(message, type = "info") {
 }
 
 function setMode(mode) {
-	currentMode = mode;
-	const isSignUp = mode === "signup";
+    currentMode = mode;
+    const isSignUp = mode === "signup";
 
-	signUpPanel.hidden = !isSignUp;
-	signInPanel.hidden = isSignUp;
-	showSignUpBtn.classList.toggle("active", isSignUp);
-	showSignInBtn.classList.toggle("active", !isSignUp);
+    signUpPanel.hidden = !isSignUp;
+    signInPanel.hidden = isSignUp;
+    showSignUpBtn.classList.toggle("active", isSignUp);
+    showSignInBtn.classList.toggle("active", !isSignUp);
 
-	// Disable fields in the hidden mode so browser validation never blocks the active form.
-	signUpPanel.querySelectorAll("input, select, button").forEach((el) => {
-		el.disabled = !isSignUp;
-	});
-	signInPanel.querySelectorAll("input, button").forEach((el) => {
-		el.disabled = isSignUp;
-	});
+    // Disable fields in the hidden mode so browser validation never blocks the active form.
+    signUpPanel.querySelectorAll("input, select, button").forEach((el) => {
+        el.disabled = !isSignUp;
+    });
+    signInPanel.querySelectorAll("input, button").forEach((el) => {
+        el.disabled = isSignUp;
+    });
 
-	if (isSignUp) setWizardStep(1);
+    description.textContent = isSignUp
+        ? "New to LOGICKlub? Create your member account by filling in the information below."
+        : "Already a member? Sign in using your registered email or username and password.";
 
-	description.textContent = isSignUp
-		? "New to LOGICKlub? Create your member account by filling in the information below."
-		: "Already a member? Sign in using your registered email or username and password.";
-
-	setMessage("");
+    setMessage("");
 }
 
 showSignUpBtn?.addEventListener("click", () => setMode("signup"));
 showSignInBtn?.addEventListener("click", () => setMode("signin"));
-
-if (wizardNextBtn) {
-	wizardNextBtn.addEventListener("click", () => {
-		const fullName = fullNameInput.value.trim();
-		const studentId = studentIdInput.value.trim();
-		const phone = phoneInput.value.trim();
-
-		if (!fullName || !studentId || !phone) {
-			setMessage("Please complete all required personal information fields.", "error");
-			return;
-		}
-
-		setMessage("");
-		setWizardStep(2);
-	});
-}
-
-if (wizardBackBtn) {
-	wizardBackBtn.addEventListener("click", () => setWizardStep(1));
-}
-
-// Pressing Enter on step 1 advances the wizard instead of submitting the form.
-document.querySelector('.wizard-step[data-step="1"]')?.addEventListener("keydown", (e) => {
-	if (e.key === "Enter") {
-		e.preventDefault();
-		wizardNextBtn.click();
-	}
-});
 
 // In sign-in mode the form's default submit button (Sign Up) is disabled,
 // which blocks the browser's implicit Enter-to-submit. Route Enter presses
@@ -255,7 +161,6 @@ if (joinForm) {
             await signOut(auth);
 
             joinForm.reset();
-            clearDraft();
             setMode("signin");
             setMessage("Registration successful. Please sign in with your new account.", "success");
             loginIdentifierInput.value = username;
@@ -314,7 +219,6 @@ async function handleSignIn() {
         const userCredential = await signInWithEmailAndPassword(auth, email, pwd);
         console.log("Successfully signed in user:", userCredential.user.email);
         joinForm.reset();
-        clearDraft();
         setMessage("Sign in successful. Redirecting...", "success");
         setTimeout(() => {
             window.location.href = "index.html";
@@ -333,5 +237,3 @@ async function handleSignIn() {
 }
 
 setMode("signup");
-restoreDraft();
-setWizardStep(1);

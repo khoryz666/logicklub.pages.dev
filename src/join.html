@@ -27,68 +27,52 @@
 
                 <form id="join-form" novalidate>
                     <div id="sign-up-panel">
-                        <div class="wizard-progress" aria-hidden="true">
-                            <span class="wizard-dot active" data-step="1">1</span>
-                            <span class="wizard-line"></span>
-                            <span class="wizard-dot" data-step="2">2</span>
-                        </div>
+                        <fieldset>
+                            <legend>Personal Information</legend>
 
-                        <div class="wizard-step" data-step="1">
-                            <fieldset>
-                                <legend>Step 1 — Personal Information</legend>
+                            <label for="full-name">Full Name:</label><br>
+                            <input id="full-name" type="text" placeholder="Full Name" required><br><br>
 
-                                <label for="full-name">Full Name:</label><br>
-                                <input id="full-name" type="text" placeholder="Full Name" required><br><br>
+                            <label for="student-id">Student ID:</label><br>
+                            <input id="student-id" type="text" placeholder="Student ID" required><br><br>
 
-                                <label for="student-id">Student ID:</label><br>
-                                <input id="student-id" type="text" placeholder="Student ID" required><br><br>
+                            <label for="phone-number">Phone Number:</label><br>
+                            <input id="phone-number" type="tel" placeholder="Phone Number" required><br><br>
 
-                                <label for="phone-number">Phone Number:</label><br>
-                                <input id="phone-number" type="tel" placeholder="Phone Number" required><br><br>
+                            <label for="programme">Programme:</label><br>
+                            <input id="programme" type="text" placeholder="Programme"><br><br>
 
-                                <label for="programme">Programme:</label><br>
-                                <input id="programme" type="text" placeholder="Programme"><br><br>
+                            <label for="interest">Area of Interest:</label><br>
+                            <select id="interest">
+                                <option value="">-- Select an area --</option>
+                                <option value="Artificial Intelligence">Artificial Intelligence</option>
+                                <option value="Machine Learning">Machine Learning</option>
+                                <option value="Prompt Engineering">Prompt Engineering</option>
+                                <option value="Coding and Web Development">Coding and Web Development</option>
+                                <option value="Innovation Challenges">Innovation Challenges</option>
+                            </select>
+                        </fieldset>
 
-                                <label for="interest">Area of Interest:</label><br>
-                                <select id="interest">
-                                    <option value="">-- Select an area --</option>
-                                    <option value="Artificial Intelligence">Artificial Intelligence</option>
-                                    <option value="Machine Learning">Machine Learning</option>
-                                    <option value="Prompt Engineering">Prompt Engineering</option>
-                                    <option value="Coding and Web Development">Coding and Web Development</option>
-                                    <option value="Innovation Challenges">Innovation Challenges</option>
-                                </select>
-                            </fieldset>
+                        <br>
 
-                            <br>
+                        <fieldset>
+                            <legend>Account Information</legend>
 
-                            <button id="wizard-next" type="button">Next: Account Info →</button>
-                        </div>
+                            <label for="username">Username:</label><br>
+                            <input id="username" type="text" placeholder="Choose a username" autocomplete="username" required><br><br>
 
-                        <div class="wizard-step" data-step="2" hidden>
-                            <fieldset>
-                                <legend>Step 2 — Account Information</legend>
+                            <label for="user-email">Email:</label><br>
+                            <input id="user-email" type="email" placeholder="Email" autocomplete="email" required><br><br>
 
-                                <label for="username">Username:</label><br>
-                                <input id="username" type="text" placeholder="Choose a username" autocomplete="username" required><br><br>
+                            <label for="user-pwd">Password:</label><br>
+                            <input id="user-pwd" type="password" placeholder="Password" minlength="6" autocomplete="new-password" required><br><br>
 
-                                <label for="user-email">Email:</label><br>
-                                <input id="user-email" type="email" placeholder="Email" autocomplete="email" required><br><br>
+                            <label for="confirm-pwd">Confirm Password:</label><br>
+                            <input id="confirm-pwd" type="password" placeholder="Confirm Password" minlength="6" autocomplete="new-password" required>
+                        </fieldset>
 
-                                <label for="user-pwd">Password:</label><br>
-                                <input id="user-pwd" type="password" placeholder="Password" minlength="6" autocomplete="new-password" required><br><br>
-
-                                <label for="confirm-pwd">Confirm Password:</label><br>
-                                <input id="confirm-pwd" type="password" placeholder="Confirm Password" minlength="6" autocomplete="new-password" required>
-                            </fieldset>
-
-                            <br>
-
-                            <div class="wizard-buttons">
-                                <button id="wizard-back" type="button">← Back</button>
-                                <button id="sign-up-btn" type="submit">Sign Up</button>
-                            </div>
-                        </div>
+                        <br>
+                        <button id="sign-up-btn" type="submit">Sign Up</button>
                     </div>
 
                     <div id="sign-in-panel" hidden>
