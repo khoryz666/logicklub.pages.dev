@@ -129,6 +129,15 @@ main section:nth-of-type(2)>div>div:nth-child(2)>div h3 {
   max-width: 560px;
 }
 
+/* The card stays dark in both themes, so keep its text light */
+.social-plugin-card h3 {
+  color: #ffffff;
+}
+
+.social-plugin-card p {
+  color: #e5e7eb;
+}
+
 .social-plugin-card iframe {
   width: 100%;
   max-width: 500px;

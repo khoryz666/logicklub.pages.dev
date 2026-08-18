@@ -44,9 +44,28 @@ import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/
     return '<a href="' + href + '"' + (isActive ? ' class="active"' : "") + ">" + label + "</a>";
   }
 
+  // --- Responsive: on small screens the nav collapses to logo | brand | Home More | theme Join ---
+  var smallQuery = window.matchMedia("(max-width: 880px)");
+  var touchQuery = window.matchMedia("(hover: none)");
+
   // --- Build the navbar ---
-  function buildNav() {
-    var dropdownActive = dropdown.items.some(function (i) { return i.href === activeFile; });
+  function buildNav(isSmall) {
+    var mainLinks, moreItems, moreLabel;
+
+    if (isSmall) {
+      // Small screens: only "Home" stays visible; everything else moves into "More"
+      mainLinks = links.filter(function (l) { return l.href === "index.html"; });
+      moreItems = links
+        .filter(function (l) { return l.href !== "index.html"; })
+        .concat(dropdown.items, [contact]);
+      moreLabel = "More";
+    } else {
+      mainLinks = links;
+      moreItems = dropdown.items;
+      moreLabel = dropdown.label;
+    }
+
+    var dropdownActive = moreItems.some(function (i) { return i.href === activeFile; });
 
     return (
       '<a class="logo-mark" href="index.html" aria-label="LOGICKlub home">' +
@@ -58,16 +77,16 @@ import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/
         '<span class="tagline">' + tagline + "</span>" +
       "</div>" +
       '<div class="nav-links">' +
-        links.map(function (l) { return link(l.href, l.label, l.href === activeFile); }).join("") +
+        mainLinks.map(function (l) { return link(l.href, l.label, l.href === activeFile); }).join("") +
         '<div class="dropdown">' +
           '<button class="dropdown-toggle' + (dropdownActive ? " active" : "") + '" type="button">' +
-            dropdown.label + ' <span class="caret">▾</span>' +
+            moreLabel + ' <span class="caret">▾</span>' +
           "</button>" +
           '<div class="dropdown-menu">' +
-            dropdown.items.map(function (i) { return '<a href="' + i.href + '">' + i.label + "</a>"; }).join("") +
+            moreItems.map(function (i) { return '<a href="' + i.href + '">' + i.label + "</a>"; }).join("") +
           "</div>" +
         "</div>" +
-        link(contact.href, contact.label, contact.href === activeFile) +
+        (isSmall ? "" : link(contact.href, contact.label, contact.href === activeFile)) +
       "</div>" +
       '<span class="divider" aria-hidden="true"></span>' +
       '<div class="nav-actions">' +
@@ -81,20 +100,19 @@ import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/
   }
 
   var nav = document.getElementById("navbar");
-  if (nav) nav.innerHTML = buildNav();
+  var navAuth = null;
+  var joinBtn = null;
+  var currentUser = null;
 
   // --- Auth state: show user name + sign out at the far right of the bar ---
-  var navAuth = document.getElementById("nav-auth");
-  var joinBtn = document.querySelector(".btn-join");
-
-  function renderNavAuth(user) {
+  function renderNavAuth() {
     if (!navAuth) return;
     navAuth.textContent = "";
 
-    if (user) {
+    if (currentUser) {
       if (joinBtn) joinBtn.style.display = "none";
 
-      var name = user.displayName || (user.email ? user.email.split("@")[0] : "Member");
+      var name = currentUser.displayName || (currentUser.email ? currentUser.email.split("@")[0] : "Member");
 
       var nameSpan = document.createElement("span");
       nameSpan.className = "nav-user";
@@ -115,7 +133,56 @@ import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/
     }
   }
 
-  onAuthStateChanged(auth, renderNavAuth);
+  // --- (Re)build the navbar and re-bind per-build listeners ---
+  function bindNav() {
+    if (!nav) return;
+
+    nav.innerHTML = buildNav(smallQuery.matches);
+
+    navAuth = document.getElementById("nav-auth");
+    joinBtn = document.querySelector(".btn-join");
+
+    var toggle = document.getElementById("themeToggle");
+    if (toggle) {
+      toggle.addEventListener("click", function () {
+        var next = (root.getAttribute("data-theme") || "dark") === "light" ? "dark" : "light";
+        applyTheme(next);
+      });
+    }
+
+    // Small screens / touch devices: open the dropdown by tapping "More"
+    if (smallQuery.matches || touchQuery.matches) {
+      var dd = nav.querySelector(".dropdown");
+      var ddBtn = nav.querySelector(".dropdown-toggle");
+      if (ddBtn && dd) {
+        ddBtn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          dd.classList.toggle("open");
+        });
+      }
+    }
+
+    renderNavAuth();
+  }
+
+  // Close the tap-opened dropdown when tapping anywhere outside it
+  document.addEventListener("click", function (e) {
+    if (!nav) return;
+    var open = nav.querySelector(".dropdown.open");
+    if (open && !open.contains(e.target)) open.classList.remove("open");
+  });
+
+  onAuthStateChanged(auth, function (user) {
+    currentUser = user;
+    renderNavAuth();
+  });
+
+  bindNav();
+  if (typeof smallQuery.addEventListener === "function") {
+    smallQuery.addEventListener("change", bindNav);
+  } else if (typeof smallQuery.addListener === "function") {
+    smallQuery.addListener(bindNav); // older Safari
+  }
 
   // --- Cookie helpers ---
   function setCookie(name, value, days) {
@@ -153,13 +220,6 @@ import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/
     document.dispatchEvent(new CustomEvent("logicklub-theme-change", { detail: { theme: next } }));
   }
 
-  var toggle = document.getElementById("themeToggle");
-  if (toggle) {
-    toggle.addEventListener("click", function () {
-      var next = (root.getAttribute("data-theme") || "dark") === "light" ? "dark" : "light";
-      applyTheme(next);
-    });
-  }
 
   // --- First-visit welcome toast (cookie-driven) ---
   var visitedBefore = getCookie("lk_visited") === "1";
