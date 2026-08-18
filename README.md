@@ -13,7 +13,7 @@ A multi-page community frontend for logic, coding, AI, and creative tech enthusi
 ## Pages & Features
 - **Portal:** `index.html` (Dashboard) & `join.html` (Interactive Registration)
 - **Events:** `events.html` (Live API News) & `workshops.html` (Interactive Seat Reservation)
-- **Community:** `projects.html` (Dynamic Upvoting) & `contact.html` (Feedback Hub)
+- **Community:** `projects.html` (Project Gallery) & `contact.html` (Feedback Hub)
 - **AI Demonstrations:**
     - **`math.html`**: Interactive 2D matrix transformation visualizer.
     - **`game.html`**: Draw digits (0-9) and classify them entirely client-side via a WebAssembly ONNX neural network.  

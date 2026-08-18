@@ -88,19 +88,6 @@
             <mxPoint x="609" y="285" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="edge_projects_storage" edge="1" parent="1" source="projects" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;entryX=0.701;entryY=1.042;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="storage" value="Save Upvotes">
-          <mxGeometry relative="1" x="0.3333" as="geometry">
-            <mxPoint as="offset" />
-            <Array as="points">
-              <mxPoint x="519" y="450" />
-              <mxPoint x="1010" y="450" />
-              <mxPoint x="1010" y="360" />
-              <mxPoint x="989" y="360" />
-              <mxPoint x="989" y="363" />
-            </Array>
-            <mxPoint x="429" y="400" as="sourcePoint" />
-          </mxGeometry>
-        </mxCell>
         <mxCell id="edge_workshops_storage" edge="1" parent="1" source="workshops" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0;exitY=0.25;exitDx=0;exitDy=0;" target="storage" value="Save Seats">
           <mxGeometry relative="1" x="0.5547" as="geometry">
             <mxPoint as="offset" />
