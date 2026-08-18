@@ -51,3 +51,20 @@ contactForm.addEventListener("submit", function (e) {
   localStorage.removeItem("contactFormData");
   contactForm.reset();
 });
+
+// Keep the embedded X timeline in sync with the global theme switcher.
+function updateTimelineTheme() {
+  const timeline = document.querySelector(".twitter-timeline");
+  if (!timeline) return;
+
+  const theme = document.documentElement.getAttribute("data-theme") || "dark";
+  timeline.setAttribute("data-theme", theme === "light" ? "light" : "dark");
+
+  if (window.twttr && window.twttr.widgets && window.twttr.widgets.load) {
+    window.twttr.widgets.load();
+  }
+}
+
+document.addEventListener("DOMContentLoaded", updateTimelineTheme);
+window.addEventListener("load", updateTimelineTheme);
+document.addEventListener("logicklub-theme-change", updateTimelineTheme);

@@ -115,8 +115,24 @@ main section:nth-of-type(2)>div>div:nth-child(2)>div h3 {
 }
 
 #submitButton:hover {
-    background: #eab308;
-    transform: translateY(-2px);
+  background: #eab308;
+  transform: translateY(-2px);
+}
+
+/* ===== X (Twitter) timeline widget ===== */
+.x-timeline-card {
+  margin-top: 20px;
+  padding: 24px;
+  background: #0d0d0d;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  max-width: 620px;
+  min-height: 320px;
+}
+
+.x-fallback {
+  margin-top: 12px;
+  font-size: 0.85rem;
 }
 
 /* ===== Map ===== */
