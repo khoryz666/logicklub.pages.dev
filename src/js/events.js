@@ -51,8 +51,6 @@ function buildCard(data, defaultTag, linkText, wrapperClass, withImage) {
     const title = $("<h3>", { class: "card-title" }).text(data.title);
 
     if (showImage) {
-        article.addClass("news-card--image");
-
         // ---- Cover media ----
         const image = data.cover_image || data.social_image || null;
         const media = $("<div>", { class: "card-media" });
@@ -75,8 +73,6 @@ function buildCard(data, defaultTag, linkText, wrapperClass, withImage) {
         caption.append(title);
         media.append(caption);
         article.append(media);
-    } else {
-        article.addClass("news-card--no-image");
     }
 
     // ---- Body ----
