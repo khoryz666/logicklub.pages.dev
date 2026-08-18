@@ -248,6 +248,39 @@
   border-color: #111111;
 }
 
+/* ===== Auth area (name + sign out) ===== */
+.nav-auth {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 2px;
+}
+
+.nav-user {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.btn-signout {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.btn-signout:hover {
+  color: var(--text);
+  border-color: var(--text);
+}
+
 /* ===== Responsive ===== */
 @media (max-width: 1150px) {
   .navbar { gap: 10px; padding: 10px 14px; }

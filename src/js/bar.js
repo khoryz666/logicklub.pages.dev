@@ -1,3 +1,6 @@
+import { auth } from "./auth.js";
+import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
+
 (function () {
   "use strict";
 
@@ -72,12 +75,47 @@
           ICONS.sun + ICONS.moon +
         "</button>" +
         '<a href="join.html" class="btn-join">Join</a>' +
+        '<span class="nav-auth" id="nav-auth"></span>' +
       "</div>"
     );
   }
 
   var nav = document.getElementById("navbar");
   if (nav) nav.innerHTML = buildNav();
+
+  // --- Auth state: show user name + sign out at the far right of the bar ---
+  var navAuth = document.getElementById("nav-auth");
+  var joinBtn = document.querySelector(".btn-join");
+
+  function renderNavAuth(user) {
+    if (!navAuth) return;
+    navAuth.textContent = "";
+
+    if (user) {
+      if (joinBtn) joinBtn.style.display = "none";
+
+      var name = user.displayName || (user.email ? user.email.split("@")[0] : "Member");
+
+      var nameSpan = document.createElement("span");
+      nameSpan.className = "nav-user";
+      nameSpan.textContent = name;
+
+      var outBtn = document.createElement("button");
+      outBtn.type = "button";
+      outBtn.className = "btn-signout";
+      outBtn.textContent = "Sign Out";
+      outBtn.addEventListener("click", function () {
+        signOut(auth).catch(function (e) { console.error("Sign out failed:", e); });
+      });
+
+      navAuth.appendChild(nameSpan);
+      navAuth.appendChild(outBtn);
+    } else {
+      if (joinBtn) joinBtn.style.display = "";
+    }
+  }
+
+  onAuthStateChanged(auth, renderNavAuth);
 
   // --- Theme toggle (defaults to dark) ---
   var root = document.documentElement;
