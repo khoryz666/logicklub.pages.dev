@@ -16,6 +16,12 @@ main h2 {
     font-size: 1.8rem;
     font-weight: 800;
     letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+main > section > h2 {
+    border-left: 4px solid #facc15;
+    padding-left: 14px;
 }
 
 main h3 {
@@ -42,10 +48,28 @@ main a {
 
 /* matrix display */
 math {
-    display: block;
-    margin: 24px 0;
+    display: flex;
+    justify-content: center;
+    margin: 0;
     color: var(--text);
-    font-size: 1.3rem;
+    font-size: 2.2rem;
+}
+
+math mtd {
+    padding: 16px 26px;
+}
+
+math mtable {
+    margin: 0 12px;
+}
+
+/* matrix + controls responsive layout */
+.matrix-area {
+    align-items: center;
+}
+
+.matrix-area .matrix-controls {
+    margin-top: 0;
 }
 
 /* matrix controls */
@@ -60,8 +84,17 @@ math {
 }
 
 .matrix-input-group td {
-    padding: 8px 10px;
+    padding: 10px 8px;
     color: var(--muted);
+    vertical-align: middle;
+}
+
+.matrix-input-group td:first-child {
+    white-space: nowrap;
+}
+
+.matrix-input-group label {
+    font-size: 0.95rem;
 }
 
 .matrix-input-group input[type="range"] {
@@ -82,26 +115,27 @@ math {
 #reset-btn {
     padding: 12px 26px;
     border-radius: 999px;
-    border: 1px solid var(--border);
-    background: transparent;
-    color: var(--text);
+    border: none;
+    background: #facc15;
+    color: #050505;
     font-weight: 700;
     cursor: pointer;
-    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+    transition: background 0.2s ease, transform 0.2s ease;
 }
 
 #reset-btn:hover {
-    border-color: #facc15;
-    color: #facc15;
+    background: #eab308;
+    transform: translateY(-2px);
 }
 
 #calculator {
     margin-top: 24px;
     height: 520px;
     border: 1px solid var(--border);
-    border-radius: 14px;
+    border-radius: 18px;
     overflow: hidden;
     background: #ffffff;
+    box-shadow: var(--shadow);
 }
 
 /* figures & images */
@@ -158,6 +192,10 @@ summary {
 @media (max-width: 768px) {
     main {
         padding: 140px 16px 60px;
+    }
+
+    math {
+        font-size: 1.7rem;
     }
 
     #calculator {
