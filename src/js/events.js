@@ -1,3 +1,5 @@
+var EVENTS_SCROLL_KEY = "logicklubEventsScroll";
+
 $(document).ready(function () {
 	loadNews();
     loadEvents();
@@ -8,8 +10,6 @@ $(document).ready(function () {
         try { sessionStorage.setItem(EVENTS_SCROLL_KEY, String($(this).scrollLeft())); } catch (e) { /* ignore */ }
     });
 });
-
-var EVENTS_SCROLL_KEY = "logicklubEventsScroll";
 
 /*
 DEV Community API provides publicly accessible technology-related content
