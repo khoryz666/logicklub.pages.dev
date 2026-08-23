@@ -1,11 +1,31 @@
-/* ===== Play AI page ===== */
+/* ==========================================================================
+   LOGICKlub - Play AI Stylesheet (game.css)
+   ==========================================================================
+   Styles for the interactive MNIST digit recognition simulator:
+   - Page container and typography
+   - Split 2-column workspace layout
+   - Drawing canvas styling and crosshair cursor
+   - Interactive control buttons (Predict & Clear)
+   - Dynamic neural network probability bar chart with empty state
+   - Mobile responsive layout
+   ========================================================================== */
 
+/* --------------------------------------------------------------------------
+   1. PAGE LAYOUT & CONTAINER
+   -------------------------------------------------------------------------- */
+
+/* Main content wrapper with bounded width and navbar top clearance */
 main {
     width: min(1200px, 100%);
     margin: 0 auto;
     padding: 140px 24px 80px;
 }
 
+/* --------------------------------------------------------------------------
+   2. TYPOGRAPHY & HEADINGS
+   -------------------------------------------------------------------------- */
+
+/* Section level 2 headings */
 main h2 {
     margin: 0 0 16px;
     color: var(--text);
@@ -15,11 +35,13 @@ main h2 {
     line-height: 1.2;
 }
 
+/* Primary section headers highlighted with yellow accent bar */
 main > section > h2 {
     border-left: 4px solid #facc15;
     padding-left: 14px;
 }
 
+/* Subtle gradient section divider */
 main hr {
     border: none;
     height: 1px;
@@ -27,19 +49,27 @@ main hr {
     background: linear-gradient(90deg, transparent, var(--border), transparent);
 }
 
+/* Informational body text */
 main section > p {
     color: var(--muted);
     line-height: 1.7;
 }
 
+/* Accent link styles */
 main a {
     color: #facc15;
 }
 
+/* --------------------------------------------------------------------------
+   3. SIMULATOR WORKSPACE & PANELS
+   -------------------------------------------------------------------------- */
+
+/* Workspace grid container */
 .simulator-workspace {
     margin-top: 32px;
 }
 
+/* Dark card panel housing drawing canvas (left) and results (right) */
 .workspace-panel {
     height: 100%;
     padding: 26px;
@@ -57,12 +87,18 @@ main a {
     color: #9ca3af;
 }
 
+/* --------------------------------------------------------------------------
+   4. DRAWING CANVAS COMPONENT
+   -------------------------------------------------------------------------- */
+
+/* Centering wrapper around canvas element */
 .canvas-wrapper {
     margin: 18px 0;
     display: flex;
     justify-content: center;
 }
 
+/* 320x320 drawing canvas (disables default touch scrolling for draw gestures) */
 #canvas {
     background: #ffffff;
     border: 1px solid #333333;
@@ -73,11 +109,17 @@ main a {
     height: auto;
 }
 
+/* Model loading status text */
 #loading-text {
     color: #facc15;
     font-weight: 700;
 }
 
+/* --------------------------------------------------------------------------
+   5. CONTROLS & ACTION BUTTONS
+   -------------------------------------------------------------------------- */
+
+/* Container aligning Clear and Predict buttons */
 .controls {
     display: flex;
     gap: 14px;
@@ -85,6 +127,7 @@ main a {
     flex-wrap: wrap;
 }
 
+/* Base button styling with smooth transitions */
 .action-btn {
     padding: 12px 28px;
     border-radius: 999px;
@@ -101,11 +144,13 @@ main a {
     color: #facc15;
 }
 
+/* Disabled state while WASM model is downloading or loading */
 .action-btn:disabled {
     opacity: 0.4;
     cursor: not-allowed;
 }
 
+/* Predict CTA button with primary yellow branding */
 .predict-btn {
     background: #facc15;
     color: #050505;
@@ -118,10 +163,16 @@ main a {
     color: #050505;
 }
 
+/* Clear button hover state */
 .clear-btn:hover:not(:disabled) {
     background: rgba(255, 255, 255, 0.06);
 }
 
+/* --------------------------------------------------------------------------
+   6. NEURAL NETWORK PROBABILITY BAR CHART
+   -------------------------------------------------------------------------- */
+
+/* Container for output bars */
 .bar-chart-container {
     display: flex;
     flex-direction: column;
@@ -130,6 +181,7 @@ main a {
     min-height: 220px;
 }
 
+/* Empty state prompt displayed before first prediction */
 .bar-chart-container:empty::after {
     content: "Draw a digit and press Predict to see the result";
     display: flex;
@@ -141,6 +193,7 @@ main a {
     text-align: center;
 }
 
+/* Individual digit row (Digit Label + Progress Bar + Percentage) */
 .bar-chart-container > div {
     display: flex;
     align-items: center;
@@ -149,6 +202,7 @@ main a {
     font-size: 0.9rem;
 }
 
+/* HTML5 progress element with yellow accent fill */
 .bar-chart-container progress {
     flex: 1;
     height: 14px;
@@ -159,6 +213,10 @@ main a {
 .bar-chart-container strong {
     color: #f5f5f5;
 }
+
+/* --------------------------------------------------------------------------
+   7. MEDIA QUERIES (RESPONSIVE DESIGN)
+   -------------------------------------------------------------------------- */
 
 @media (max-width: 768px) {
     main {

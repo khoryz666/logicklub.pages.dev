@@ -1,15 +1,35 @@
-/* ===== Learn Math page ===== */
+/* ==========================================================================
+   LOGICKlub - Learn Math Stylesheet (math.css)
+   ==========================================================================
+   Styles for the interactive Linear Algebra & Matrix Visualizer page:
+   - Typography and section vertical flow
+   - MathML dynamic matrix rendering
+   - Matrix slider controls and Reset button
+   - Desmos Graphing Calculator container
+   - Figures, accordions (<details>), and responsive YouTube embeds
+   ========================================================================== */
 
+/* --------------------------------------------------------------------------
+   1. PAGE LAYOUT & CONTAINER
+   -------------------------------------------------------------------------- */
+
+/* Main content wrapper with bounded width and navbar top clearance */
 main {
     width: min(1100px, 100%);
     margin: 0 auto;
     padding: 140px 24px 80px;
 }
 
+/* Vertical spacing between consecutive content sections */
 main section + section {
     margin-top: 80px;
 }
 
+/* --------------------------------------------------------------------------
+   2. TYPOGRAPHY & HEADINGS
+   -------------------------------------------------------------------------- */
+
+/* Section level 2 headings */
 main h2 {
     margin: 0 0 16px;
     color: var(--text);
@@ -19,11 +39,13 @@ main h2 {
     line-height: 1.2;
 }
 
+/* Primary section headers highlighted with yellow accent bar */
 main > section > h2 {
     border-left: 4px solid #facc15;
     padding-left: 14px;
 }
 
+/* Subsection level 3 headings */
 main h3 {
     margin: 28px 0 10px;
     color: var(--text);
@@ -31,22 +53,29 @@ main h3 {
     font-weight: 700;
 }
 
+/* Body and collapsible explanation text */
 main section > p,
 main section > details p {
     color: var(--muted);
     line-height: 1.7;
 }
 
+/* Emphasized text contrast */
 main b,
 main strong {
     color: var(--text);
 }
 
+/* Link accent styling */
 main a {
     color: #facc15;
 }
 
-/* matrix display */
+/* --------------------------------------------------------------------------
+   3. MATHML MATRIX NOTATION STYLES
+   -------------------------------------------------------------------------- */
+
+/* Root MathML equation container centered above/alongside sliders */
 math {
     display: flex;
     justify-content: center;
@@ -55,15 +84,21 @@ math {
     font-size: 2.2rem;
 }
 
+/* Spacing within matrix table cells */
 math mtd {
     padding: 16px 26px;
 }
 
+/* Spacing between matrix tables and brackets */
 math mtable {
     margin: 0 12px;
 }
 
-/* matrix + controls responsive layout */
+/* --------------------------------------------------------------------------
+   4. MATRIX CONTROLS & SLIDER INPUTS
+   -------------------------------------------------------------------------- */
+
+/* Two-column responsive row aligning MathML with sliders */
 .matrix-area {
     align-items: center;
 }
@@ -72,11 +107,12 @@ math mtable {
     margin-top: 0;
 }
 
-/* matrix controls */
+/* Sliders container */
 .matrix-controls {
     margin-top: 20px;
 }
 
+/* Table layout for neat alignment of slider labels, inputs, and values */
 .matrix-input-group table {
     width: 100%;
     max-width: 560px;
@@ -89,6 +125,7 @@ math mtable {
     vertical-align: middle;
 }
 
+/* Prevent label text wrapping */
 .matrix-input-group td:first-child {
     white-space: nowrap;
 }
@@ -97,21 +134,28 @@ math mtable {
     font-size: 0.95rem;
 }
 
+/* Range input sliders with yellow theme accent */
 .matrix-input-group input[type="range"] {
     width: 100%;
     accent-color: #facc15;
 }
 
+/* Numeric indicator display next to sliders */
 .matrix-input-group span {
     color: #facc15;
     font-weight: 700;
     font-family: monospace;
 }
 
+/* --------------------------------------------------------------------------
+   5. ACTION BUTTONS & RESET CONTROL
+   -------------------------------------------------------------------------- */
+
 .btn-container {
     margin-top: 18px;
 }
 
+/* Reset button styling with pill shape and hover elevation */
 #reset-btn {
     padding: 12px 26px;
     border-radius: 999px;
@@ -128,6 +172,11 @@ math mtable {
     transform: translateY(-2px);
 }
 
+/* --------------------------------------------------------------------------
+   6. DESMOS CALCULATOR CONTAINER
+   -------------------------------------------------------------------------- */
+
+/* Graph iframe wrapper */
 #calculator {
     margin-top: 24px;
     height: 520px;
@@ -138,11 +187,15 @@ math mtable {
     box-shadow: var(--shadow);
 }
 
-/* figures & images */
+/* --------------------------------------------------------------------------
+   7. FIGURES & DIAGRAMS
+   -------------------------------------------------------------------------- */
+
 figure {
     margin: 24px 0;
 }
 
+/* Diagram preview image on white background card */
 figure img {
     max-width: 100%;
     border-radius: 12px;
@@ -150,6 +203,7 @@ figure img {
     padding: 12px;
 }
 
+/* Caption underneath diagrams */
 figcaption {
     margin-top: 10px;
     color: var(--muted);
@@ -157,7 +211,11 @@ figcaption {
     line-height: 1.6;
 }
 
-/* details */
+/* --------------------------------------------------------------------------
+   8. ACCORDION / COLLAPSIBLE DETAILS
+   -------------------------------------------------------------------------- */
+
+/* Dropdown explanation box */
 details {
     margin-top: 20px;
     padding: 16px 18px;
@@ -167,12 +225,17 @@ details {
     color: var(--muted);
 }
 
+/* Interactive summary header */
 summary {
     cursor: pointer;
     color: var(--text);
 }
 
-/* youtube embeds */
+/* --------------------------------------------------------------------------
+   9. RESPONSIVE YOUTUBE VIDEO EMBEDS
+   -------------------------------------------------------------------------- */
+
+/* 16:9 Aspect ratio container */
 .youtube-container {
     position: relative;
     margin-top: 16px;
@@ -182,6 +245,7 @@ summary {
     border: 1px solid var(--border);
 }
 
+/* Absolute fill iframe */
 .youtube-container iframe {
     position: absolute;
     inset: 0;
@@ -189,15 +253,21 @@ summary {
     height: 100%;
 }
 
+/* --------------------------------------------------------------------------
+   10. MEDIA QUERIES (MOBILE RESPONSIVENESS)
+   -------------------------------------------------------------------------- */
+
 @media (max-width: 768px) {
     main {
         padding: 140px 16px 60px;
     }
 
+    /* Scale down MathML font size for mobile screens */
     math {
         font-size: 1.7rem;
     }
 
+    /* Adjust calculator height on smaller devices */
     #calculator {
         height: 420px;
     }
