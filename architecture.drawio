@@ -28,10 +28,10 @@
         <mxCell id="projects" parent="pages_container" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="projects.html&amp;#xa;(Vanilla JS DOM API)" vertex="1">
           <mxGeometry height="60" width="140" x="200" y="160" as="geometry" />
         </mxCell>
-        <mxCell id="contact" parent="pages_container" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="contact.html&amp;#xa;(Google Maps Embed API)" vertex="1">
+        <mxCell id="contact" parent="pages_container" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="contact.html&amp;#xa;(Maps + Facebook Embeds)" vertex="1">
           <mxGeometry height="60" width="140" x="30" y="360" as="geometry" />
         </mxCell>
-        <mxCell id="math" parent="pages_container" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="math.html&amp;#xa;(LocalStorage API)" vertex="1">
+        <mxCell id="math" parent="pages_container" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="math.html&amp;#xa;(Desmos API + LocalStorage)" vertex="1">
           <mxGeometry height="60" width="140" x="30" y="260" as="geometry" />
         </mxCell>
         <mxCell id="game" parent="pages_container" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="game.html&amp;#xa;(ONNX WASM &amp;amp; Canvas APIs)" vertex="1">
@@ -119,6 +119,23 @@
         </mxCell>
         <mxCell id="edge_user_404" edge="1" parent="1" source="user" target="notfound" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" value="invalid / broken URL">
           <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_projects_storage" edge="1" parent="1" source="projects" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;entryPerimeter=0;" target="storage" value="Save Filter">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="519" y="480" />
+              <mxPoint x="1050" y="480" />
+              <mxPoint x="1050" y="345.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_contact_storage" edge="1" parent="1" source="contact" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;entryPerimeter=0;" target="storage" value="Save Draft">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="650" y="610" />
+              <mxPoint x="650" y="345.5" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="MpYkuG2W4__GKxMMQ9QN-1" edge="1" parent="1" source="math" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="storage">
           <mxGeometry relative="1" as="geometry">
