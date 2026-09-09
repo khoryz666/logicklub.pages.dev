@@ -1,20 +1,131 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
+// Self-contained member "auth" backed entirely by localStorage — no external
+// service, no account, no bill. Good enough for a static class-project demo;
+// it is NOT a substitute for a real server-side auth system (anyone with
+// console access can read localStorage), but no data ever leaves the browser.
 
-const firebaseConfig = {
-	apiKey: "AIzaSyB-_9QzsRnfRR1I1dz1cI8VqNQgkaHVF9Q",
-	authDomain: "logicklub-3f1d5.firebaseapp.com",
-	projectId: "logicklub-3f1d5",
-	storageBucket: "logicklub-3f1d5.firebasestorage.app",
-	messagingSenderId: "336053964862",
-	appId: "1:336053964862:web:88cff2ccd845e71133016f",
-	measurementId: "G-J32HPYL0QB"
-};
+const USERS_KEY = "lk_users";
+const SESSION_KEY = "lk_session";
+const AUTH_EVENT = "lk-auth-change";
 
-const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
-export const db = getFirestore(app);
+export class AuthError extends Error {
+	constructor(code, message) {
+		super(message);
+		this.code = code;
+	}
+}
+
+function loadUsers() {
+	try {
+		return JSON.parse(localStorage.getItem(USERS_KEY)) || [];
+	} catch (e) {
+		return [];
+	}
+}
+
+function saveUsers(users) {
+	localStorage.setItem(USERS_KEY, JSON.stringify(users));
+}
+
+// SHA-256 via the browser's built-in Web Crypto API — no external library needed.
+async function hashPassword(password) {
+	const data = new TextEncoder().encode(password);
+	const digest = await crypto.subtle.digest("SHA-256", data);
+	return Array.from(new Uint8Array(digest))
+		.map((b) => b.toString(16).padStart(2, "0"))
+		.join("");
+}
+
+function toPublicUser(user) {
+	if (!user) return null;
+	return { fullName: user.fullName, username: user.username, email: user.email };
+}
+
+// The signed-in session lives in sessionStorage (cleared when the tab
+// closes) — the account list itself still lives in localStorage below, since
+// that's the only way a returning member can sign back in on a later visit.
+function getSession() {
+	try {
+		return JSON.parse(sessionStorage.getItem(SESSION_KEY));
+	} catch (e) {
+		return null;
+	}
+}
+
+function setSession(user) {
+	if (user) {
+		sessionStorage.setItem(SESSION_KEY, JSON.stringify(toPublicUser(user)));
+	} else {
+		sessionStorage.removeItem(SESSION_KEY);
+	}
+	window.dispatchEvent(new CustomEvent(AUTH_EVENT));
+}
+
+export function getCurrentUser() {
+	return getSession();
+}
+
+// Calls back immediately with the current session, then again whenever it
+// changes in this tab (sessionStorage isn't shared across tabs, so there's
+// no cross-tab event to listen for).
+export function onAuthStateChanged(callback) {
+	callback(getCurrentUser());
+	window.addEventListener(AUTH_EVENT, () => callback(getCurrentUser()));
+}
+
+export async function registerUser({ fullName, studentId, phone, programme, interest, username, email, password }) {
+	const users = loadUsers();
+	const usernameLower = username.trim().toLowerCase();
+	const emailLower = email.trim().toLowerCase();
+
+	if (users.some((u) => u.usernameLower === usernameLower)) {
+		throw new AuthError("username-in-use", "That username is already in use. Please choose another one.");
+	}
+	if (users.some((u) => u.emailLower === emailLower)) {
+		throw new AuthError("email-in-use", "This email is already registered. Please sign in instead.");
+	}
+
+	const user = {
+		fullName,
+		studentId,
+		phone,
+		programme,
+		interest,
+		username,
+		usernameLower,
+		email,
+		emailLower,
+		passwordHash: await hashPassword(password)
+	};
+
+	users.push(user);
+	saveUsers(users);
+	return toPublicUser(user);
+}
+
+export async function signIn(identifier, password) {
+	const value = identifier.trim().toLowerCase();
+	const users = loadUsers();
+	const user = value.includes("@")
+		? users.find((u) => u.emailLower === value)
+		: users.find((u) => u.usernameLower === value);
+
+	if (!user) {
+		throw new AuthError("not-found", "No registered member account was found. Please sign up first.");
+	}
+
+	const passwordHash = await hashPassword(password);
+	if (passwordHash !== user.passwordHash) {
+		throw new AuthError("wrong-password", "Incorrect email/username or password.");
+	}
+
+	setSession(user);
+	return toPublicUser(user);
+}
+
+export function signOut() {
+	setSession(null);
+	return Promise.resolve();
+}
 
 // Cookie / local-storage consent banner.
 document.addEventListener("DOMContentLoaded", () => {
@@ -36,7 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	banner.style.zIndex = "1000";
 	banner.innerHTML = `
 	<p style="display:inline; margin-right: 15px;">
-	  This website uses Local Storage and Firebase Authentication to ensure you get the best experience.
+	  This website uses Cookies and Local Storage to remember your preferences and membership sign-in.
 	</p>
 	<button id="consent-btn" style="padding: 5px 15px;">I Understand</button>
   `;
@@ -50,29 +161,3 @@ document.addEventListener("DOMContentLoaded", () => {
 		banner.remove();
 	});
 });
-
-// Reflect the auth state on the join page.
-onAuthStateChanged(auth, (user) => {
-	const authStatus = document.getElementById("auth-status");
-	const joinForm = document.getElementById("join-form");
-	const signedInEmail = document.getElementById("signed-in-email");
-
-	if (user) {
-		if (authStatus) authStatus.style.display = "block";
-		if (joinForm) joinForm.style.display = "none";
-		if (signedInEmail) signedInEmail.textContent = user.email;
-	} else {
-		if (authStatus) authStatus.style.display = "none";
-		if (joinForm) joinForm.style.display = "block";
-		if (signedInEmail) signedInEmail.textContent = "";
-	}
-});
-
-const signOutBtn = document.getElementById("sign-out-btn");
-if (signOutBtn) {
-	signOutBtn.addEventListener("click", () => {
-		signOut(auth)
-			.then(() => console.log("User successfully signed out."))
-			.catch((error) => console.error("Error signing out:", error));
-	});
-}

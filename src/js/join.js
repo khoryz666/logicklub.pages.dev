@@ -1,18 +1,4 @@
-import { auth, db } from "./auth.js";
-import {
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    updateProfile,
-    signOut
-} from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
-import {
-    doc,
-    setDoc,
-    collection,
-    query,
-    where,
-    getDocs
-} from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
+import { registerUser, signIn, signOut, onAuthStateChanged, AuthError } from "./auth.js";
 
 const joinForm = document.getElementById("join-form");
 const formMessage = document.getElementById("form-message");
@@ -81,15 +67,6 @@ signInPanel?.addEventListener("keydown", (e) => {
     }
 });
 
-async function usernameExists(username) {
-    const usernameQuery = query(
-        collection(db, "users"),
-        where("usernameLower", "==", username.trim().toLowerCase())
-    );
-    const snapshot = await getDocs(usernameQuery);
-    return !snapshot.empty;
-}
-
 if (joinForm) {
     joinForm.addEventListener("submit", async (e) => {
         e.preventDefault();
@@ -124,6 +101,11 @@ if (joinForm) {
             return;
         }
 
+        if (!/^\S+@\S+\.\S+$/.test(email)) {
+            setMessage("Please enter a valid email address.", "error");
+            return;
+        }
+
         if (pwd.length < 6) {
             setMessage("Password must contain at least 6 characters.", "error");
             return;
@@ -135,30 +117,16 @@ if (joinForm) {
         }
 
         try {
-            if (await usernameExists(username)) {
-                setMessage("That username is already in use. Please choose another one.", "error");
-                return;
-            }
-
-            const userCredential = await createUserWithEmailAndPassword(auth, email, pwd);
-            const user = userCredential.user;
-
-            await updateProfile(user, { displayName: fullName });
-
-            await setDoc(doc(db, "users", user.uid), {
+            await registerUser({
                 fullName,
                 studentId,
                 phone,
                 programme: programmeInput.value.trim(),
                 interest: interestInput.value,
                 username,
-                usernameLower: username.toLowerCase(),
-                email
+                email,
+                password: pwd
             });
-
-            // Firebase automatically signs in a newly-created user. Sign them out so
-            // registration does not count as a successful sign-in.
-            await signOut(auth);
 
             joinForm.reset();
             setMode("signin");
@@ -166,36 +134,14 @@ if (joinForm) {
             loginIdentifierInput.value = username;
             loginIdentifierInput.focus();
         } catch (error) {
-            console.error("Error creating user:", error.code, error.message);
-
-            if (error.code === "auth/email-already-in-use") {
-                setMessage("This email is already registered. Please sign in instead.", "error");
-            } else if (error.code === "auth/invalid-email") {
-                setMessage("Please enter a valid email address.", "error");
-            } else if (error.code === "auth/weak-password") {
-                setMessage("The password is too weak. Please use at least 6 characters.", "error");
+            if (error instanceof AuthError) {
+                setMessage(error.message, "error");
             } else {
+                console.error("Error creating user:", error);
                 setMessage("Registration failed. Please try again.", "error");
             }
         }
     });
-}
-
-async function resolveEmailFromIdentifier(identifier) {
-    const value = identifier.trim();
-
-    // If the user entered an email address, Firebase can authenticate it directly.
-    if (value.includes("@")) return value;
-
-    // Otherwise, look up the registered username and retrieve its email.
-    const usernameQuery = query(
-        collection(db, "users"),
-        where("usernameLower", "==", value.toLowerCase())
-    );
-    const snapshot = await getDocs(usernameQuery);
-
-    if (snapshot.empty) return null;
-    return snapshot.docs[0].data().email || null;
 }
 
 async function handleSignIn() {
@@ -208,32 +154,36 @@ async function handleSignIn() {
     }
 
     try {
-        const email = await resolveEmailFromIdentifier(identifier);
-
-        // An unknown username has no registered member account, so it must never sign in.
-        if (!email) {
-            setMessage("No registered member account was found. Please sign up first.", "error");
-            return;
-        }
-
-        const userCredential = await signInWithEmailAndPassword(auth, email, pwd);
-        console.log("Successfully signed in user:", userCredential.user.email);
+        await signIn(identifier, pwd);
         joinForm.reset();
         setMessage("Sign in successful. Redirecting...", "success");
         setTimeout(() => {
             window.location.href = "index.html";
         }, 900);
     } catch (error) {
-        console.error("Error signing in:", error.code, error.message);
-
-        if (error.code === "auth/invalid-credential" || error.code === "auth/user-not-found" || error.code === "auth/wrong-password") {
-            setMessage("Incorrect email/username or password. New members must sign up before signing in.", "error");
-        } else if (error.code === "auth/invalid-email") {
-            setMessage("Please enter a valid registered email or username.", "error");
+        if (error instanceof AuthError) {
+            setMessage(error.message, "error");
         } else {
+            console.error("Error signing in:", error);
             setMessage("Sign in failed. Please check your account details and try again.", "error");
         }
     }
 }
+
+// Reflect the auth state on this page: hide the form and show a "signed in
+// as" panel with a sign-out button once a member is signed in.
+const authStatus = document.getElementById("auth-status");
+const signedInEmail = document.getElementById("signed-in-email");
+const signOutBtn = document.getElementById("sign-out-btn");
+
+onAuthStateChanged((user) => {
+    if (authStatus) authStatus.style.display = user ? "block" : "none";
+    if (joinForm) joinForm.style.display = user ? "none" : "block";
+    if (signedInEmail) signedInEmail.textContent = user ? user.email : "";
+});
+
+signOutBtn?.addEventListener("click", () => {
+    signOut().then(() => console.log("User successfully signed out."));
+});
 
 setMode("signup");

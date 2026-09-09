@@ -1,5 +1,4 @@
-import { auth } from "./auth.js";
-import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
+import { onAuthStateChanged, signOut } from "./auth.js";
 
 (function () {
   "use strict";
@@ -117,7 +116,7 @@ import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/
     if (currentUser) {
       if (joinBtn) joinBtn.style.display = "none";
 
-      var name = currentUser.displayName || (currentUser.email ? currentUser.email.split("@")[0] : "Member");
+      var name = currentUser.fullName || (currentUser.email ? currentUser.email.split("@")[0] : "Member");
 
       var nameSpan = document.createElement("span");
       nameSpan.className = "nav-user";
@@ -128,7 +127,7 @@ import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/
       outBtn.className = "btn-signout";
       outBtn.textContent = "Sign Out";
       outBtn.addEventListener("click", function () {
-        signOut(auth).catch(function (e) { console.error("Sign out failed:", e); });
+        signOut();
       });
 
       navAuth.appendChild(nameSpan);
@@ -177,7 +176,7 @@ import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/
     if (open && !open.contains(e.target)) open.classList.remove("open");
   });
 
-  onAuthStateChanged(auth, function (user) {
+  onAuthStateChanged(function (user) {
     currentUser = user;
     renderNavAuth();
   });
