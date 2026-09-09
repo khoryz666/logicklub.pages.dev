@@ -8,6 +8,9 @@ A multi-page community frontend for logic, coding, AI, and creative tech enthusi
 - **Services**: ONNX Runtime Web (WASM)
 - **Storage**: Cookies, LocalStorage & SessionStorage
 
+## Architecture
+Refer [Architecture Diagram](https://app.diagrams.net/?lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=architecture.drawio#Uhttps%3A%2F%2Fraw.githubusercontent.com%2Fkhoryz666%2Flogicklub.pages.dev%2Fmain%2Farchitecture.drawio) 
+
 ## Pages & Features
 - **Portal:** `index.html` (Dashboard) & `join.html` (Interactive Registration)
 - **Events:** `events.html` (Live API News) & `workshops.html` (Interactive Seat Reservation)
